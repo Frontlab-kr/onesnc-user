@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(3).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-page-head">
+            <div class="one-contents">
+              <div class="one-page-head-title">
+                <strong>나의학습방</strong>
+                <p>마이페이지 입니다.</p>
+              </div>
+              <div class="one-page-head-menu">
+                <a href="">
+                  <i class="ico-Book"></i>
+                  <p>학습현황</p>
+                </a>
+                <a href="" class="active">
+                  <i class="ico-BackgroundRemover"></i>
+                  <p>관심과정</p>
+                </a>
+                <a href="">
+                  <i class="ico-PurchaseOrder"></i>
+                  <p>결제내역</p>
+                </a>
+                <a href="">
+                  <i class="ico-Help"></i>
+                  <p>1:1문의</p>
+                </a>
+                <a href="">
+                  <i class="ico-Resume"></i>
+                  <p>회원정보 수정</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span>나의학습방</span>
+                >
+                <strong>관심과정</strong>
+              </div>
+              <div class="one-interestcourse">
+                <div class="one-interestcourse__title">관심과정</div>
+                <div class="one-interestcourse-list">
+                  <div class="one-interestcourse-item">
+                    <div class="one-interestcourse-item-start">
+                      <div class="one-interestcourse-item__table">
+                        <table>
+                          <colgroup>
+                            <col style="width: 60px" />
+                            <col style="width: 400px" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th>과 정 명</th>
+                              <td>: 임원 리더십 교육</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="one-interestcourse-item__info">
+                        <p>
+                          <span>수강생:</span>
+                          <strong>50</strong>
+                        </p>
+                        <p>
+                          <i class="ico-like"></i>
+                          <strong>250</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="one-interestcourse-item-end">
+                      <button type="button" class="btn btn-sm btn-dark">
+                        수강신청
+                      </button>
+                      <button
+                        type="button"
+                        class="one-interestcourse-item__delete"
+                      >
+                        삭제
+                      </button>
+                    </div>
+                  </div>
+                  <div class="one-interestcourse-item">
+                    <div class="one-interestcourse-item-start">
+                      <div class="one-interestcourse-item__table">
+                        <table>
+                          <colgroup>
+                            <col style="width: 60px" />
+                            <col style="width: 400px" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th>과 정 명</th>
+                              <td>: 임원 리더십 교육</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="one-interestcourse-item__info">
+                        <p>
+                          <span>수강생:</span>
+                          <strong>50</strong>
+                        </p>
+                        <p>
+                          <i class="ico-like"></i>
+                          <strong>250</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="one-interestcourse-item-end">
+                      <button type="button" class="btn btn-sm btn-dark">
+                        수강신청
+                      </button>
+                      <button
+                        type="button"
+                        class="one-interestcourse-item__delete"
+                      >
+                        삭제
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="one-notice">
+                <div class="one-notice__title">공지사항</div>
+                <div class="one-notice-list">
+                  <a href="" class="one-notice-list-item">
+                    <p>
+                      [사내교육 안내] 2025년 상반기 법률기초교육 참가자 모집
+                      2025년 상반기 법률기초교육 참가자 모집 2025년 상반기
+                      법률기초교육 [사내교육 안내] 2025년 상반기 법률기초교육
+                      참가자 모집 2025년 상반기 법률기초교육 참가자 모집 2025년
+                      상반기 법률기초교육 [사내교육 안내] 2025년 상반기
+                      법률기초교육 참가자 모집 2025년 상반기 법률기초교육 참가자
+                      모집 2025년 상반기 법률기초교육
+                    </p>
+                    <span>2025.04.28</span>
+                  </a>
+                  <a href="" class="one-notice-list-item">
+                    <p>
+                      [사내교육 안내] 2025년 상반기 법률기초교육 참가자 모집
+                      2025년 상반기 법률기초교육 참가자 모집 2025년 상반기
+                      법률기초교육...
+                    </p>
+                    <span>2025.04.28</span>
+                  </a>
+                  <a href="" class="one-notice-list-item">
+                    <p>
+                      [사내교육 안내] 2025년 상반기 법률기초교육 참가자 모집
+                      2025년 상반기 법률기초교육 참가자 모집 2025년 상반기
+                      법률기초교육...
+                    </p>
+                    <span>2025.04.28</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

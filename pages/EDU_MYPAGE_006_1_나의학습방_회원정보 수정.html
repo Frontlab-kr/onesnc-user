@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(3).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-page-head">
+            <div class="one-contents">
+              <div class="one-page-head-title">
+                <strong>나의학습방</strong>
+                <p>마이페이지 입니다.</p>
+              </div>
+              <div class="one-page-head-menu">
+                <a href="">
+                  <i class="ico-Book"></i>
+                  <p>학습현황</p>
+                </a>
+                <a href="">
+                  <i class="ico-BackgroundRemover"></i>
+                  <p>관심과정</p>
+                </a>
+                <a href="">
+                  <i class="ico-PurchaseOrder"></i>
+                  <p>결제내역</p>
+                </a>
+                <a href="">
+                  <i class="ico-Help"></i>
+                  <p>1:1문의</p>
+                </a>
+                <a href="" class="active">
+                  <i class="ico-Resume"></i>
+                  <p>회원정보 수정</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span>나의학습방</span>
+                >
+                <strong>회원정보 수정</strong>
+              </div>
+              <div class="one-list">
+                <div class="one-list-head">
+                  <h2>회원정보 수정</h2>
+                </div>
+
+                <div class="one-form">
+                  <div class="one-form-item">
+                    <strong>아이디</strong>
+                    <div class="one-form-item__contents">Test1234</div>
+                  </div>
+                  <div class="one-form-item">
+                    <strong>현재 비밀번호</strong>
+                    <div class="one-form-item__contents">
+                      <div class="d-flex align-items-center gap-2">
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="영문, 숫자를 혼합하여 6글자 이상 20자리 미만으로 작성"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="one-form-item">
+                    <strong>새 비밀번호</strong>
+                    <div class="one-form-item__contents">
+                      <div class="d-flex align-items-center gap-2">
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="영문, 숫자를 혼합하여 6글자 이상 20자리 미만으로 작성"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="one-form-item">
+                    <strong>새 비밀번호 확인</strong>
+                    <div class="one-form-item__contents">
+                      <div class="d-flex align-items-center gap-2">
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="영문, 숫자를 혼합하여 6글자 이상 20자리 미만으로 작성"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="one-form-item">
+                    <strong>이름</strong>
+                    <div class="one-form-item__contents">
+                      <div class="d-flex align-items-center gap-2">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="이름을 입력해 주세요."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="one-form-item">
+                    <strong>연락처</strong>
+                    <div class="one-form-item__contents">
+                      <div class="one-form-item__phone">
+                        <select class="form-select">
+                          <option selected disabled>선택</option>
+                          <option>010</option>
+                          <option>011</option>
+                          <option>016</option>
+                          <option>017</option>
+                          <option>018</option>
+                          <option>019</option>
+                        </select>
+                        <p>
+                          <em>-</em>
+                          <input type="text" class="form-control" />
+                          <em>-</em>
+                          <input type="text" class="form-control" />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="one-form-item">
+                    <strong>이메일</strong>
+                    <div class="one-form-item__contents">
+                      <div class="one-form-item__email">
+                        <p>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="이메일을 입력해 주세요."
+                          />
+                          @
+                        </p>
+                        <p>
+                          <input type="text" class="form-control" />
+                        </p>
+                        <p>
+                          <select class="form-select">
+                            <option selected disabled>직접입력</option>
+                          </select>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="one-form-button">
+                  <button type="button" class="btn btn-dark">변경하기</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

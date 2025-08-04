@@ -122,12 +122,9 @@
 
 .btn-sm {
   height: 32px;
-  @include button-size(
-    $btn-padding-y-sm,
-    $btn-padding-x-sm,
-    $btn-font-size-sm,
-    $btn-border-radius-sm
-  );
+  padding: 0 10px;
+  border-radius: 4px;
+  font-size: 13px;
 }
 
 .btn {

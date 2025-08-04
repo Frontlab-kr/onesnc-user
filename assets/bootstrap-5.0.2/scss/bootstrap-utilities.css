@@ -25,10 +25,10 @@
 }
 
 .link-success {
-  color: #00c7a3;
+  color: #653fee;
 }
 .link-success:hover, .link-success:focus {
-  color: rgb(51, 210.2, 181.4);
+  color: rgb(80.8, 50.4, 190.4);
 }
 
 .link-info {
@@ -422,7 +422,7 @@
 }
 
 .border-success {
-  border-color: #00c7a3 !important;
+  border-color: #653fee !important;
 }
 
 .border-info {
@@ -1515,7 +1515,7 @@
 }
 
 .text-success {
-  color: #00c7a3 !important;
+  color: #653fee !important;
 }
 
 .text-info {
@@ -1571,7 +1571,7 @@
 }
 
 .bg-success {
-  background-color: #00c7a3 !important;
+  background-color: #653fee !important;
 }
 
 .bg-info {
