@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <main id="content">
+        <div class="one-contents">
+          <div class="one-join">
+            <h1>회원가입</h1>
+            <div class="one-join-nav">
+              <p class="active"><span>STEP 1.</span> 정보동의</p>
+              <i class="ico-nav"></i>
+              <p><span>STEP 2.</span> 본인인증</p>
+              <i class="ico-nav"></i>
+              <p><span>STEP 3.</span> 정보입력</p>
+            </div>
+            <div class="one-join-terms">
+              <div class="one-join-terms-item">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="termsAll"
+                  />
+                  <label class="form-check-label" for="termsAll">
+                    이용약관, 개인정보취급방침에 모두 동의 합니다.
+                  </label>
+                </div>
+              </div>
+              <div class="one-join-terms-item">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="terms01"
+                  />
+                  <label class="form-check-label" for="terms01">
+                    이용약관동의 <span class="text-danger">(필수)</span>
+                  </label>
+                </div>
+                <div class="one-join-terms-item__contents"></div>
+              </div>
+              <div class="one-join-terms-item">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="terms02"
+                  />
+                  <label class="form-check-label" for="terms02">
+                    개인정보취급방침 <span class="text-danger">(필수)</span>
+                  </label>
+                </div>
+                <div class="one-join-terms-item__contents"></div>
+              </div>
+            </div>
+            <div class="one-join-button">
+              <button type="button" class="btn btn-secondary">비동의</button>
+              <button type="button" class="btn btn-dark">동의</button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

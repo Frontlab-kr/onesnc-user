@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(2).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-page-head">
+            <div class="one-contents">
+              <div class="one-page-head-title">
+                <strong>소통채널</strong>
+                <p>고객센터 입니다.</p>
+              </div>
+              <div class="one-page-head-menu">
+                <a href="" class="active">
+                  <i class="ico-Messaging"></i>
+                  <p>소통채널</p>
+                </a>
+                <a href="">
+                  <i class="ico-Compliance"></i>
+                  <p>회사소개</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span>소통채널</span>
+                >
+                <strong>소통채널</strong>
+              </div>
+              <div class="one-list">
+                <div class="one-list-head">
+                  <h2>소통채널</h2>
+                </div>
+
+                <div class="one-view">
+                  <div class="one-view-head">
+                    <div class="one-view-head-start">
+                      <div class="one-view-head__title">
+                        <span><span class="badge bg-primary">공지</span></span>
+                        <p>소통채널 게시글1</p>
+                      </div>
+                      <p>작성자 : 관리자</p>
+                    </div>
+                    <div class="one-view-head-end">
+                      <p>2025.04.25</p>
+                      <p>조회수 : 12</p>
+                    </div>
+                  </div>
+                  <div class="one-view-body">작성한 글 노출 영역</div>
+                  <div class="one-view-foot">
+                    <div class="one-view-file">
+                      <ul>
+                        <li>
+                          <a href="">
+                            <i class="ico-file"></i>
+                            <p>첨부파일.pdf</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="one-view-button">
+                    <button type="button" class="btn btn-dark">목록</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

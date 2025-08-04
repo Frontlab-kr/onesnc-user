@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <main id="content">
+        <div class="one-contents">
+          <div class="one-join">
+            <h1>비밀번호찾기</h1>
+
+            <div class="one-join-form">
+              <div class="one-join-form-item">
+                <strong>이메일</strong>
+                <div class="one-join-form-item__contents">
+                  <div class="one-join-form-item__email">
+                    <p>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="이메일을 입력해 주세요."
+                      />
+                      @
+                    </p>
+                    <p>
+                      <input type="text" class="form-control" />
+                    </p>
+                    <p>
+                      <select class="form-select">
+                        <option selected disabled>직접입력</option>
+                      </select>
+                      <button type="button" class="btn btn-dark btn-sm">
+                        인증메일발송
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="one-join-form-item">
+                <strong>인증번호</strong>
+                <div class="one-join-form-item__contents">
+                  <div class="d-flex align-items-center gap-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="인증번호 6자리를 입력해주세요."
+                    />
+                    <span class="text-info">00:58</span>
+                    <button type="button" class="btn btn-dark btn-sm">
+                      확인
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="one-join-button">
+              <button type="button" class="btn btn-dark">
+                비밀번호 재설정
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

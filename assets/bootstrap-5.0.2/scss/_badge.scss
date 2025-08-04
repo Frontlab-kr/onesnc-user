@@ -1,0 +1,64 @@
+// Base class
+//
+// Requires one of the contextual, color modifier classes for `color` and
+// `background-color`.
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 30px;
+  @include gradient-bg();
+  @include media-breakpoint-down(md) {
+    padding: 0.25em 0.625em;
+    font-size: 0.875rem;
+  }
+  color: var(--02-text-06-white-ffffff, #fff);
+
+  /* C11/B_14 */
+  font-family: Pretendard;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 14px; /* 127.273% */
+  // Empty badges collapse automatically
+  &:empty {
+    display: none;
+  }
+  &-outline-danger {
+    border: 0.063rem solid #d65050;
+    border-radius: 0.313rem;
+    color: #d65050;
+  }
+  &-outline-primary {
+    border: 0.063rem solid #4f80ff;
+    border-radius: 0.313rem;
+    color: #4f80ff;
+  }
+  &-outline-black {
+    border: 0.063rem solid #222;
+    border-radius: 0.313rem;
+    color: #222;
+  }
+  &-outline-secondary {
+    border: 0.063rem solid #999;
+    border-radius: 0.313rem;
+    color: #999;
+  }
+  &-sm {
+    padding: 0 0.75rem;
+    height: 1.5rem;
+    border-radius: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.313rem;
+  }
+}
+
+// Quick fix for badges in buttons
+.btn .badge {
+  position: relative;
+  top: -0.063rem;
+}

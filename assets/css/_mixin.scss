@@ -1,0 +1,29 @@
+// mixin
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin text-clamp($lines: 2, $line-height: false) {
+  display: -webkit-box;
+  overflow: hidden;
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  @if $lines == 1 {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  @if $line-height {
+    max-height: $line-height * $lines * 1px;
+  }
+}
+
+@mixin letter-spacing($letterspacing, $font-size) {
+  word-spacing: (($letterspacing * $font-size) /1000) + px;
+  letter-spacing: (($letterspacing * $font-size) /1000) + px;
+}
