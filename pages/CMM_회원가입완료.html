@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <main id="content">
+        <div class="one-contents">
+          <div class="one-join-complete">
+            <h1>회원 가입 완료</h1>
+            <div class="one-join-complete__text">
+              아래 수강신청하러가기 버튼을 누르시면<br />
+              수강신청 페이지도 이동합니다.
+            </div>
+            <div class="one-form-button">
+              <button type="button" class="btn btn-dark">
+                수강신청 하러가기
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>
