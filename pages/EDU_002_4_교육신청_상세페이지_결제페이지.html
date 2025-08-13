@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(0).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-result">
+                <div class="one-result-head">
+                  <div class="one-result-head__title">
+                    <strong>수강 신청</strong>이 완료 되었습니다.
+                  </div>
+                  <div class="one-result-head__text">
+                    - 발급 받으신 가상 계좌로 교육비를 송금(이체) 납부하신 후에
+                    교육 수강이 가능합니다.<br />
+                    - 발급된 계좌는 일회성 계좌로 입금자(송금자)명과 교육
+                    신청자명이 틀려도 무방합니다.<br />
+                    - 입금 후 5~10분 후에 나의 학습방에서 수강 가능합니다.
+                  </div>
+                </div>
+                <div class="one-result-body">
+                  <table>
+                    <colgroup>
+                      <col style="width: 130px" />
+                      <col style="width: 400px" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th>입금 계좌번호</th>
+                        <td>71002003398388</td>
+                      </tr>
+                      <tr>
+                        <th>입금 은행명</th>
+                        <td>케이뱅크</td>
+                      </tr>
+                      <tr>
+                        <th>예금주 명</th>
+                        <td>㈜ONESNC</td>
+                      </tr>
+                      <tr>
+                        <th>송금자 명</th>
+                        <td>김나윤</td>
+                      </tr>
+                      <tr>
+                        <th>결제 금액</th>
+                        <td>1000원</td>
+                      </tr>
+                      <tr>
+                        <th>입금 기한</th>
+                        <td>2025.05.05(23:59:59)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="one-result__button">
+                  <button type="button" class="btn btn-dark">
+                    결제 내역 확인하기
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

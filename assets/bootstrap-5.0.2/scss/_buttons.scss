@@ -22,6 +22,9 @@
     $btn-font-size,
     $btn-border-radius
   );
+  @include media-breakpoint-down(xl) {
+    font-size: 16px;
+  }
   @include transition($btn-transition);
   white-space: nowrap;
   height: 46px;

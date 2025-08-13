@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(0).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-result">
+                <div class="one-result-head">
+                  <div class="one-result-head__title">
+                    <strong>결제</strong>가 완료 되었습니다.
+                  </div>
+                </div>
+                <div class="one-result__text">
+                  나의 학습방에서 학습을 진행해 주시기 바랍니다.<br />
+                  수강 기간 15일 이내 수료해 주시기 바랍니다.
+                </div>
+                <div class="one-result__button">
+                  <button type="button" class="btn btn-secondary">
+                    영수증 출력
+                  </button>
+                  <button type="button" class="btn btn-dark">
+                    나의 학습방 바로가기
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

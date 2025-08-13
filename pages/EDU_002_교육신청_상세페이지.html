@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(0).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span>교육과정</span>
+                >
+                <span>리더십교육</span>
+                >
+                <strong>임원교육</strong>
+              </div>
+              <div class="one-detail">
+                <div class="one-detail-head">
+                  <div class="one-detail-head__thumb">
+                    <p>
+                      법무법인 태평양<br />
+                      법률자료실 교육과정 1
+                    </p>
+                    <img src="/assets/images/thumb01.svg" alt="" />
+                  </div>
+                  <div class="one-detail-head__contents">
+                    <div class="one-detail-head__table">
+                      <table>
+                        <colgroup>
+                          <col style="width: 63px" />
+                          <col style="width: 300px" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th>과 정 명</th>
+                            <td>: 임원 리더십 교육</td>
+                          </tr>
+                          <tr>
+                            <th>학습방법</th>
+                            <td>: 온라인 교육</td>
+                          </tr>
+                          <tr>
+                            <th>학습방법</th>
+                            <td>: 총 3시간(8차시)</td>
+                          </tr>
+                          <tr>
+                            <th>학습시간</th>
+                            <td>: 총 3시간(8차시)</td>
+                          </tr>
+                          <tr>
+                            <th>학습기간</th>
+                            <td>: 수강 신청일로 부터 15일</td>
+                          </tr>
+                          <tr>
+                            <th>수료기준</th>
+                            <td>: 진도 90% 이상 수료</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="one-detail-head__text">
+                      <div class="one-detail-head__score">
+                        <p>
+                          만족도
+                          <span class="one-score one-score--04"></span>
+                          <strong>96%(10명)</strong>
+                        </p>
+                      </div>
+                      <div class="one-detail-head__info">
+                        <p>수강생: <strong>50</strong></p>
+                        <p>
+                          <i class="ico-like"></i>
+                          <strong>250</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="one-detail-head__button">
+                      <button type="button" class="btn btn-dark">
+                        수강신청
+                      </button>
+                      <button type="button" class="btn btn-secondary">
+                        <i class="ico-bookmark"></i> 관심
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="one-detail-body">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link active"
+                        id="tab01"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab01-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="tab01-pane"
+                        aria-selected="true"
+                      >
+                        학습목차
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="tab02"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab02-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="tab02-pane"
+                        aria-selected="false"
+                      >
+                        강사소개
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="tab03"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab03-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="tab03-pane"
+                        aria-selected="false"
+                      >
+                        수강후기
+                        <em>(00건)</em>
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="tab01-pane"
+                      role="tabpanel"
+                      aria-labelledby="tab01"
+                      tabindex="0"
+                    >
+                      <div class="one-board">
+                        <table>
+                          <colgroup>
+                            <col style="width: 200px" />
+                            <col style="width: 710px" />
+                            <col style="width: 290px" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th>NO</th>
+                              <th>목차명</th>
+                              <th>학습시간</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-center" title="NO">1차시</td>
+                              <td title="목차명">목차명이 노출됩니다</td>
+                              <td class="text-center" title="학습시간">
+                                12:17
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="text-center" title="NO">1차시</td>
+                              <td title="목차명">목차명이 노출됩니다</td>
+                              <td class="text-center" title="학습시간">
+                                12:17
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="text-center" title="NO">1차시</td>
+                              <td title="목차명">목차명이 노출됩니다</td>
+                              <td class="text-center" title="학습시간">
+                                12:17
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="text-center" title="NO">1차시</td>
+                              <td title="목차명">목차명이 노출됩니다</td>
+                              <td class="text-center" title="학습시간">
+                                12:17
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="text-center" title="NO">1차시</td>
+                              <td title="목차명">목차명이 노출됩니다</td>
+                              <td class="text-center" title="학습시간">
+                                12:17
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="tab02-pane"
+                      role="tabpanel"
+                      aria-labelledby="tab02"
+                      tabindex="0"
+                    >
+                      <div class="one-detail-teacher">
+                        <div class="one-detail-teacher-head">
+                          강사명: <strong>홍길동</strong>
+                        </div>
+                        - 00000 대표이사<br />
+                        - 000000 회사팀장<br />
+                        - 000000 회사팀장
+                      </div>
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="tab03-pane"
+                      role="tabpanel"
+                      aria-labelledby="tab03"
+                      tabindex="0"
+                    >
+                      <div class="one-view-comment m-0 p-0 border-0">
+                        <!-- 작성 폼 -->
+                        <form class="cmt__form" action="#" method="post">
+                          <label class="sr-only" for="cmtContent"
+                            >수강후기 입력</label
+                          >
+                          <textarea
+                            id="cmtContent"
+                            class="cmt__textarea"
+                            placeholder="수강후기를 500자 내로 입력해 주세요!"
+                          ></textarea>
+                          <div class="cmt__actions">
+                            <button type="submit" class="btn btn-dark">
+                              글 작성
+                            </button>
+                          </div>
+                        </form>
+
+                        <!-- 목록 -->
+                        <ul class="cmt__list">
+                          <!-- 댓글 1 -->
+                          <li class="cmt__item">
+                            <div class="cmt__meta">
+                              <span class="cmt__author">홍길동</span>
+                              <span class="cmt__date">2025.04.25</span>
+                            </div>
+                            <div class="cmt__body">
+                              업무에 많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다. 업무에 많은 도움이 되었습니다. 업무에
+                              많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다.업무에 많은 도움이 되었습니다. 업무에
+                              많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다. 업무에 많은 도움이 되었습니다. 업무에
+                              많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다. 업무에 많은 도움이 되었습니다.
+                            </div>
+                          </li>
+
+                          <!-- 댓글 2 -->
+                          <li class="cmt__item">
+                            <div class="cmt__meta">
+                              <span class="cmt__author">홍길동</span>
+                              <span class="cmt__date">2025.04.25</span>
+                            </div>
+                            <div class="cmt__body">
+                              업무에 많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다. 업무에 많은 도움이 되었습니다. 업무에
+                              많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다.업무에 많은 도움이 되었습니다. 업무에
+                              많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다. 업무에 많은 도움이 되었습니다. 업무에
+                              많은 도움이 되었습니다. 업무에 많은 도움이
+                              되었습니다. 업무에 많은 도움이 되었습니다.
+                            </div>
+                          </li>
+                        </ul>
+
+                        <div class="one-view-comment__more">
+                          <button type="button" class="btn btn-text">
+                            더보기 (1/5)
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(0).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span>교육과정</span>
+                >
+                <span>리더십교육</span>
+                >
+                <strong>임원교육</strong>
+              </div>
+              <div class="one-detail">
+                <div class="one-detail-head">
+                  <div class="one-detail-head__thumb">
+                    <p>
+                      법무법인 태평양<br />
+                      법률자료실 교육과정 1
+                    </p>
+                    <img src="/assets/images/thumb01.svg" alt="" />
+                  </div>
+                  <div class="one-detail-head__contents">
+                    <div class="one-detail-head__table">
+                      <table>
+                        <colgroup>
+                          <col style="width: 63px" />
+                          <col style="width: 300px" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th>과 정 명</th>
+                            <td>: 임원 리더십 교육</td>
+                          </tr>
+                          <tr>
+                            <th>학습방법</th>
+                            <td>: 온라인 교육</td>
+                          </tr>
+
+                          <tr>
+                            <th>학습시간</th>
+                            <td>: 총 3시간(8차시)</td>
+                          </tr>
+                          <tr>
+                            <th>학습기간</th>
+                            <td>: 수강 신청일로 부터 15일</td>
+                          </tr>
+                          <tr>
+                            <th>수료기준</th>
+                            <td>: 진도 90% 이상 수료</td>
+                          </tr>
+                          <tr>
+                            <th>금 액</th>
+                            <td>
+                              :
+                              <span class="text-muted" style="font-size: 14px"
+                                >₩10,000</span
+                              >
+                              ₩7,000
+                              <span class="text-danger" style="font-size: 14px"
+                                >(-3,000 할인)</span
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="one-detail-body">
+                  <div class="one-info">
+                    <div class="one-info__head">구매자 정보</div>
+                    <div class="one-info__body">
+                      <ul>
+                        <li>
+                          <strong>이름</strong>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="홍길동"
+                            readonly
+                          />
+                        </li>
+
+                        <li>
+                          <strong>휴대폰 번호</strong>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="010-0000-0000"
+                            readonly
+                          />
+                        </li>
+
+                        <li>
+                          <strong>이메일</strong>
+                          <input
+                            type="text"
+                            class="form-control"
+                            value="naver.nv@naver.com"
+                            readonly
+                          />
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="one-payment">
+                    <div class="one-payment__title">결제수단</div>
+                    <div class="one-payment-list">
+                      <div class="one-payment-list-item active">
+                        <i class="ico-account_balance"></i>
+                        <strong>무통장 입금(가상계좌)</strong>
+                        <p>
+                          가상의 계좌번호를 생성하여 그 계좌로 입금하는 방식<br />
+                          <span class="text-danger">
+                            입금자명과 교육신청자명이 달라도 됩니다.<br />
+                            입금 10분 후에 학습 가능 합니다.
+                          </span>
+                        </p>
+                      </div>
+                      <div class="one-payment-list-item">
+                        <i class="ico-credit_card"></i>
+                        <strong>신용카드</strong>
+                        <p>
+                          카드사마다 제공되는결제 방식은 상이 할 수 있으며,<br />
+                          결제 방식에서 확인되지 않은 결제 수단은 지원되지
+                          않습니다.
+                        </p>
+                      </div>
+                      <div class="one-payment-list-item">
+                        <i class="ico-payment_arrow_down"></i>
+                        <strong>실시간 계좌이체</strong>
+                        <p>
+                          회원가입자의 계좌에서 인터넷뱅킹으로 결제하는 방식<br />
+                          <span class="text-danger">
+                            법인계좌 불가, 공인인증서가 반드시 필요합니다.
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="one-payment__button">
+                      <button type="button" class="btn btn-secondary">
+                        이전
+                      </button>
+                      <button type="button" class="btn btn-dark">
+                        결제하기
+                      </button>
+                    </div>
+                  </div>
+                  <script>
+                    $(document).ready(function () {
+                      $('.one-payment-list-item').on('click', function () {
+                        $('.one-payment-list-item').removeClass('active');
+                        $(this).addClass('active');
+                      });
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>
