@@ -197,5 +197,111 @@
       <div include-html="../layout/footer.html"></div>
       <!-- //footer -->
     </div>
+
+    <div
+      style="
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.5);
+      "
+    >
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        modal01
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">강의 만족도</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="one-modal-review">
+              <div class="one-modal-review-head">
+                <div class="one-modal-review-head__title">
+                  학습 내용은 어떠셨나요?
+                </div>
+                <span class="one-score one-score-lg one-score-button">
+                  <button class="active"></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                </span>
+                <script>
+                  $(document).ready(function () {
+                    $(document).on(
+                      'click',
+                      '.one-score-button button',
+                      function () {
+                        var index = $(this).index(); // 클릭한 버튼의 인덱스
+                        var $buttons = $(this).parent().find('button');
+
+                        $buttons.removeClass('active'); // 전체 초기화
+                        $buttons.slice(0, index + 1).addClass('active'); // 클릭한 버튼까지 active
+                      }
+                    );
+                  });
+                </script>
+                <p>2025.03.22</p>
+              </div>
+              <div class="one-modal-review-textarea">
+                <h5>학습현황</h5>
+                <textarea
+                  class="form-control"
+                  placeholder="댓글을 입력해주세요. (최대 500자)"
+                ></textarea>
+                <span>0/500</span>
+                <script>
+                  $(document).on('input', 'textarea', function () {
+                    var max = 500;
+                    var length = $(this).val().length;
+                    var $counter = $(this).next('span'); // textarea 바로 뒤 span 선택
+
+                    $counter.text(length + '/' + max);
+
+                    // 최대 글자수 제한
+                    if (length > max) {
+                      $(this).val($(this).val().substring(0, max));
+                      $counter.text(max + '/' + max);
+                    }
+                  });
+                </script>
+              </div>
+              <div class="one-modal-review-text">
+                <ul>
+                  <li>작성된 내용은 홈페이지에 공개되고 있어요.</li>
+                  <li>
+                    욕설, 비방, 광고, 친구 구하는 글, 릴레이 소설, 특정
+                    연예인이나 드라마에 관련된 글 등 강의와 직접적인 관련이 없는
+                    게시물은 등록 할 경우 이용상의 제재를 받을 수 있어요.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+              완료
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
