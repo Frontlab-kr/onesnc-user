@@ -18831,8 +18831,15 @@ p {
   word-break: keep-all;
 }
 .one-interestcourse-item__table table th {
-  padding-right: 4px;
+  padding-right: 20px;
   white-space: noWrap;
+  position: relative;
+}
+.one-interestcourse-item__table table th::after {
+  content: ":";
+  position: absolute;
+  top: 0;
+  right: 8px;
 }
 @media (max-width: 1199.98px) {
   .one-interestcourse-item__table table th,
