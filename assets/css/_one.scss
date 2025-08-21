@@ -1721,7 +1721,7 @@ p {
           bottom: 0;
           left: 0;
           z-index: 30;
-          background: rgba($color: #000, $alpha: 0.6);
+          background: rgba(0, 0, 0, 0.7);
           > p {
             display: flex;
             width: 200px;
@@ -1731,15 +1731,15 @@ p {
             align-items: center;
             gap: 8.547px;
             flex-shrink: 0;
-            background: var(--01-secondary-03-yellow-f-4-bb-00, #f4bb00);
-            color: var(--00-primary-02-blue-013-eb-7, #013eb7) !important;
+            color: var(--02-text-06-white-ffffff, #fff);
+            text-align: center;
 
-            /* B12/B_20 */
+            /* H20/B_30 */
             font-family: Pretendard;
-            font-size: 12px !important;
+            font-size: 20px;
             font-style: normal;
             font-weight: 700;
-            line-height: 20px; /* 166.667% */
+            line-height: 30px; /* 150% */
           }
         }
         &__thumb {
