@@ -14667,17 +14667,6 @@ html {
   padding-bottom: 2.5rem;
 }
 
-.swal2-popup {
-  padding: 1rem 0 !important;
-}
-.swal2-title {
-  font-size: 1.25rem !important;
-}
-
-.swal2-styled.swal2-confirm {
-  background-color: #4f80ff !important;
-}
-
 h1, .h1 {
   margin-bottom: 0.938rem;
   font-weight: 400;
@@ -15855,6 +15844,13 @@ p {
   background: url(../images/ico-bookmark.svg) no-repeat 50% 50%;
 }
 
+.ico-bookmark-active {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  background: url(../images/ico-bookmark-active.svg) no-repeat 50% 50%;
+}
+
 .ico-CheckAll {
   display: inline-flex;
   width: 50px;
@@ -15988,6 +15984,13 @@ p {
   background: url(../images/ico-like.svg) no-repeat 50% 50%;
 }
 
+.ico-like-active {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  background: url(../images/ico-like-active.svg) no-repeat 50% 50%;
+}
+
 .ico-reply {
   display: inline-flex;
   width: 24px;
@@ -16026,6 +16029,7 @@ p {
 .one-header {
   height: 110px;
   border-bottom: 1px solid #e4e4e4;
+  z-index: 100;
 }
 .one-header .one-contents {
   display: flex;
@@ -16288,6 +16292,28 @@ p {
 @media (max-width: 1199.98px) {
   .one #content {
     min-height: 400px;
+  }
+}
+.one-none {
+  padding: 160px 0;
+}
+.one-none p {
+  margin: 0;
+  color: #666;
+  text-align: center;
+  /* B16/B_24 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3;
+}
+@media (max-width: 1199.98px) {
+  .one-none {
+    padding: 80px 0;
+  }
+  .one-none p {
+    font-size: 14px;
   }
 }
 .one-main-head {
@@ -17428,6 +17454,23 @@ p {
   display: flex;
   gap: 4px;
   margin-bottom: 40px;
+  overflow: auto;
+}
+.one-sort::-webkit-scrollbar {
+  width: 12px; /* 스크롤바 영역 넓힘 */
+  height: 12px;
+}
+.one-sort::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+.one-sort::-webkit-scrollbar-thumb {
+  background-color: #e1e1e1;
+  border-radius: 6px;
+  border: 4px solid transparent; /* thumb 자체는 8px처럼 보임 */
+  background-clip: content-box;
+}
+.one-sort::-webkit-scrollbar-thumb:hover {
+  background-color: #afafaf;
 }
 .one-sort a {
   display: inline-flex;
@@ -17446,6 +17489,7 @@ p {
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 153.846% */
+  white-space: noWrap;
 }
 .one-sort a.active {
   border-color: var(--08-gray-scale-02-black-2-e-3033, #2e3033);
@@ -19462,6 +19506,9 @@ p {
 .modal-body {
   padding: 50px 20px;
 }
+.modal-body img {
+  max-width: 100%;
+}
 .modal-body p {
   color: var(--02-text-01-black-2-e-2-e-2-e, #2e2e2e);
   text-align: center;
@@ -19471,6 +19518,15 @@ p {
   font-style: normal;
   font-weight: 700;
   line-height: 30px; /* 150% */
+}
+.modal-editor {
+  color: var(--02-text-01-black-2-e-2-e-2-e, #2e2e2e) !important;
+  /* H20/B_30 */
+  font-family: Pretendard !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 30px !important; /* 150% */
 }
 .modal-footer {
   display: flex;
@@ -19567,4 +19623,72 @@ p {
   font-style: normal;
   font-weight: 700;
   line-height: 22px; /* 157.143% */
+}
+
+html {
+  /* 기본 줌 애니메이션 제거 + 페이드 인 */
+  /* 닫힐 때 페이드 아웃 */
+  /* 페이드 인 키프레임 */
+  /* 페이드 아웃 키프레임 */
+}
+html .swal2-popup {
+  width: 320px;
+  border-radius: 16px;
+  padding: 24px;
+}
+html .swal2-styled.swal2-confirm {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #2e3033;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 10px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  white-space: nowrap;
+  height: 46px;
+  color: #fff;
+  background-color: #2e3033;
+  border-color: #2e3033;
+}
+html .swal2-title {
+  font-size: 24px;
+}
+html .swal2-html-container {
+  font-size: 16px;
+  line-height: 1.3;
+}
+html .swal2-styled.swal2-confirm:focus {
+  box-shadow: none;
+}
+html .swal2-show {
+  animation: fadeIn 0.2s ease-out;
+}
+html .swal2-hide {
+  animation: fadeOut 0.2s ease-in;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=common.css.map */

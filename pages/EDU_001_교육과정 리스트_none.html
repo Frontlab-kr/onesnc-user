@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <script>
+        $(document).ready(function () {
+          setTimeout(() => {
+            $('.one-header-menu > a').eq(0).addClass('active');
+          }, 100);
+        });
+      </script>
+      <main id="content">
+        <div class="one-page">
+          <div class="one-page-head">
+            <div class="one-contents">
+              <div class="one-page-head-title">
+                <strong>교육과정</strong>
+                <p>원하는 교육과정을 찾아보세요.</p>
+              </div>
+              <div class="one-page-head-menu">
+                <a href="" class="active">
+                  <i class="ico-CheckAll"></i>
+                  <p>전체</p>
+                </a>
+                <a href="">
+                  <i class="ico-LawBasics"></i>
+                  <p>법률기초 교육</p>
+                </a>
+                <a href="">
+                  <i class="ico-RoleLaw"></i>
+                  <p>직무별 법 교육</p>
+                </a>
+                <a href="">
+                  <i class="ico-Compliance"></i>
+                  <p>준법/윤리 교육</p>
+                </a>
+                <a href="">
+                  <i class="ico-LawUpdate"></i>
+                  <p>최신법률 교육</p>
+                </a>
+                <a href="">
+                  <i class="ico-Leadership"></i>
+                  <p>리더십 교육</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span>교육과정</span>
+                >
+                <strong>리더십교육</strong>
+              </div>
+              <div class="one-sort">
+                <a href="" class="active">전체</a>
+                <a href="">팀장 교육</a>
+                <a href="">임원 교육</a>
+                <a href="">CEO 교육 </a>
+              </div>
+              <div class="one-none">
+                <p>등록된 교육이 없습니다.</p>
+              </div>
+              <nav class="one-pagination">
+                <a href="" class="one-pagination-first">처음</a>
+                <a href="" class="one-pagination-prev">이전</a>
+                <a href="" class="active">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+                <a href="">5</a>
+                <a href="" class="one-pagination-next">다음</a>
+                <a href="" class="one-pagination-last">마지막</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>
