@@ -520,13 +520,15 @@ p {
     &-quick {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      //justify-content: space-between;
       margin-bottom: 60px;
       padding: 50px;
       border-radius: 30px;
       background: var(--04-bg-05-white-ffffff, #fff);
       box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.24);
       &-title {
+        min-width: 320px;
+
         strong {
           color: var(--02-text-01-black-2-e-2-e-2-e, #2e2e2e);
 
@@ -553,7 +555,7 @@ p {
       &-menu {
         display: flex;
         gap: 58px;
-        margin-right: 20px;
+        //margin-right: 20px;
         a {
           display: flex;
           flex-direction: column;

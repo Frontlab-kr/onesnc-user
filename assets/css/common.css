@@ -16323,12 +16323,14 @@ p {
 .one-main-quick {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 60px;
   padding: 50px;
   border-radius: 30px;
   background: var(--04-bg-05-white-ffffff, #fff);
   box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.24);
+}
+.one-main-quick-title {
+  min-width: 320px;
 }
 .one-main-quick-title strong {
   color: var(--02-text-01-black-2-e-2-e-2-e, #2e2e2e);
@@ -16352,7 +16354,6 @@ p {
 .one-main-quick-menu {
   display: flex;
   gap: 58px;
-  margin-right: 20px;
 }
 .one-main-quick-menu a {
   display: flex;
