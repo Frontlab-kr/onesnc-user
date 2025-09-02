@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ONESNC 데모사이트</title>
+
+    <!--	<link rel="stylesheet" href="/static/user/assets/css/swiper-bundle.min.css" type="text/css" />
+	<link href="/static/vendors/summernote/summernote-lite.min.css" rel="stylesheet">
+    <link href="/static/user/assets/css/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/user/assets/css/common.css" type="text/css" />
+-->
+
+    <link
+      rel="stylesheet"
+      href="https://frontlab-kr.github.io/onesnc-user/assets/css/swiper-bundle.min.css"
+      type="text/css"
+    />
+    <link
+      href="/static/vendors/summernote/summernote-lite.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://frontlab-kr.github.io/onesnc-user/assets/css/sweetalert2.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://frontlab-kr.github.io/onesnc-user/assets/css/common.css"
+      type="text/css"
+    />
+
+    <script src="/static/user/assets/js/jquery.min.js"></script>
+    <script src="/static/user/assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="/static/user/assets/js/common.js"></script>
+    <script src="/static/user/assets/js/include.js"></script>
+    <script src="/static/user/assets/js/swiper-bundle.min.js"></script>
+    <script src="/static/user/assets/js/sweetalert2.all.min.js"></script>
+
+    <script src="/static/vendors/moment/moment.min.js"></script>
+    <script src="/static/vendors/jquery-form/jquery.form.js"></script>
+    <script src="/static/vendors/summernote/summernote-lite.min.js"></script>
+    <script src="/static/vendors/summernote/summernote-ko-KR.min.js"></script>
+    <script src="/static/vendors/jquery-template/jquery.tmpl.min.js"></script>
+
+    <script src="/static/vendors/fullcalendar/index.global.min.js"></script>
+
+    <script src="/static/vue/vue.min.js"></script>
+    <script src="/static/common_js.js"></script>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <header class="one-header">
+        <div class="one-contents">
+          <a href="/" class="one-header__logo">
+            <img
+              src="/static/user/assets/images/logo.svg"
+              alt="법무법인(유한) 태평양"
+            />
+          </a>
+          <div class="one-header-menu" id="site-menu">
+            <!--  <a href="">교육과정</a>
+		      <a href="">법률자료실</a>
+		      <a href="">소통채널</a>
+		      <a href="">나의학습방</a>
+		      <p>
+		        <a href="/user/login">로그인</a>
+		        <a href="javascript:goUserJoin();">회원가입</a>
+		        <a href="">고객센터</a>
+		      </p> -->
+          </div>
+          <button type="button" class="one-header-menu__toggle">
+            메뉴 열기
+          </button>
+        </div>
+      </header>
+
+      <!-- //header -->
+
+      <script>
+        var LOGIN_USER_ID = 'frontadmin';
+        var LOGIN_USER_TYPE = 'MASTER_ADMIN';
+        var LOGIN_USER_NAME = '관리자';
+        var REVIEW_USE_YN = 'Y';
+        if (LOGIN_USER_ID != '' && 'N' == 'Y') {
+          var logoutTimerFun;
+          var logoutTimer = (function () {
+            var time = '10';
+            var initial_time = 1000 * 60 * parseInt(time);
+
+            var start = function () {
+              logoutTimerFun = window.setTimeout(function () {
+                logoutTimer.callFunc();
+              }, initial_time);
+            };
+
+            var reset = function () {
+              window.clearTimeout(logoutTimerFun);
+              logoutTimer.start();
+            };
+
+            var callFunc = function () {
+              Swal.fire({
+                title: '[자동로그아웃 안내]',
+                allowOutsideClick: false,
+                icon: 'warning',
+                html:
+                  '안전한사이트 이용을 위해 로그인후 ' +
+                  logoutTimer.time +
+                  '분동안 서비스 이용이 없어 자동 로그아웃 되었습니다. 다시 서비스를 이용하시려면 로그인 해주시기 바랍니다.',
+                confirmButtonText: '다시 로그인',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  location.href = '/logout/to/user/login';
+                }
+              });
+            };
+            return {
+              init: function () {
+                start();
+              },
+              start: start,
+              reset: reset,
+              callFunc: callFunc,
+              reset: reset,
+              time: time,
+            };
+          })();
+
+          logoutTimer.init();
+
+          document.onmousemove = function () {
+            logoutTimer.reset();
+          };
+          document.onkeypress = function () {
+            logoutTimer.reset();
+          };
+        }
+
+        function makeHeader() {
+          $.ajax({
+            url: '/site/menu',
+            type: 'GET',
+            async: false,
+            dataType: 'json',
+            data: { menuType: 'MENU_USER', menuDepthType: 'U' },
+            success: function (data) {
+              if (data != null) {
+                $('#site-menu').empty();
+                var htmlStr = '';
+
+                for (var i = 0; i < data.length; i++) {
+                  var vo = data[i];
+                  var menuCd = vo.menuCd;
+                  var moduleCd = vo.moduleCd;
+                  var menuName = vo.menuName;
+                  var moduleUri = vo.moduleUri;
+                  var menuDepthType = vo.menuDepthType;
+                  var menuUGroup = vo.menuUGroup;
+
+                  if (moduleCd != 'MODULE_00021') {
+                    //메인제외
+
+                    if (menuUGroup == '5') {
+                      //$("#depth1-sub").append("<li data-id='"+menuCd+"'><a href=\"javascript:moveMenu('"+menuCd+"')\" class='active'>"+menuName+"</a></li>");		//mobile
+                      //$("#site-menu").append("<li data-id='"+menuCd+"'><a href=\"javascript:moveMenu('"+menuCd+"')\"  class='active'>"+menuName+"</a></li>");
+                      $('#site-menu').append(
+                        '<a href="javascript:moveMenu(\'' +
+                          menuCd +
+                          '\')" data-id="' +
+                          menuCd +
+                          '" class="active">' +
+                          menuName +
+                          '</a>'
+                      );
+                    } else {
+                      /* $("#depth1-sub").append("<li data-id='"+menuCd+"'><a href=\"javascript:moveMenu('"+menuCd+"')\">"+menuName+"</a></li>");		//mobile
+							$("#site-menu").append("<li data-id='"+menuCd+"'><a href=\"javascript:moveMenu('"+menuCd+"')\">"+menuName+"</a></li>"); */
+                      $('#site-menu').append(
+                        '<a href="javascript:moveMenu(\'' +
+                          menuCd +
+                          '\')" data-id="' +
+                          menuCd +
+                          '">' +
+                          menuName +
+                          '</a>'
+                      );
+                    }
+                  }
+                }
+
+                if (LOGIN_USER_ID == null || LOGIN_USER_ID == '') {
+                  htmlStr = '<p>';
+                  htmlStr += '    <a href="/user/login">로그인</a>';
+                  htmlStr +=
+                    '    <a href="javascript:goUserJoin();">회원가입</a>';
+                  htmlStr += '    <a href="">고객센터</a>';
+                  htmlStr += '</p>';
+                } else {
+                  htmlStr = '<p>';
+                  htmlStr += '    <a href="/logout">로그아웃</a>';
+                  htmlStr +=
+                    '    <a href="javascript:moveMenu(\'MENU_00044\')">정보수정</a>';
+                  htmlStr +=
+                    '    <a href="javascript:moveMenu(\'MENU_00048\')">고객센터</a>';
+                  htmlStr += '</p>';
+                }
+                $('#site-menu').append(htmlStr);
+              }
+            },
+          });
+        }
+        function showSignUpModal() {
+          $('#signUpModal').modal('show');
+        }
+        function goUserJoin() {
+          location.href = '/user/join/agree';
+        }
+        makeHeader();
+      </script>
+
+      <main id="content">
+        <div class="one-page">
+          <div class="one-contents">
+            <div class="one-page-body">
+              <div class="one-breadcrumb">
+                <span></span>
+                >
+                <strong></strong>
+              </div>
+
+              <script>
+                getLeftMenu();
+                function getLeftMenu() {
+                  commonAjaxFunc(
+                    '/site/menu/left',
+                    { menuCd: 'MENU_00074', menuType: 'MENU_USER' },
+                    'GET',
+                    function (data) {
+                      if (data != null) {
+                        $('.one-page-head-menu').empty();
+
+                        makeMobileMenu(data);
+                        for (var i = 0; i < data.length; i++) {
+                          var vo = data[i];
+                          var menuCd = vo.menuCd;
+                          var moduleCd = vo.moduleCd;
+                          var menuName = vo.menuName;
+                          var moduleUri = vo.moduleUri;
+                          var menuDepthType = vo.menuDepthType;
+                          var menuUGroup = vo.menuUGroup;
+
+                          if (menuDepthType == 'U') {
+                            $('.one-breadcrumb span').text(menuName);
+                            $('.one-page-head-title strong').text(menuName);
+                            if (moduleCd == 'MODULE_00023') {
+                              $('.one-page-head-title p').text(
+                                '원하는 교육과정을 찾아보세요.'
+                              );
+                            }
+                            /* 	$(".site-lnb ul").append('<li class="is-title">'+menuName+'</li>');
+					$(".site-location ul li").eq(1).find("a").text(menuName);
+					if(menuCd == 'MENU_00074'){
+						$(".site-location ul li:last-child").find("a").text(data[i+1].menuName);
+					} */
+                          } else {
+                            var htmlStr = '';
+                            if (
+                              menuCd == 'MENU_00074' ||
+                              moduleUri == '/admin/site/info'
+                            ) {
+                              $('.one-breadcrumb strong').text(menuName);
+                              htmlStr =
+                                '<a href="javascript:moveMenu(\'' +
+                                menuCd +
+                                '\')" class="active">';
+                              if (!isEmpty(vo.iconClass)) {
+                                htmlStr +=
+                                  '    <i class="' + vo.iconClass + '"></i>';
+                              } else {
+                                if (menuName == '1:1문의') {
+                                  htmlStr += '    <i class="ico-Help"></i>';
+                                } else if (menuName == '결제내역') {
+                                  htmlStr +=
+                                    '    <i class="ico-PurchaseOrder"></i>';
+                                } else if (menuName == '회원정보수정') {
+                                  htmlStr += '    <i class="ico-Resume"></i>';
+                                } else if (menuName == '공지사항') {
+                                  htmlStr +=
+                                    '    <i class="ico-Notification"></i>';
+                                } else if (menuName == 'FAQ') {
+                                  htmlStr +=
+                                    '    <i class="ico-Questions"></i>';
+                                } else if (menuName == '학습현황') {
+                                  htmlStr += '    <i class="ico-Book"></i>';
+                                } else {
+                                  htmlStr +=
+                                    '    <i class="ico-Compliance"></i>';
+                                }
+                              }
+                              htmlStr += '    <p>' + menuName + '</p>';
+                              htmlStr += '</a>';
+
+                              $('.one-page-head-menu').append(htmlStr);
+                              //$("#mobile_menu").append("<li><a class='active' href=\"javascript:moveMenu('"+menuCd+"')\">"+menuName+"</a></li>");
+                            } else {
+                              //$("#mobile_menu").append("<li><a href=\"javascript:moveMenu('"+menuCd+"')\">"+menuName+"</a></li>");
+                              //$(".site-lnb ul").append("<li data-id='"+menuCd+"' class='is-more'><a href=\"javascript:moveMenu('"+menuCd+"')\">"+menuName+"</a></li>");
+                              htmlStr =
+                                '<a href="javascript:moveMenu(\'' +
+                                menuCd +
+                                '\')">';
+                              if (!isEmpty(vo.iconClass)) {
+                                htmlStr +=
+                                  '    <i class="' + vo.iconClass + '"></i>';
+                              } else {
+                                if (menuName == '1:1문의') {
+                                  htmlStr += '    <i class="ico-Help"></i>';
+                                } else if (menuName == '결제내역') {
+                                  htmlStr +=
+                                    '    <i class="ico-PurchaseOrder"></i>';
+                                } else if (menuName == '회원정보수정') {
+                                  htmlStr += '    <i class="ico-Resume"></i>';
+                                } else if (menuName == '공지사항') {
+                                  htmlStr +=
+                                    '    <i class="ico-Notification"></i>';
+                                } else if (menuName == 'FAQ') {
+                                  htmlStr +=
+                                    '    <i class="ico-Questions"></i>';
+                                } else if (menuName == '학습현황') {
+                                  htmlStr += '    <i class="ico-Book"></i>';
+                                } else {
+                                  htmlStr +=
+                                    '    <i class="ico-Compliance"></i>';
+                                }
+                              }
+                              htmlStr += '    <p>' + menuName + '</p>';
+                              htmlStr += '</a>';
+
+                              $('.one-page-head-menu').append(htmlStr);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  );
+                }
+                function makeMobileMenu(data) {
+                  $('#mobile_menu').empty();
+                  for (var i = 0; i < data.length; i++) {
+                    var vo = data[i];
+                    var menuCd = vo.menuCd;
+                    var moduleCd = vo.moduleCd;
+                    var menuName = vo.menuName;
+                    var moduleUri = vo.moduleUri;
+                    var menuDepthType = vo.menuDepthType;
+
+                    if (menuDepthType == 'U') {
+                      //$("#depth1-sub").append("<li data-id='"+menuCd+"'><a href=\"javascript:moveMenu('"+menuCd+"')\">"++"</a></li>");
+                      /*$(".site-lnb > li").attr("data-id", menuCd);
+			$(".site-lnb >li > a").html(menuName+'<i class="fa fa-angle-down"></i>');
+			$(".site-lnb > li > a").attr("href",moduleUri);*/
+                    } else {
+                      if (
+                        menuCd == 'MENU_00074' ||
+                        moduleUri == '/admin/site/info'
+                      ) {
+                        $('#mobile_menu').append(
+                          "<li><a class='active' href=\"javascript:moveMenu('" +
+                            menuCd +
+                            '\')">' +
+                            menuName +
+                            '</a></li>'
+                        );
+                      } else {
+                        $('#mobile_menu').append(
+                          '<li><a href="javascript:moveMenu(\'' +
+                            menuCd +
+                            '\')">' +
+                            menuName +
+                            '</a></li>'
+                        );
+                      }
+                    }
+                  }
+                }
+              </script>
+              <div class="one-detail">
+                <div class="one-detail-head">
+                  <div class="one-detail-head__thumb"></div>
+                  <div class="one-detail-head__contents">
+                    <div class="one-detail-head__table">
+                      <table id="curriculum_info">
+                        <colgroup>
+                          <col style="width: 63px" />
+                          <col style="width: 300px" />
+                        </colgroup>
+                        <tbody></tbody>
+                      </table>
+                    </div>
+                    <div class="one-detail-head__text">
+                      <div class="one-detail-head__score">
+                        <p>
+                          만족도
+                          <span class="one-score one-score--04"></span>
+                          <strong>96%(10명)</strong>
+                        </p>
+                      </div>
+                      <div class="one-detail-head__info">
+                        <p>수강생: <strong id="v_stuCnt"></strong></p>
+                        <p>
+                          <i class="ico-like"></i>
+                          <strong>250</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="one-detail-head__button">
+                      <!-- <button type="button" class="btn btn-dark"
+                                            onclick="order.goApplication();">수강신청</button> -->
+                      <button type="button" class="btn btn-secondary">
+                        <i class="ico-bookmark"></i> 관심
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="one-detail-body">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link active"
+                        id="tab01"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab01-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="tab01-pane"
+                        aria-selected="true"
+                      >
+                        교육일정선택
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="tab02"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab02-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="tab02-pane"
+                        aria-selected="false"
+                      >
+                        강사소개
+                      </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button
+                        class="nav-link"
+                        id="tab03"
+                        data-bs-toggle="tab"
+                        data-bs-target="#tab03-pane"
+                        type="button"
+                        role="tab"
+                        aria-controls="tab03-pane"
+                        aria-selected="false"
+                      >
+                        수강후기
+                        <em></em>
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div
+                      class="tab-pane fade show active"
+                      id="tab01-pane"
+                      role="tabpanel"
+                      aria-labelledby="tab01"
+                      tabindex="0"
+                    >
+                      <div class="one-board">
+                        <div id="offlinePlaceInfo"></div>
+                        <div class="d-flex gap-4">
+                          <select
+                            name="sidoList"
+                            id="sidoList"
+                            class="form-control mr-1"
+                            onchange="getGungu();"
+                          >
+                            <option value="">시/도</option>
+                          </select>
+                          <select
+                            name="gunguList"
+                            id="gunguList"
+                            class="form-control mr-2"
+                          >
+                            <option value="">구/군</option>
+                          </select>
+                          <button
+                            type="button"
+                            class="btn btn-sm btn-dark"
+                            onclick="searchOffline();"
+                          >
+                            검색
+                          </button>
+                        </div>
+                        <div id="calendar" class="w-100 h-100"></div>
+                      </div>
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="tab02-pane"
+                      role="tabpanel"
+                      aria-labelledby="tab02"
+                      tabindex="0"
+                    >
+                      <div class="one-detail-teacher" id="teacher_info"></div>
+                    </div>
+                    <div
+                      class="tab-pane fade"
+                      id="tab03-pane"
+                      role="tabpanel"
+                      aria-labelledby="tab03"
+                      tabindex="0"
+                    >
+                      <div class="one-view-comment m-0 p-0 border-0">
+                        <!-- 목록 -->
+                        <ul class="cmt__list" id="review_list"></ul>
+
+                        <div class="one-view-comment__more"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="modal fade" id="showOfflineInfo" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">집합교육 정보</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center" style="font-size: 20px">
+              <strong>학습 내용은 어떠셨나요?</strong>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <span class="one-score one-score-lg one-score-lg--04"></span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              class="btn btn-dark"
+              onclick="order.goApplication();"
+            >
+              신청
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form name="moveForm" method="post">
+      <input type="hidden" name="offlineCd" value="" />
+      <input type="hidden" name="placeCd" value="" />
+    </form>
+
+    <footer class="one-footer">
+      <div class="one-contents">
+        <div class="one-footer-head">
+          <img src="../assets/images/logo-footer.svg" alt="" />
+        </div>
+        <div class="one-footer-text">
+          <dl>
+            <dt>학습지원센터</dt>
+            <dd>1588-0000</dd>
+          </dl>
+          <p>
+            <span>평일 : 09:00~18:00</span>
+            <span>토요일 : 09:00~13:00</span>
+            <span>점심시간 : 12:00~13:00</span>
+          </p>
+          <p>
+            <span>*공휴일 휴무</span>
+          </p>
+        </div>
+        <div class="one-footer-foot">
+          <div class="one-footer-menu">
+            <!--  <a href="javascript:showPolicy('P');">개인정보처리방침</a>
+        <a href="javascript:showPolicy('T');">이용약관</a>
+        <a href="javascript:showPolicy('E');">이메일 수집</a> -->
+          </div>
+          <div class="one-footer-copyright">
+            ⓒBAE, KIM & LEE LLC. ALL RIGHTS RESERVED.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 약관 -->
+    <div class="modal fade" id="policyModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-editor">
+              <div class="policy-cont"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 이용약관 모달 -->
+
+    <script>
+      $(document).ready(function () {
+        policyList();
+      });
+      function policyList() {
+        commonAjaxFunc(
+          '/site/policy/use/list',
+          { footerUseYn: 'Y' },
+          'GET',
+          function (data) {
+            if (data != null && data.length > 0) {
+              var htmlStr = '';
+              for (var i = 0; i < data.length; i++) {
+                var vo = data[i];
+                htmlStr +=
+                  '<a href="javascript:showPolicy(\'' +
+                  vo.policyType +
+                  '\');">' +
+                  vo.policyTitle +
+                  '</a>';
+              }
+              $('footer .one-footer-menu').html(htmlStr);
+            }
+          }
+        );
+      }
+      function showPolicy(policyType) {
+        commonAjaxFunc(
+          '/site/policy/info',
+          { policyType: policyType },
+          'GET',
+          function (data) {
+            $('#policyModal .modal-title').html(data.policyTitle);
+            $('#policyModal .policy-cont').html(data.policyContents);
+            $('#policyModal').modal('show');
+          }
+        );
+      }
+      function showPrivacyPolicyModal() {
+        $('#privacyPolicyModal').modal('show');
+      }
+      function showProhibitionEmailModal() {
+        $('#prohibitionEmailModal').modal('show');
+      }
+    </script>
+    <script>
+      $(document).ready(function () {
+        order.init();
+
+        getSido();
+        searchOffline();
+        review.init();
+        if (REVIEW_USE_YN == 'N') {
+          $('#tab03').parent('li').addClass('d-none');
+        }
+      });
+
+      var review = (function () {
+        var init = function () {
+          $('#review_list').empty();
+          $('input[name=reviewCurrentPageNo]').val('1');
+          list();
+        };
+        var list = function () {
+          commonAjaxFunc(
+            '/review/list',
+            {
+              ccCd: 'CC_00022',
+              currentPageNo: $('input[name=reviewCurrentPageNo]').val(),
+            },
+            'GET',
+            function (data) {
+              if (data.list == null || data.list.lenght == 0) {
+                $('#tab03 em').html('(0건)');
+                $('#review_list').append(
+                  '<li class="cmt__item"><div class="cmt__meta"><div class="cmt__body">등록된 후기가 없습니다.</div></div></li>'
+                );
+              } else {
+                $('#tab03 em').html(
+                  '(' + data.pagingUtil.totalRecordCnt + '건)'
+                );
+                var htmlStr = '';
+                for (var i = 0; i < data.list.length; i++) {
+                  var vo = data.list[i];
+                  var userId = vo.userId;
+
+                  htmlStr += '<li class="cmt__item">';
+                  htmlStr += '    <div class="cmt__meta">';
+                  htmlStr +=
+                    '        <span class="cmt__author">' +
+                    userId.substring(0, 2).padEnd(userId.length, '*') +
+                    '</span>';
+                  htmlStr +=
+                    '        <span class="cmt__date">' +
+                    moment(vo.regDate, 'YYYYMMDD').format('YYYY.MM.DD') +
+                    '</span>';
+                  htmlStr += '    </div>';
+                  htmlStr +=
+                    '    <div class="cmt__body">' +
+                    vo.reviewContents +
+                    '</div>';
+                  htmlStr += '</li>';
+                }
+                $('#review_list').append(htmlStr);
+              }
+              if (data.pagingUtil.totalPageCnt < 2) {
+              } else {
+                var totalPageCnt = data.pagingUtil.totalPageCnt;
+                var current = data.currentPageNo;
+                $('.one-view-comment__more').html(
+                  '<button type="button" class="btn btn-text">더보기 (' +
+                    current +
+                    '/' +
+                    totalPageCnt +
+                    ')</button>'
+                );
+              }
+            }
+          );
+        };
+        var registReview = function () {
+          if (isEmpty($('textarea[name=reviewContents]').val())) {
+            alert('후기를 입력해주세요.');
+            return false;
+          }
+          commonAjaxFunc(
+            '/review/regist',
+            $('#reviewForm').serialize(),
+            'POST',
+            function (data) {
+              if (data.result == 'success') {
+                commonMsgAlertCallback('등록되었습니다.', function () {
+                  $('#reviewForm')[0].reset();
+                  review.init();
+                });
+              } else {
+                commonMsgAlert('처리 중 오류가 발생했습니다.');
+                return false;
+              }
+            }
+          );
+        };
+        return { init, list, registReview };
+      })();
+
+      function searchOffline() {
+        var searchSido = '';
+        if ($('#sidoList').val() != '') {
+          searchSido = $('#sidoList option:selected').text();
+        }
+        var searchGungu = '';
+
+        if ($('#gunguList').val() != '') {
+          searchGungu = $('#gunguList option:selected').text();
+        }
+        commonAjaxFunc(
+          '/curriculum/offline/list',
+          {
+            ccCd: 'CC_00022',
+            searchSido: searchSido,
+            searchGungu: searchGungu,
+          },
+          'GET',
+          function (data) {
+            if (data != null) {
+              console.log(data.event);
+              setFullCalendar(data.event);
+            }
+          }
+        );
+      }
+
+      function setFullCalendar(data) {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          locale: 'ko',
+          initialView: 'dayGridMonth',
+          initialDate: moment().format('YYYY-MM-DD'),
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            /*   ,right: 'dayGridMonth,timeGridWeek,timeGridDay' */
+          },
+          events: data,
+          eventClick: function (info) {
+            getOfflineDetailInfo(info.event.id);
+          },
+        });
+        calendar.render();
+      }
+
+      function getOfflineDetailInfo(placeCd) {
+        $('input[name=placeCd]').val(placeCd);
+        var offlineCd = $('input[name=offlineCd]').val();
+        if (offlineCd == '') {
+          commonMsgAlert('오프라인 설정이 잘못된 과정입니다.');
+          return false;
+        }
+
+        commonAjaxFunc(
+          '/offline/place/info',
+          { ccCd: 'CC_00022', offlineCd: offlineCd, placeCd: placeCd },
+          'GET',
+          function (data) {
+            if (data == null) {
+              commonMsgAlert('존재하지 않는 장소입니다.');
+              return false;
+            } else {
+              var startTime = data.startTime;
+              var endTime = data.endTime;
+              var limitCnt = data.limitCnt;
+              var remainCnt = data.remainCnt;
+
+              var htmlStr = '';
+              htmlStr =
+                '<div class="text-center" style="font-size: 20px"><strong>해당 교육을 신청하시겠습니까?</strong></div>';
+              htmlStr += '<div>교육장소 : ' + data.placeNm + '</div>';
+              htmlStr += '<div>교육시간 : ';
+              //$("input[name=placeCd]").val(placeCd);
+              if (remainCnt == 0) {
+                htmlStr +=
+                  moment(startTime, 'HHmmss').format('HH:mm') +
+                  '분 ~ ' +
+                  moment(endTime, 'HHmmss').format('HH:mm') +
+                  '분 <span class="text-danger">(참여가능인원이 마감되었습니다.)</span>';
+                $('input[name=placeCd]').val(''); //잔여 인원이 없으면 placeCd 빈값으로 리셋
+              } else {
+                htmlStr +=
+                  moment(startTime, 'HHmmss').format('HH:mm') +
+                  '분 ~ ' +
+                  moment(endTime, 'HHmmss').format('HH:mm') +
+                  '분 (참여가능인원:' +
+                  limitCnt +
+                  '명, <span class="text-danger">잔여 : ' +
+                  remainCnt +
+                  '명</span>)';
+              }
+              htmlStr += '</div>';
+              $('#showOfflineInfo .modal-body').html(htmlStr);
+              $('#showOfflineInfo').modal('show');
+
+              /* $("#offlinePlaceInfo").html(htmlStr);
+						$("#offlinePlaceInfo").parents("li").removeClass("hide"); */
+            }
+          }
+        );
+      }
+
+      function getSido() {
+        commonAjaxFunc('/company/common/sido', {}, 'GET', function (data) {
+          $('#sidoList').empty();
+          $('#sidoList').append("<option value=''>시/도</option>");
+          for (var i = 0; i < data.length; i++) {
+            $('#sidoList').append(
+              "<option value='" +
+                data[i].sidoNo +
+                "'>" +
+                data[i].sidoNm +
+                '</option>'
+            );
+          }
+        });
+      }
+
+      function getGungu() {
+        var sidoNo = $('#sidoList').val();
+        commonAjaxFunc(
+          '/company/common/gungu',
+          { sidoNo: sidoNo },
+          'GET',
+          function (data) {
+            $('#gunguList').empty();
+            $('#gunguList').append("<option value=''>군/구</option>");
+            for (var i = 0; i < data.length; i++) {
+              $('#gunguList').append(
+                "<option value='" +
+                  data[i].gunguNm +
+                  "'>" +
+                  data[i].gunguNm +
+                  '</option>'
+              );
+            }
+          }
+        );
+      }
+
+      var order = (function () {
+        var init = function () {
+          commonAjaxFunc(
+            '/web/curriculum/CC_00022',
+            {},
+            'GET',
+            order.getInfoCallback
+          );
+        };
+        var getInfoCallback = function (data) {
+          viewCurriculumInfo(data.curriculumInfo);
+          //viewCourseInfo(data.courseInfo);
+        };
+        var viewCurriculumInfo = function (curriculumInfo) {
+          $('input[name=offlineCd]').val(curriculumInfo.offlineCd);
+          $('input[name=placeCd]').val(curriculumInfo.placeCd);
+
+          var totalPrice =
+            parseInt(curriculumInfo.price) - parseInt(curriculumInfo.disPrice);
+          var reviewCnt = curriculumInfo.reviewCnt;
+          var stuCnt = curriculumInfo.stuCnt;
+          $('.one-detail-head__text .one-detail-head__info #v_stuCnt').text(
+            stuCnt
+          );
+          $('input[name=disPolicyUseYn]').val(curriculumInfo.disPolicyUseYn);
+          $('input[name=ccYear]').val(curriculumInfo.ccYear);
+          //무료결제를 위한 form
+          $('input[name=goodname]').val(curriculumInfo.ccName);
+          $('input[name=price]').val(totalPrice);
+
+          var thumbStr = '';
+          if (!isEmpty(curriculumInfo.thumbUploadPath)) {
+            thumbStr +=
+              '<img src="' +
+              curriculumInfo.thumbUploadPath +
+              curriculumInfo.thumbStreNm +
+              '" alt="" />';
+          } else {
+            thumbStr += '<p>' + curriculumInfo.ccName + '</p>';
+            thumbStr +=
+              '<img src="/static/user/assets/images/thumb01.svg" alt="" />';
+          }
+          $('.one-detail-head__thumb').html(thumbStr);
+          var htmlStr = '';
+          htmlStr += '<tr>';
+          htmlStr += '  <th>과 정 명</th>';
+          htmlStr += '  <td>: ' + curriculumInfo.ccName + '</td>';
+          htmlStr += '</tr>';
+          htmlStr += '<tr>';
+          htmlStr += '  <th>학습방법</th>';
+          if (curriculumInfo.ccType == 'ONLINE') {
+            htmlStr += '  <td>: 온라인 교육</td>';
+          } else {
+            htmlStr += '  <td>: 오프라인 교육</td>';
+          }
+          htmlStr += '</tr>';
+          //htmlStr +='<tr>';
+          //htmlStr +='  <th>학습방법</th>';
+          //htmlStr +='  <td>: 총 3시간(8차시)</td>';
+          //htmlStr +='</tr>';
+          htmlStr += '<tr>';
+          htmlStr += '  <th>강의시간</th>';
+          htmlStr += '  <td>: ' + curriculumInfo.lectureTime + '시간</td>';
+          htmlStr += '</tr>';
+          /* htmlStr += '<tr>';
+            htmlStr += '  <th>학습기간</th>';
+            htmlStr += '  <td>: 수강 신청일로 부터 ' + curriculumInfo.studyDate + '일</td>';
+            htmlStr += '</tr>'; */
+          /*    htmlStr += '<tr>';
+            htmlStr += '  <th>수료기준</th>';
+            htmlStr += '  <td>: 진도 90% 이상 수료</td>';
+            htmlStr += '</tr>'; */
+
+          $('#curriculum_info tbody').html(htmlStr);
+
+          if (!isEmpty(curriculumInfo.instructorName)) {
+            $('#teacher_info').html(curriculumInfo.instructorName);
+          } else {
+            $('#teacher_info').addClass('d-none');
+          }
+        };
+
+        var goApplication = function () {
+          $('form[name=form_payment]').attr(
+            'action',
+            '/user/offline/curriculum/order'
+          );
+          $('form[name=form_payment]').submit();
+        };
+        var cancel = function () {
+          var url = '/user/curriculum/' + $('input[name=ccTarget]').val();
+          $('form[name=moveForm]').attr('action', url);
+          $('form[name=moveForm]').submit();
+        };
+
+        return { init, getInfoCallback, goApplication, cancel };
+      })();
+    </script>
+  </body>
+</html>

@@ -10,6 +10,7 @@
     <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="../assets/js/common.js"></script>
     <script src="../assets/js/include.js"></script>
+    <script src="../assets/vendors/fullcalendar/index.global.min.js"></script>
   </head>
   <body>
     <div class="one">
@@ -168,7 +169,7 @@
                       aria-labelledby="tab01"
                       tabindex="0"
                     >
-                      <div class="one-board">
+                      <!-- <div class="one-board">
                         <table>
                           <colgroup>
                             <col style="width: 200px" />
@@ -220,6 +221,46 @@
                             </tr>
                           </tbody>
                         </table>
+                      </div> -->
+                      <div class="one-fullcalendar">
+                        <div class="one-fullcalendar-form">
+                          <div class="d-flex align-items-center gap-2">
+                            <select class="form-select">
+                              <option>시/도</option>
+                            </select>
+                            <select class="form-select">
+                              <option>구/군</option>
+                            </select>
+                            <button type="button" class="btn btn-dark btn-sm">
+                              중복확인
+                            </button>
+                          </div>
+                        </div>
+
+                        <div
+                          id="calendar"
+                          style="height: 400px; width: 100%"
+                        ></div>
+                        <script>
+                          $(function () {
+                            const calendar = new FullCalendar.Calendar(
+                              document.getElementById('calendar'),
+                              {
+                                initialView: 'dayGridMonth',
+                                locale: 'ko',
+                                events: [
+                                  {
+                                    title: '예시 이벤트',
+                                    start: '2025-09-25T09:00:00',
+                                    end: '2025-09-25T18:00:00',
+                                  },
+                                ],
+                              }
+                            );
+
+                            calendar.render();
+                          });
+                        </script>
                       </div>
                     </div>
                     <div
@@ -236,6 +277,7 @@
                         - 00000 대표이사<br />
                         - 000000 회사팀장<br />
                         - 000000 회사팀장
+                        <img src="https://picsum.photos/2000/1300" alt="" />
                       </div>
                     </div>
                     <div

@@ -2328,7 +2328,7 @@ textarea.form-control-lg {
   font-style: normal;
   font-weight: 500;
   line-height: 18px; /* 128.571% */
-  background: url(/assets/images/ico-select.svg) no-repeat calc(100% - 12px) 50%;
+  background: #fff url(/assets/images/ico-select.svg) no-repeat calc(100% - 12px) 50%;
   border-radius: 4px;
   border: 1px solid var(--06-border-01-gray-e-4-e-4-e-4, #e4e4e4);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
