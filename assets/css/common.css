@@ -18199,7 +18199,8 @@ p {
   }
   .one-board table tbody tr,
   .one-board table tfoot tr {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
@@ -18234,16 +18235,25 @@ p {
     text-align: left;
     font-weight: 400;
   }
-  .one-board table tbody td:before,
-  .one-board table tfoot td:before {
-    content: attr(title) " : ";
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-right: 5px;
-    color: #000;
-    font-size: 14px;
-    white-space: noWrap;
+  .one-board table tbody td.text-center,
+  .one-board table tfoot td.text-center {
+    width: auto;
+    padding: 5px 10px;
+    color: #666;
+  }
+  .one-board table tbody td.text-center::after,
+  .one-board table tfoot td.text-center::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 1px;
+    height: 10px;
+    background: #ddd;
+  }
+  .one-board table tbody td.text-center:last-child::after,
+  .one-board table tfoot td.text-center:last-child::after {
+    display: none;
   }
   .one-board table tbody td.title-none::before,
   .one-board table tfoot td.title-none::before {

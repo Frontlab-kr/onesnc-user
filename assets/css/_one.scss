@@ -2491,6 +2491,67 @@ p {
       &-mo-none {
         display: none;
       }
+      // table {
+      //   display: block;
+      //   width: 100%;
+      //   border-top: 2px solid var(--004D16, #004d16);
+      //   word-break: keep-all;
+      //   thead {
+      //     display: none;
+      //   }
+      //   tbody,
+      //   tfoot {
+      //     display: block;
+      //     tr {
+      //       display: block;
+      //       width: 100%;
+      //       padding: 10px 0;
+      //       border-bottom: 1px solid #ccc;
+      //     }
+      //     th {
+      //       padding: 10px 16px;
+      //       border: 1px solid #ccc;
+      //       background: #f8fff4;
+      //       color: #000;
+      //       text-align: center;
+      //       font-size: 14px;
+      //       word-break: keep-all;
+      //       &:first-child {
+      //         border-left: none;
+      //       }
+      //     }
+      //     td {
+      //       position: relative;
+      //       display: flex;
+      //       align-items: center;
+      //       width: 100%;
+      //       height: auto;
+      //       padding: 5px;
+      //       background: #fff;
+      //       border: none;
+      //       color: #000;
+      //       font-size: 14px;
+      //       border: none;
+      //       text-align: left;
+      //       font-weight: 400;
+      //       &:before {
+      //         content: attr(title) ' : ';
+      //         display: flex;
+      //         align-items: center;
+      //         height: 100%;
+      //         margin-right: 5px;
+      //         color: #000;
+      //         font-size: 14px;
+      //         white-space: noWrap;
+      //       }
+      //       &.title-none {
+      //         &::before {
+      //           display: none;
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
       table {
         display: block;
         width: 100%;
@@ -2503,7 +2564,8 @@ p {
         tfoot {
           display: block;
           tr {
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
             width: 100%;
             padding: 10px 0;
             border-bottom: 1px solid #ccc;
@@ -2534,15 +2596,24 @@ p {
             border: none;
             text-align: left;
             font-weight: 400;
-            &:before {
-              content: attr(title) ' : ';
-              display: flex;
-              align-items: center;
-              height: 100%;
-              margin-right: 5px;
-              color: #000;
-              font-size: 14px;
-              white-space: noWrap;
+            &.text-center {
+              width: auto;
+              padding: 5px 10px;
+              color: #666;
+              &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                right: 0;
+                width: 1px;
+                height: 10px;
+                background: #ddd;
+              }
+              &:last-child {
+                &::after {
+                  display: none;
+                }
+              }
             }
             &.title-none {
               &::before {
