@@ -229,6 +229,14 @@ p {
       justify-content: space-between;
       height: 100%;
     }
+    &__logo {
+      .logo-one {
+        width: 120px;
+        @include media-breakpoint-down(xl) {
+          width: 80px;
+        }
+      }
+    }
     &-menu {
       display: flex;
       align-items: center;

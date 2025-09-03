@@ -16045,6 +16045,14 @@ p {
   justify-content: space-between;
   height: 100%;
 }
+.one-header__logo .logo-one {
+  width: 120px;
+}
+@media (max-width: 1199.98px) {
+  .one-header__logo .logo-one {
+    width: 80px;
+  }
+}
 .one-header-menu {
   display: flex;
   align-items: center;
