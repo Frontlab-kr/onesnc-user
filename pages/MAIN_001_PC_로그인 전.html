@@ -361,14 +361,33 @@
       <br /><br />
       <button type="button" class="btn btn-primary" id="alertBtn">alert</button>
       <br /><br />
+      <button type="button" class="btn btn-primary" onclick="openNoticeModal()">
+        메인 공지 팝업
+      </button>
+      <br /><br />
       <button
         type="button"
         class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal02"
+        onclick="openNoticeModal02()"
       >
-        메인 공지 팝업
+        메인 공지 팝업02
       </button>
+      <script>
+        function openNoticeModal() {
+          const modalEl = document.getElementById('exampleModal02');
+          const modal = new bootstrap.Modal(modalEl, {
+            backdrop: false,
+          });
+          modal.show();
+        }
+        function openNoticeModal02() {
+          const modalEl = document.getElementById('exampleModal03');
+          const modal = new bootstrap.Modal(modalEl, {
+            backdrop: false,
+          });
+          modal.show();
+        }
+      </script>
 
       <script>
         document
@@ -436,9 +455,20 @@
       </div>
     </div>
 
-    <div class="modal fade" id="exampleModal02" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+    <div
+      class="modal fade modal-notice"
+      id="exampleModal02"
+      tabindex="-1"
+      style="
+        top: 100px;
+        left: 100px;
+        height: 100px;
+        width: 600px;
+        height: 600px;
+      "
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="">
           <div class="modal-header">
             <h5 class="modal-title">공지사항</h5>
             <button
@@ -469,7 +499,88 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="today"
+              />
+              <label class="form-check-label" for="today">
+                하루동안 창 열지않음
+              </label>
+            </div>
+            <button
+              type="button"
+              class="btn btn-sm btn-dark"
+              data-bs-dismiss="modal"
+            >
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade modal-notice"
+      id="exampleModal03"
+      tabindex="-1"
+      style="
+        top: 100px;
+        left: 600px;
+        height: 100px;
+        width: 500px;
+        height: 400px;
+      "
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="">
+          <div class="modal-header">
+            <h5 class="modal-title">공지사항</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-4">
+              <img src="https://picsum.photos/1200/600" alt="" />
+            </div>
+            <div class="modal-editor">
+              법무법인 태평양 – 최근 주요 공지 요약<br />
+              • ‘2025 로펌 컨수머 리포트’ 전 분야 상위권 기록, 2년 연속 최고
+              평가<br />
+              주요 법률 정보 매체인 「법률신문·IHCF·한국사내변호사회」 공동기획
+              ‘2025 로펌 컨수머 리포트’에서 법무법인 태평양이 전 분야 상위권을
+              기록하며 2년 연속 최고 평가를 받았습니다. ￼ (2025‑05‑12)<br />
+              • ‘거버넌스 솔루션 센터(Governance Solution Center)’ 출범<br />
+              기업 지배구조, 주주간 분쟁, 자본시장 규제 등에 종합 대응할 수 있는
+              ‘거버넌스 솔루션 센터’를 신설했습니다. ￼ (2025‑07‑03)<br />
+              • ‘노란봉투법 이후 노사관계 전망과 대응’ 세미나 성료<br />
+              인사노무그룹 주최 온·오프라인 세미나로, 노사관계 변화에 대한
+              전략적 대응 방안을 논의하며 높은 관심 속에 마무리되었습니다. ￼
+              (2025-08-26)
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="today"
+              />
+              <label class="form-check-label" for="today">
+                하루동안 창 열지않음
+              </label>
+            </div>
+            <button
+              type="button"
+              class="btn btn-sm btn-dark"
+              data-bs-dismiss="modal"
+            >
               닫기
             </button>
           </div>
