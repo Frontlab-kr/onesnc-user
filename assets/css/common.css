@@ -17704,19 +17704,31 @@ p {
   background: url(../images/star-active.svg) repeat-x 0 0;
 }
 .one-score--01::before {
-  width: 14px;
+  width: 10%;
+}
+.one-score--01-5::before {
+  width: 30%;
 }
 .one-score--02::before {
-  width: 28px;
+  width: 40%;
+}
+.one-score--02-5::before {
+  width: 50%;
 }
 .one-score--03::before {
-  width: 42px;
+  width: 60%;
+}
+.one-score--03-5::before {
+  width: 70%;
 }
 .one-score--04::before {
-  width: 56px;
+  width: 80%;
+}
+.one-score--04-5::before {
+  width: 90%;
 }
 .one-score--05::before {
-  width: 70px;
+  width: 100%;
 }
 .one-score-lg {
   position: relative;
