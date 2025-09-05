@@ -17683,7 +17683,17 @@ p {
   height: 14px;
   background: url(../images/star.svg) repeat-x 0 0;
 }
-.one-score::before {
+.one-score-value {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  background: url(../images/star-active.svg) repeat-x 0 0;
+}
+.one-score:before {
   content: "";
   display: block;
   position: absolute;
