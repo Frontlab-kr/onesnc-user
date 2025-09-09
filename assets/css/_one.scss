@@ -2458,7 +2458,10 @@ p {
         }
       }
       &-header {
-        padding: 20px 60px;
+        padding: 0;
+        button {
+          padding: 20px 60px;
+        }
       }
       &-button {
         gap: 50px;
@@ -2500,7 +2503,10 @@ p {
           }
         }
         &-header {
-          padding: 16px 16px;
+          padding: 0;
+          button {
+            padding: 16px 16px;
+          }
         }
         &-body {
           padding: 16px 16px;

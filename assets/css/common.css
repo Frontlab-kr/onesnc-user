@@ -18159,6 +18159,9 @@ p {
   border: 1px solid var(--06-border-04-focused-00-b-6-e-8, #00b6e8);
 }
 .one-faq .accordion-header {
+  padding: 0;
+}
+.one-faq .accordion-header button {
   padding: 20px 60px;
 }
 .one-faq .accordion-button {
@@ -18201,6 +18204,9 @@ p {
     font-size: 14px;
   }
   .one-faq .accordion-header {
+    padding: 0;
+  }
+  .one-faq .accordion-header button {
     padding: 16px 16px;
   }
   .one-faq .accordion-body {
