@@ -12,49 +12,51 @@ html {
     }
   }
 }
+
+//reset
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+p,
+dl,
+dt,
+dd {
+  margin: 0;
+}
+p {
+  word-break: keep-all;
+}
+a {
+  text-decoration: none;
+}
+hr {
+  opacity: 1;
+}
+
+//common
+.pc {
+  display: block !important;
+}
+.mo {
+  display: none !important;
+}
+@include media-breakpoint-down(md) {
+  .pc {
+    display: none !important;
+  }
+  .mo {
+    display: block !important;
+  }
+}
+
 .kcraedu {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 2px);
   overflow: hidden;
-  //reset
-  ul,
-  li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  p,
-  dl,
-  dt,
-  dd {
-    margin: 0;
-  }
-  p {
-    word-break: keep-all;
-  }
-  a {
-    text-decoration: none;
-  }
-  hr {
-    opacity: 1;
-  }
-
-  //common
-  .pc {
-    display: block;
-  }
-  .mo {
-    display: none;
-  }
-  @include media-breakpoint-down(md) {
-    .pc {
-      display: none;
-    }
-    .mo {
-      display: block;
-    }
-  }
 
   //layout
   header {
