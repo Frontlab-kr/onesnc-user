@@ -18421,6 +18421,10 @@ p {
     padding: 5px 10px;
     color: #666;
   }
+  .one-board table#course_list tbody td:last-child,
+  .one-board table#course_list tfoot td:last-child {
+    margin-left: auto;
+  }
   .one-board table#course_list tbody td::after,
   .one-board table#course_list tfoot td::after {
     content: "";

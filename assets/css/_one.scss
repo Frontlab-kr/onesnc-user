@@ -2784,6 +2784,9 @@ p {
               width: auto;
               padding: 5px 10px;
               color: #666;
+              &:last-child {
+                margin-left: auto;
+              }
               &::after {
                 content: '';
                 display: block;
