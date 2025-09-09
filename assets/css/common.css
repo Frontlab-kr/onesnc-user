@@ -18376,6 +18376,69 @@ p {
   .one-board table tfoot td.title-none::before {
     display: none;
   }
+  .one-board table #course_list tbody,
+  .one-board table #course_list tfoot {
+    display: block;
+  }
+  .one-board table #course_list tbody tr,
+  .one-board table #course_list tfoot tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  .one-board table #course_list tbody th,
+  .one-board table #course_list tfoot th {
+    padding: 10px 16px;
+    border: 1px solid #ccc;
+    background: #f8fff4;
+    color: #000;
+    text-align: center;
+    font-size: 14px;
+    word-break: keep-all;
+  }
+  .one-board table #course_list tbody th:first-child,
+  .one-board table #course_list tfoot th:first-child {
+    border-left: none;
+  }
+  .one-board table #course_list tbody td,
+  .one-board table #course_list tfoot td {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    background: #fff;
+    border: none;
+    color: #000;
+    font-size: 14px;
+    border: none;
+    text-align: left;
+    font-weight: 400;
+    width: auto;
+    padding: 5px 10px;
+    color: #666;
+  }
+  .one-board table #course_list tbody td::after,
+  .one-board table #course_list tfoot td::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 1px;
+    height: 10px;
+    background: #ddd;
+  }
+  .one-board table #course_list tbody td:last-child::after,
+  .one-board table #course_list tfoot td:last-child::after {
+    display: none;
+  }
+  .one-board table #course_list tbody td.title-none::before,
+  .one-board table #course_list tfoot td.title-none::before {
+    display: none;
+  }
 }
 .one-pagination {
   display: flex;

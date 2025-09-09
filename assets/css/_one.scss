@@ -2743,6 +2743,70 @@ p {
           }
         }
       }
+      table {
+        #course_list {
+          tbody,
+          tfoot {
+            display: block;
+            tr {
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+              padding: 10px 0;
+              border-bottom: 1px solid #ccc;
+            }
+            th {
+              padding: 10px 16px;
+              border: 1px solid #ccc;
+              background: #f8fff4;
+              color: #000;
+              text-align: center;
+              font-size: 14px;
+              word-break: keep-all;
+              &:first-child {
+                border-left: none;
+              }
+            }
+            td {
+              position: relative;
+              display: flex;
+              align-items: center;
+              width: 100%;
+              height: auto;
+              padding: 5px;
+              background: #fff;
+              border: none;
+              color: #000;
+              font-size: 14px;
+              border: none;
+              text-align: left;
+              font-weight: 400;
+              width: auto;
+              padding: 5px 10px;
+              color: #666;
+              &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                right: 0;
+                width: 1px;
+                height: 10px;
+                background: #ddd;
+              }
+              &:last-child {
+                &::after {
+                  display: none;
+                }
+              }
+              &.title-none {
+                &::before {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   &-pagination {
