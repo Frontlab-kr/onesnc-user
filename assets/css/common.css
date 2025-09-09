@@ -16240,6 +16240,9 @@ p {
   font-weight: 700;
   line-height: 48px; /* 133.333% */
 }
+.one-footer-text dl dd a {
+  color: var(--02-text-06-white-ffffff, #fff);
+}
 .one-footer-text p {
   display: flex;
   gap: 20px;
@@ -17435,14 +17438,19 @@ p {
     line-height: 24px; /* 150% */
   }
   .one-page-head-menu {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    justify-content: center;
     -moz-column-gap: 20px;
          column-gap: 20px;
     row-gap: 12px;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  }
+  .one-page-head-menu--2 {
+    grid-template-columns: repeat(2, 1fr); /* 3개씩 */
+  }
+  .one-page-head-menu--3 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 330px;
   }
   .one-page-head-menu a {
     display: flex;
@@ -18008,8 +18016,12 @@ p {
   }
   .one-detail-head__button {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
+  }
+  .one-detail-head__button .btn-secondary,
+  .one-detail-head__button .btn-dark {
+    width: 100%; /* 보조용 */
+    padding: 0;
   }
 }
 .one-detail-teacher {

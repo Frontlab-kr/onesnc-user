@@ -419,6 +419,9 @@ p {
           font-style: normal;
           font-weight: 700;
           line-height: 48px; /* 133.333% */
+          a {
+            color: var(--02-text-06-white-ffffff, #fff);
+          }
         }
       }
       p {
@@ -1674,13 +1677,18 @@ p {
           }
         }
         &-menu {
-          display: flex;
-          flex-wrap: wrap;
+          display: grid;
+          justify-content: center;
           column-gap: 20px;
           row-gap: 12px;
-          justify-content: center;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
+          &--2 {
+            grid-template-columns: repeat(2, 1fr); /* 3개씩 */
+          }
+          &--3 {
+            display: flex;
+            flex-wrap: wrap;
+            width: 330px;
+          }
           a {
             display: flex;
             flex-direction: column;
@@ -2297,8 +2305,13 @@ p {
         }
         &__button {
           display: flex;
-          flex-wrap: wrap;
           gap: 8px;
+          .btn-secondary,
+          .btn-dark {
+            //flex: 1; /* 모든 자식이 남은 공간 균등 분할 */
+            width: 100%; /* 보조용 */
+            padding: 0;
+          }
         }
       }
     }
