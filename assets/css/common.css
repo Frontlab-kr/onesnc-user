@@ -17438,19 +17438,20 @@ p {
     line-height: 24px; /* 150% */
   }
   .one-page-head-menu {
-    display: grid;
-    justify-content: center;
     -moz-column-gap: 20px;
          column-gap: 20px;
     row-gap: 12px;
-  }
-  .one-page-head-menu--2 {
-    grid-template-columns: repeat(2, 1fr); /* 3개씩 */
-  }
-  .one-page-head-menu--3 {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 330px;
+  }
+  .one-page-head-menu--2 {
+    display: grid;
+    justify-content: center;
+    flex-wrap: nowrap;
+    grid-template-columns: repeat(2, 1fr); /* 3개씩 */
+    width: auto;
   }
   .one-page-head-menu a {
     display: flex;

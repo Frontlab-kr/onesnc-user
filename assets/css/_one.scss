@@ -1677,18 +1677,20 @@ p {
           }
         }
         &-menu {
-          display: grid;
-          justify-content: center;
           column-gap: 20px;
           row-gap: 12px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 330px;
           &--2 {
+            display: grid;
+            justify-content: center;
+            flex-wrap: nowrap;
             grid-template-columns: repeat(2, 1fr); /* 3개씩 */
+            width: auto;
           }
-          &--3 {
-            display: flex;
-            flex-wrap: wrap;
-            width: 330px;
-          }
+
           a {
             display: flex;
             flex-direction: column;
