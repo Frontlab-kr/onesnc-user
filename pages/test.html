@@ -1,0 +1,2215 @@
+<html lang="ko"><head><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style><style class="vjs-styles-dimensions">
+      .my-video-dimensions {
+        width: 300px;
+        height: 168.75px;
+      }
+
+      .my-video-dimensions.vjs-fluid {
+        padding-top: 56.25%;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/assets/vendors/sweetalert2/sweetalert2.css" rel="stylesheet">
+    <link href="/assets/vendors/sweetalert2/sweetalert2.css" rel="stylesheet">
+    <link href="http://demo-renew.onesnc.co.kr/static/vendors/videojs/video-js.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="/static/user/assets/css/common.css" type="text/css" /> -->
+    <link rel="stylesheet" href="/assets/css/common.css" type="text/css">
+
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/include.js"></script>
+
+
+
+    <script src="/assets/vendors/moment/moment.min.js"></script>
+	<script src="/assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+
+    <script src="/static/common_js.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+	<!-- video.js -->
+	<script src="http://demo-renew.onesnc.co.kr/static/assets/vendors/videojs/video.min.js"></script>
+
+	<style>
+            /* Change all text and icon colors in the player. */
+            .vjs-matrix.video-js .vjs-custom-overlay {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: #000;
+                opacity: 0.7;
+            }
+
+.vjs-watermark {
+position:absolute;
+font-size: 5em;
+ line-height: 1.5em;
+ color: #000;
+    opacity: 0.5;
+}
+.vjs-watermark.pos-C {
+top:50%;left:50%;
+}
+.vjs-watermark.pos-LT {
+top:0;left:0;
+}
+.vjs-watermark.pos-RT {
+top:0;right:0;
+}
+.vjs-watermark.pos-LB {
+bottom:0;left:0;
+}
+.vjs-watermark.pos-RB {
+bottom:0;right:0;
+}
+            .vjs-matrix.video-js .vjs-big-play-button {
+                /* top:45%;left:45%; */
+                font-size: 5em;
+                line-height: 1.5em;
+                height: 1.63332em;
+                width: 3em;
+                border-radius: 0.3em;
+            }
+
+            .vjs-matrix.video-js {
+                /*  color: #18a0fb; */
+            }
+
+            /* Change the border of the big play button. */
+            .vjs-matrix .vjs-big-play-button {
+                /*  border-color: #18a0fb; */
+            }
+
+            /* Change the color of various "bars". */
+            .vjs-matrix .vjs-volume-level,
+            .vjs-matrix .vjs-play-progress,
+            .vjs-matrix .vjs-slider-bar {
+                /* background: #18a0fb; */
+            }
+
+            /* .vjs-matrix .vjs-remaining-time-display{color:#fff;} */
+            .test-class .vjs-load-progress>div {
+                background-color: #ff5722;
+            }
+
+            .video-wrapper {
+                height: 100vh;
+                /* Fallback for browsers that do not support Custom Properties */
+                height: calc(var(--vh, 1vh) * 100);
+            }
+
+            .video-inner {
+                height: 100%;
+                /* border:3px solid blue; */
+                object-fit: cover;
+                margin: 0 auto;
+            }
+
+
+            .kcraedu .education-nav__list ol li div.last-date {
+                text-align: right;
+                font-weight: 400;
+                font-size: .8rem;
+                line-height: 1.438rem;
+                color: #666666;
+                -webkit-transition: all 0.1s ease;
+                transition: all 0.1s ease;
+                display: -webkit-box;
+                overflow: hidden;
+                /* autoprefixer: ignore next */
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                max-height: 46px;
+            }
+
+
+
+            .survey-item.survey-item-question {
+                margin-bottom: 15px;
+            }
+
+            .survey-item.survey-item-question dl dt {
+                font-weight: 600;
+                font-size: 1.1rem;
+                margin-bottom: 5px;
+            }
+
+            .education-contents__question-banner.text-center.survey-result p,
+            .education-contents__question-banner.text-center.survey-result span {
+                font-size: 1.1rem;
+                font-weight: 500;
+                line-height: 1.5rem;
+            }
+
+            .survey-item.survey-item-section h4 {
+                background-color: #ddd;
+                margin: 1rem 0;
+                padding: .5rem;
+                text-align: left;
+            }
+
+            .survey-wrapper-noti {
+                border: 1px solid #ddd;
+                padding: 1rem;
+            }
+
+            .survey-wrapper-noti p {
+                text-align: center;
+            }
+
+            .survey-wrapper-noti p:first-child {
+                font-size: 2rem;
+                margin-bottom: .5rem;
+            }
+        </style>
+</head>
+
+<body>
+    <div class="kcraedu">
+        <div class="education">
+            <div class="education-nav">
+                <div class="education-nav__inner">
+                    <div class="education-nav__header">
+                        <!-- 20250915 -->
+                        <div class="education-nav__close">
+                            목차
+                            <button type="button" class="btn-toggle-close">
+                                <i class="bi bi-arrow-left-short"></i>
+                            </button>
+                        </div>
+                        <!-- //20250915 -->
+                        <div class="education-nav__title">
+                            <strong>후기가 등록된 과정입니다.</strong>
+                        </div>
+                        <div class="education-nav__progress"><p><span>0</span><span>100</span></p>	<div class="progress">		<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>	</div></div>
+                        <div class="education-nav__text"><strong>0%</strong> 완료</div>
+                    </div>
+
+                    <div class="education-nav__list">
+                        <ol id="studyroomCourseList"><li data-id="COURSE_00001" class="active">	<a href="javascript:studyroom.goContents('COURSE_00001','CONTENTS_00029','N','334','65')"><p>test</p><div class="education-nav__list-badge">			<span class="badge rounded-pill bg-primary span-progress" data-value="65">65%</span></div></a><div class="last-date">2025-09-12 14:44</div></li><li data-id="COURSE_00003">	<a href="javascript:commonMsgAlert('순차적으로 학습해주시기 바랍니다.');"><p>test2</p><div class="education-nav__list-badge">			<span class="badge rounded-pill bg-primary span-progress" data-value="0">0%</span></div></a></li><li data-id="COURSE_00005">	<a href="javascript:commonMsgAlert('순차적으로 학습해주시기 바랍니다.');"><p>3</p><div class="education-nav__list-badge">			<span class="badge rounded-pill bg-primary span-progress" data-value="0">0%</span></div></a></li><li data-id="COURSE_00006">	<a href="javascript:studyroom.goQuiz('COURSE_00006','QUIZ_00011','4');"><p>퀴즈추가2</p><div class="education-nav__list-badge">		<span class="badge rounded-pill bg-danger" span-progress"="" data-value="0">응시전</span></div></a></li></ol></div>
+                </div><!-- /.education-nav__inner -->
+            </div>
+            <!--/.education-nav -->
+            <div class="education-contents d-none" id="smsAuthDiv">
+                <div class="education-contents__head">
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-primary btn-sm btn-toggle-open me-2">목차<i class="bi bi-list"></i></button>
+                        <h3>test</h3>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="closeStudyroom();">나가기<i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="education-contents__certification">
+                    <!-- <h4>본인 인증</h4> -->
+                    <div style="text-align: center;margin: 2.5rem 0;padding: 2.5rem 0;border: 1px solid #838181; background-color: #eee;">
+                        <h3 class="mb-2">본인 인증</h3>
+                        <p class="fs-5">온라인교육수강을 위해 본인인증이 필요합니다.</p>
+                        <p>※ 대리수강 방지를 위한 본인인증 절차 입니다.</p>
+                        <span class="text-danger">※ 회원가입시 입력한 휴대폰번호는 변경되지 않습니다.</span>
+                        <p></p>
+                    </div>
+                    <div class="education-contents__certification-inner">
+                        <div class="d-flex align-items-center mb-1">
+                            <label>휴대폰번호</label>
+                        </div>
+                        <div class="d-flex align-items-center mb-1">
+
+                            <input type="text" class="form-control w-50" readonly="" name="phone" value="010123456789">
+                            <p class="w-50 ms-1">
+                                <button type="button" class="btn btn-primary w-100" id="verificationBtn" onclick="smsAuth.sendVerifySms()">인증번호 받기</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="education-contents d-none" id="quiz-area">
+                <div class="education-contents__head">
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-primary btn-sm btn-toggle-open me-2">목차<i class="bi bi-list"></i></button>
+                        <h3>test</h3>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="closeStudyroom();">나가기<i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="education-contents__guide"></div>
+            </div>
+            <div class="education-contents d-none" id="quiz-contents-area">
+                <div class="education-contents__head">
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-primary btn-sm btn-toggle-open me-2">목차<i class="bi bi-list"></i></button>
+                        <h3>test</h3>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="closeStudyroom();">나가기<i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="education-contents__question">
+                    <script>
+                        $(document).ready(function () {
+                            $(".education-contents__question ol li").on("click", function () {
+                                $(".education-contents__question ol li").removeClass("active");
+                                $(this).addClass("active");
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="education-contents active" id="player-area">
+                <div class="education-contents__head">
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-primary btn-sm btn-toggle-open me-2">목차<i class="bi bi-list"></i></button>
+                        <h3>test</h3>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="closeStudyroom();">나가기<i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="education-contents__body">
+                    <div class="education-contents__player">
+                        <!--  id="player-area" -->
+                        <div class="education-contents__player-inner">
+                            <div controlslist="nodownload" webkit-playsinline="" playsinline="true" preload="none" class="video-js vjs-big-play-centered vjs-fluid vjs-paused my-video-dimensions vjs-controls-enabled vjs-workinghover vjs-v7 vjs-user-active vjs-matrix" id="my-video" tabindex="-1" lang="ko" translate="no" role="region" aria-label="Video Player"><video id="my-video_html5_api" class="vjs-tech" preload="none" playsinline="playsinline" src="https://one-demo.s3.ap-northeast-2.amazonaws.com/SITE_00001/20250908110704_BigBuckBunny.mp4"></video><div class="vjs-watermark pos-C">nytest1</div><div class="vjs-custom-overlay"></div><div class="vjs-poster vjs-hidden" tabindex="-1" aria-disabled="false"></div><div class="vjs-text-track-display" translate="yes" aria-live="off" aria-atomic="true"><div style="position: absolute; inset: 0px; margin: 1.5%;"></div></div><div class="vjs-loading-spinner" dir="ltr"><span class="vjs-control-text">Video Player is loading.</span></div><button class="vjs-big-play-button" type="button" title="Play Video" aria-disabled="false" style="display: block;"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Play Video</span></button><div class="vjs-control-bar" dir="ltr"><button class="vjs-play-control vjs-control vjs-button" type="button" title="Play" aria-disabled="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Play</span></button><div class="vjs-volume-panel vjs-control vjs-volume-panel-horizontal"><button class="vjs-mute-control vjs-control vjs-button vjs-vol-3" type="button" title="Mute" aria-disabled="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Mute</span></button><div class="vjs-volume-control vjs-control vjs-volume-horizontal"><div tabindex="0" class="vjs-volume-bar vjs-slider-bar vjs-slider vjs-slider-horizontal" role="slider" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Volume Level" aria-live="polite" aria-valuetext="100%"><div class="vjs-mouse-display"><div class="vjs-volume-tooltip" aria-hidden="true"></div></div><div class="vjs-volume-level" style="width: 100%;"><span class="vjs-control-text"></span></div></div></div></div><div class="vjs-progress-control vjs-control"><div tabindex="0" class="vjs-progress-holder vjs-slider vjs-slider-horizontal" role="slider" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress Bar"><div class="vjs-load-progress"><span class="vjs-control-text"><span>Loaded</span>: <span class="vjs-control-text-loaded-percentage">0%</span></span></div><div class="vjs-mouse-display"><div class="vjs-time-tooltip" aria-hidden="true"></div></div><div class="vjs-play-progress vjs-slider-bar" aria-hidden="true"><div class="vjs-time-tooltip" aria-hidden="true"></div></div></div></div><div class="vjs-current-time vjs-time-control vjs-control" style="display: block; padding-right: 0px;"><span class="vjs-control-text" role="presentation">Current Time&nbsp;</span><span class="vjs-current-time-display" aria-live="off" role="presentation">0:00</span></div><div class="vjs-time-control vjs-time-divider" aria-hidden="true" style="display: block;"><div><span>/</span></div></div><div class="vjs-duration vjs-time-control vjs-control" style="display: block; padding-left: 0px;"><span class="vjs-control-text" role="presentation">Duration&nbsp;</span><span class="vjs-duration-display" aria-live="off" role="presentation">-:-</span></div><div class="vjs-live-control vjs-control vjs-hidden"><div class="vjs-live-display" aria-live="off"><span class="vjs-control-text">Stream Type&nbsp;</span>LIVE</div></div><button class="vjs-seek-to-live-control vjs-control" type="button" title="Seek to live, currently behind live" aria-disabled="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Seek to live, currently behind live</span><span class="vjs-seek-to-live-text" aria-hidden="true">LIVE</span></button><div class="vjs-custom-control-spacer vjs-spacer ">&nbsp;</div><div class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><div class="vjs-playback-rate-value" id="vjs-playback-rate-value-label-my-video_component_310">1x</div><button class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Playback Rate" aria-haspopup="true" aria-expanded="false" aria-describedby="vjs-playback-rate-value-label-my-video_component_310"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Playback Rate</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"></ul></div></div><div class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Chapters" aria-haspopup="true" aria-expanded="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Chapters</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-title" tabindex="-1">Chapters</li></ul></div></div><div class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Descriptions" aria-haspopup="true" aria-expanded="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Descriptions</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="true"><span class="vjs-menu-item-text">descriptions off</span><span class="vjs-control-text" aria-live="polite">, selected</span></li></ul></div></div><div class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Subtitles" aria-haspopup="true" aria-expanded="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Subtitles</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"><li class="vjs-menu-item vjs-texttrack-settings" tabindex="-1" role="menuitem" aria-disabled="false"><span class="vjs-menu-item-text">subtitles settings</span><span class="vjs-control-text" aria-live="polite">, opens subtitles settings dialog</span></li><li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="true"><span class="vjs-menu-item-text">subtitles off</span><span class="vjs-control-text" aria-live="polite">, selected</span></li></ul></div></div><div class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden"><button class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button" aria-disabled="false" title="Audio Track" aria-haspopup="true" aria-expanded="false"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Audio Track</span></button><div class="vjs-menu"><ul class="vjs-menu-content" role="menu"></ul></div></div></div><div class="vjs-error-display vjs-modal-dialog vjs-hidden " tabindex="-1" aria-describedby="my-video_component_502_description" aria-hidden="true" aria-label="Modal Window" role="dialog"><p class="vjs-modal-dialog-description vjs-control-text" id="my-video_component_502_description">This is a modal window.</p><div class="vjs-modal-dialog-content" role="document"></div></div><div class="vjs-modal-dialog vjs-hidden  vjs-text-track-settings" tabindex="-1" aria-describedby="my-video_component_508_description" aria-hidden="true" aria-label="Caption Settings Dialog" role="dialog"><p class="vjs-modal-dialog-description vjs-control-text" id="my-video_component_508_description">Beginning of dialog window. Escape will cancel and close the window.</p><div class="vjs-modal-dialog-content" role="document"><div class="vjs-track-settings-colors"><fieldset class="vjs-fg-color vjs-track-setting"><legend id="captions-text-legend-my-video_component_508">Text</legend><label id="captions-foreground-color-my-video_component_508" class="vjs-label">Color</label><select aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508"><option id="captions-foreground-color-my-video_component_508-White" value="#FFF" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-White">White</option><option id="captions-foreground-color-my-video_component_508-Black" value="#000" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Black">Black</option><option id="captions-foreground-color-my-video_component_508-Red" value="#F00" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Red">Red</option><option id="captions-foreground-color-my-video_component_508-Green" value="#0F0" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Green">Green</option><option id="captions-foreground-color-my-video_component_508-Blue" value="#00F" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Blue">Blue</option><option id="captions-foreground-color-my-video_component_508-Yellow" value="#FF0" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Yellow">Yellow</option><option id="captions-foreground-color-my-video_component_508-Magenta" value="#F0F" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Magenta">Magenta</option><option id="captions-foreground-color-my-video_component_508-Cyan" value="#0FF" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-color-my-video_component_508 captions-foreground-color-my-video_component_508-Cyan">Cyan</option></select><span class="vjs-text-opacity vjs-opacity"><label id="captions-foreground-opacity-my-video_component_508" class="vjs-label">Transparency</label><select aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-opacity-my-video_component_508"><option id="captions-foreground-opacity-my-video_component_508-Opaque" value="1" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-opacity-my-video_component_508 captions-foreground-opacity-my-video_component_508-Opaque">Opaque</option><option id="captions-foreground-opacity-my-video_component_508-SemiTransparent" value="0.5" aria-labelledby="captions-text-legend-my-video_component_508 captions-foreground-opacity-my-video_component_508 captions-foreground-opacity-my-video_component_508-SemiTransparent">Semi-Transparent</option></select></span></fieldset><fieldset class="vjs-bg-color vjs-track-setting"><legend id="captions-background-my-video_component_508">Background</legend><label id="captions-background-color-my-video_component_508" class="vjs-label">Color</label><select aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508"><option id="captions-background-color-my-video_component_508-Black" value="#000" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Black">Black</option><option id="captions-background-color-my-video_component_508-White" value="#FFF" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-White">White</option><option id="captions-background-color-my-video_component_508-Red" value="#F00" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Red">Red</option><option id="captions-background-color-my-video_component_508-Green" value="#0F0" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Green">Green</option><option id="captions-background-color-my-video_component_508-Blue" value="#00F" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Blue">Blue</option><option id="captions-background-color-my-video_component_508-Yellow" value="#FF0" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Yellow">Yellow</option><option id="captions-background-color-my-video_component_508-Magenta" value="#F0F" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Magenta">Magenta</option><option id="captions-background-color-my-video_component_508-Cyan" value="#0FF" aria-labelledby="captions-background-my-video_component_508 captions-background-color-my-video_component_508 captions-background-color-my-video_component_508-Cyan">Cyan</option></select><span class="vjs-bg-opacity vjs-opacity"><label id="captions-background-opacity-my-video_component_508" class="vjs-label">Transparency</label><select aria-labelledby="captions-background-my-video_component_508 captions-background-opacity-my-video_component_508"><option id="captions-background-opacity-my-video_component_508-Opaque" value="1" aria-labelledby="captions-background-my-video_component_508 captions-background-opacity-my-video_component_508 captions-background-opacity-my-video_component_508-Opaque">Opaque</option><option id="captions-background-opacity-my-video_component_508-SemiTransparent" value="0.5" aria-labelledby="captions-background-my-video_component_508 captions-background-opacity-my-video_component_508 captions-background-opacity-my-video_component_508-SemiTransparent">Semi-Transparent</option><option id="captions-background-opacity-my-video_component_508-Transparent" value="0" aria-labelledby="captions-background-my-video_component_508 captions-background-opacity-my-video_component_508 captions-background-opacity-my-video_component_508-Transparent">Transparent</option></select></span></fieldset><fieldset class="vjs-window-color vjs-track-setting"><legend id="captions-window-my-video_component_508">Window</legend><label id="captions-window-color-my-video_component_508" class="vjs-label">Color</label><select aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508"><option id="captions-window-color-my-video_component_508-Black" value="#000" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Black">Black</option><option id="captions-window-color-my-video_component_508-White" value="#FFF" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-White">White</option><option id="captions-window-color-my-video_component_508-Red" value="#F00" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Red">Red</option><option id="captions-window-color-my-video_component_508-Green" value="#0F0" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Green">Green</option><option id="captions-window-color-my-video_component_508-Blue" value="#00F" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Blue">Blue</option><option id="captions-window-color-my-video_component_508-Yellow" value="#FF0" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Yellow">Yellow</option><option id="captions-window-color-my-video_component_508-Magenta" value="#F0F" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Magenta">Magenta</option><option id="captions-window-color-my-video_component_508-Cyan" value="#0FF" aria-labelledby="captions-window-my-video_component_508 captions-window-color-my-video_component_508 captions-window-color-my-video_component_508-Cyan">Cyan</option></select><span class="vjs-window-opacity vjs-opacity"><label id="captions-window-opacity-my-video_component_508" class="vjs-label">Transparency</label><select aria-labelledby="captions-window-my-video_component_508 captions-window-opacity-my-video_component_508"><option id="captions-window-opacity-my-video_component_508-Transparent" value="0" aria-labelledby="captions-window-my-video_component_508 captions-window-opacity-my-video_component_508 captions-window-opacity-my-video_component_508-Transparent">Transparent</option><option id="captions-window-opacity-my-video_component_508-SemiTransparent" value="0.5" aria-labelledby="captions-window-my-video_component_508 captions-window-opacity-my-video_component_508 captions-window-opacity-my-video_component_508-SemiTransparent">Semi-Transparent</option><option id="captions-window-opacity-my-video_component_508-Opaque" value="1" aria-labelledby="captions-window-my-video_component_508 captions-window-opacity-my-video_component_508 captions-window-opacity-my-video_component_508-Opaque">Opaque</option></select></span></fieldset></div><div class="vjs-track-settings-font"><fieldset class="vjs-font-percent vjs-track-setting"><legend id="captions-font-size-my-video_component_508" class="">Font Size</legend><select aria-labelledby="captions-font-size-my-video_component_508"><option id="captions-font-size-my-video_component_508-50" value="0.50" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-50">50%</option><option id="captions-font-size-my-video_component_508-75" value="0.75" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-75">75%</option><option id="captions-font-size-my-video_component_508-100" value="1.00" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-100">100%</option><option id="captions-font-size-my-video_component_508-125" value="1.25" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-125">125%</option><option id="captions-font-size-my-video_component_508-150" value="1.50" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-150">150%</option><option id="captions-font-size-my-video_component_508-175" value="1.75" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-175">175%</option><option id="captions-font-size-my-video_component_508-200" value="2.00" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-200">200%</option><option id="captions-font-size-my-video_component_508-300" value="3.00" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-300">300%</option><option id="captions-font-size-my-video_component_508-400" value="4.00" aria-labelledby="captions-font-size-my-video_component_508 captions-font-size-my-video_component_508-400">400%</option></select></fieldset><fieldset class="vjs-edge-style vjs-track-setting"><legend id="my-video_component_508" class="">Text Edge Style</legend><select aria-labelledby="my-video_component_508"><option id="my-video_component_508-None" value="none" aria-labelledby="my-video_component_508 my-video_component_508-None">None</option><option id="my-video_component_508-Raised" value="raised" aria-labelledby="my-video_component_508 my-video_component_508-Raised">Raised</option><option id="my-video_component_508-Depressed" value="depressed" aria-labelledby="my-video_component_508 my-video_component_508-Depressed">Depressed</option><option id="my-video_component_508-Uniform" value="uniform" aria-labelledby="my-video_component_508 my-video_component_508-Uniform">Uniform</option><option id="my-video_component_508-Dropshadow" value="dropshadow" aria-labelledby="my-video_component_508 my-video_component_508-Dropshadow">Dropshadow</option></select></fieldset><fieldset class="vjs-font-family vjs-track-setting"><legend id="captions-font-family-my-video_component_508" class="">Font Family</legend><select aria-labelledby="captions-font-family-my-video_component_508"><option id="captions-font-family-my-video_component_508-ProportionalSansSerif" value="proportionalSansSerif" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-ProportionalSansSerif">Proportional Sans-Serif</option><option id="captions-font-family-my-video_component_508-MonospaceSansSerif" value="monospaceSansSerif" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-MonospaceSansSerif">Monospace Sans-Serif</option><option id="captions-font-family-my-video_component_508-ProportionalSerif" value="proportionalSerif" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-ProportionalSerif">Proportional Serif</option><option id="captions-font-family-my-video_component_508-MonospaceSerif" value="monospaceSerif" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-MonospaceSerif">Monospace Serif</option><option id="captions-font-family-my-video_component_508-Casual" value="casual" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-Casual">Casual</option><option id="captions-font-family-my-video_component_508-Script" value="script" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-Script">Script</option><option id="captions-font-family-my-video_component_508-SmallCaps" value="small-caps" aria-labelledby="captions-font-family-my-video_component_508 captions-font-family-my-video_component_508-SmallCaps">Small Caps</option></select></fieldset></div><div class="vjs-track-settings-controls"><button type="button" class="vjs-default-button" title="restore all settings to the default values">Reset<span class="vjs-control-text"> restore all settings to the default values</span></button><button type="button" class="vjs-done-button">Done</button></div></div><button class="vjs-close-button vjs-control vjs-button" type="button" aria-disabled="false" title="Close Modal Dialog"><span class="vjs-icon-placeholder" aria-hidden="true"></span><span class="vjs-control-text" aria-live="polite">Close Modal Dialog</span></button><p class="vjs-control-text">End of dialog window.</p></div></div><!--  vjs-fluid -->
+                        </div>
+                    </div>
+                    <div class="education-contents__button">
+                        <button type="button" class="btn btn-primary btn-sm d-none" id="prev-btn" onclick="studyroom.prevContents();"><i class="bi bi-arrow-left"></i>이전차시</button>
+                        <button type="button" class="btn btn-primary btn-sm ms-1" id="next-btn" onclick="studyroom.nextContents();">다음차시 <i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div><!-- /.education-contents__body -->
+            </div><!-- /.education-contents -->
+
+        </div>
+    </div>
+
+    <form name="moveForm" method="post">
+        <input type="hidden" name="ccCd" value="">
+        <input type="hidden" name="ccYear" value="">
+        <input type="hidden" name="enrolNo" value="">
+    </form>
+
+
+<script>
+	var WATERMARK_USE_YN = 'Y';
+	var WATERMARK_POSITION = 'C';
+
+
+            if ('nytest1' != '' && '' == 'Y') {
+                var logoutTimerFun;
+                var logoutTimer = (function () {
+                    var time = '';
+                    var initial_time = 1000 * 60 * parseInt(time);
+
+                    var start = function () {
+                        logoutTimerFun = window.setTimeout(function () { logoutTimer.callFunc() }, initial_time);
+                    }
+
+                    var reset = function () {
+                        window.clearTimeout(logoutTimerFun);
+                        logoutTimer.start();
+                    }
+
+
+                    var callFunc = function () {
+                        Swal.fire({
+                            title: "[자동로그아웃 안내]",
+                            icon: "warning",
+                            text: "안전한사이트 이용을 위해 로그인후 " + logoutTimer.time + "분동안 서비스 이용이 없어 자동 로그아웃 되었습니다. 다시 서비스를 이용하시려면 로그인 해주시기 바랍니다.",
+                            confirmButtonText: "확인"
+                        }).then((result) => {
+
+                            window.open("about:blank", "_self").close();
+                        });
+
+                    }
+                    return {
+                        init: function () { start(); }, start: start, reset: reset, callFunc: callFunc, reset: reset, time: time
+                    }
+                })();
+
+                logoutTimer.init();
+
+                document.onmousemove = function () {
+                    logoutTimer.reset();
+                }
+                document.onkeypress = function () {
+                    logoutTimer.reset();
+                }
+            }
+
+
+            document.oncontextmenu = function () { return false; }
+            var vh = window.innerHeight * 0.01;
+
+            window.addEventListener('orientationchange', function (event) {
+
+                if (screen.orientaion) {	//android or pc
+                    if (screen.orientation.angle == 90 || screen.orientation.angle == -90) {
+                        var inner_height = $("#player-area").height() - 90;//screen.height - 95;
+                        var t_w = inner_height * 16 / 9;
+                        if (screen.width <= t_w) {
+                            $(".education-contents__player").css("width", "70%");
+                            $(".education-contents__player").css("margin", "0 auto");
+                            $(".education-contents__button").css("width", "70%");
+
+                        } else {
+                            $(".education-contents__player").css("margin", "0 auto");
+                            $(".education-contents__player").css("width", t_w + "px");
+                            $(".education-contents__button").css("width", t_w + "px");
+                        }
+                    } else {
+                        $(".education-contents__player").css("margin", "");
+                        $(".education-contents__player").css("width", "100%");
+                        $(".education-contents__button").css("width", "");
+                    }
+                } else {	//ios
+                    if (window.orientation == 90 || window.orientation == -90) {
+
+                        var inner_height = $("#player-area").height() - 90;//screen.height - 95;
+                        var t_w = inner_height * 16 / 9;
+                        if (screen.width <= t_w) {
+                            $(".education-contents__player").css("width", "70%");
+                            $(".education-contents__player").css("margin", "0 auto");
+                            $(".education-contents__button").css("width", "70%");
+                        } else {
+                            $(".education-contents__player").css("margin", "0 auto");
+                            $(".education-contents__player").css("width", t_w + "px");
+                            $(".education-contents__button").css("width", t_w + "px");
+                        }
+
+
+
+                    } else {
+                        $(".education-contents__player").css("margin", "");
+                        $(".education-contents__player").css("width", "100%");
+                        $(".education-contents__button").css("width", "");
+                    }
+                }
+            });
+
+
+            var PLAYER;
+            var MAX_PLAY_AT = 0;
+            var LAST_PLAY_AT = 0;
+            var CURRENT_TIME = 0;
+
+            var CC_CD = "CC_00004";
+            var CC_YEAR = "";
+            var ENROL_NO = "1";
+
+            var STUDY_COMPLETE_POP_CONFIRM = "N";
+            var COURSE_PROGRESS_CONFRIM = "N";		//진도가 100%가 되면 뜨는 안내에 대한 확인여부 체크
+            var LAST_PROGRESS_CONFIRIM = "N";
+
+            var PUB_STUDY_STATUS = "";
+
+            //진도 알림 팝업 기능개선으로 추가.
+            var COURSE_PROGRESS_NOTI_USE_YN = "N"; 		//진도 알림 팝업 사용여부
+            var COURSE_PROGRESS_NOTI_VAL = 0; 		//진도 알림 팝업 설정 진도율
+            var COURSE_PROGRESS_NOTI_CONFRIM = "N";	 //차시별 진도알림 팝업 확인 여부 체크
+            var COURSE_PROGRESS = 0;	//현재 진행중인 차시의 courseProgress(목차명 클릭시)
+            //////////////////
+
+
+
+
+            PLAYER = videojs("my-video", {
+                controls: true,
+                playsinline: true,
+                controlBar: { playToggle: true, currentTimeDisplay: true, timeDivider: true, durationDisplay: true, pictureInPictureToggle: false, remainingTimeDisplay: false, progressControl: true, fullscreenToggle: false },
+                autoplay: false,
+                preload: 'none',
+
+
+            });
+
+            PLAYER.addClass("vjs-matrix");		//custom class 추가
+            $(".vjs-duration").css("display", "block");
+            $(".vjs-duration").css("padding-left", "0");
+            $(".vjs-current-time").css("display", "block");
+            $(".vjs-current-time").css("padding-right", "0");
+            $(".vjs-time-divider").css("display", "block");
+
+            $(".vjs-current-time.vjs-time-control.vjs-control").insertAfter($(".vjs-progress-control.vjs-control"))
+            $(".vjs-time-divider").insertAfter($(".vjs-current-time.vjs-time-control.vjs-control"))
+            $(".vjs-duration.vjs-time-control.vjs-control").insertAfter($(".vjs-time-control.vjs-time-divider"))
+
+            var overlayDiv = document.createElement('div');		//custom component 추가
+            overlayDiv.className = 'vjs-custom-overlay';
+            PLAYER.el().insertBefore(overlayDiv, PLAYER.el().firstChild.nextSibling);
+
+			if(WATERMARK_USE_YN == "Y"){
+	            var watermark = document.createElement('div');
+	            watermark.innerText = 'nytest1';
+
+
+	            watermark.className="vjs-watermark";
+	            if(WATERMARK_POSITION == "R"){
+	            	const randomX = Math.floor(Math.random() * 100); // 0 ~ 99
+	            	const randomY = Math.floor(Math.random() * 100); // 0 ~ 99
+
+	            	watermark.style.top = randomX+"%";
+	            	watermark.style.left = randomY+"%";
+	            }else{
+	            	watermark.classList.add("pos-"+WATERMARK_POSITION);
+		        }
+
+
+	            PLAYER.el().insertBefore(watermark, PLAYER.el().firstChild.nextSibling);
+			}
+            //플레이어 키보드 제어
+            window.addEventListener(
+                "keydown",
+                function (event) {
+                    switch (event.keyCode) {
+                        case 32: //Space
+                            if (PLAYER.paused()) {
+                                PLAYER.play();
+                            } else {
+                                PLAYER.pause();
+                            }
+                            break;
+                        case 39: //ArrowRight
+                            var cur = PLAYER.currentTime();
+                            //PLAYER.currentTime(cur + 5);
+                            break;
+                        case 37: //ArrowLeft
+                            var cur = PLAYER.currentTime();
+                            PLAYER.currentTime(cur - 5);
+                            break;
+                    }
+                },
+                false
+            );
+
+
+            PLAYER.ready(function () {
+
+
+
+
+                PLAYER.on("fullscreenchange", function () {
+
+                });
+                PLAYER.on("seeking", function (event) {
+                    if (PUB_STUDY_STATUS == "C") {
+                        return true;
+                    } else {
+                        PLAYER.controlBar.progressControl.seekBar.disable();
+                        if (CURRENT_TIME < PLAYER.currentTime() && PLAYER.currentTime() > MAX_PLAY_AT) {
+                            PLAYER.currentTime(CURRENT_TIME);
+                        }
+
+                    }
+                });
+                PLAYER.on("seeked", function (event) {
+
+                });
+
+                PLAYER.on('timeupdate', function () {
+                    if (!PLAYER.seeking()) {
+                        CURRENT_TIME = PLAYER.currentTime();
+                    }
+                });
+
+
+            });
+
+
+            PLAYER.on("play", function () {
+                if (isMobile) {
+                    //PLAYER.requestFullscreen();	//풀스크린으로 변경
+                    $('#my-video').bind('contextmenu', function () { return false; });
+                }
+
+                if (parseInt(COURSE_PROGRESS) >= 100) {
+                    MAX_PLAY_AT = PLAYER.duration();
+                }
+                $(".vjs-custom-overlay").addClass("vjs-hidden");
+                $(".vjs-big-play-button").css("display", "none");
+            });
+
+            PLAYER.on("pause", function () {
+                $(".vjs-custom-overlay").removeClass("vjs-hidden");
+                $(".vjs-big-play-button").css("display", "block");
+            });
+
+
+            //////////////
+            if ("nytest1" == null || "nytest1" == '') {
+                window.open("about:blank", "_self").close();
+            }
+            var isMobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
+            //수료 안내 팝업 닫기 클릭시 다음부턴 안띄움.
+            /* function studyCompletePopClose(){
+                STUDY_COMPLETE_POP_CONFIRM = 'Y';
+
+            } */
+            //100% 학습완료 안내 팝업
+            /* function courseProgressConfirmClose(){
+                COURSE_PROGRESS_CONFRIM = 'Y';
+            } */
+
+            //진도 안내 팝업 종료
+            /* function policyProgressNotiClose(){
+                COURSE_PROGRESS_NOTI_CONFRIM = 'Y';
+                PLAYER.play();
+            } */
+            //이어보기 안내 팝업 종료
+            function lastPlayNotiClose() {
+                PLAYER.play();
+            }
+            function closeStudyroom() {
+
+                window.open("about:blank", "_self").close();
+                opener.studyList.init();
+            }
+
+            /************* 설문 관련 s**************/
+            var SURVEY_USE_YN = "N";
+            var TMP_SV_COURSE_CD = "";
+            var TMP_SV_CD = "";
+            /************* 설문 관련 e**************/
+            var studyroom = (function () {
+                var COURSE_CD = "";
+                var QUIZ_CD = "";
+               	var QUIZ_PASS_CNT = 0;
+                var SURVEY_CD = "";
+                var SITE_SMS_AUTH_USE_YN = "";		//사이트 기본 설정 > 차시별 문자인증 사용여부
+                var INIT_LOAD = true;
+
+
+                //퀴즈 리스트
+                var QUESTION_LIST = [];
+
+                //응답결과 리스트
+                var ANS_LIST = [];
+                var CURRENT_QUIZ_NO = "";
+                var STUDY_STATUS = "";
+
+                //과정정보 조회
+                var getCurriculumInfo = function () {
+                    //ENROL_NO = enrolNo;
+                    commonAjaxFunc("/studyroom/curriculum/" + CC_CD, {}, "GET", studyroom.getCurriculumInfoCallback);
+                }
+
+                //과정정보 조회 callback
+                var getCurriculumInfoCallback = function (data) {
+                    if (data == null) {
+                        window.close();
+                    } else {
+                        SITE_SMS_AUTH_USE_YN = data.siteSmsAuthUseYn;
+                        SURVEY_USE_YN = data.surveyUseYn;
+
+                        $(".education-nav__title strong").text(data.ccName);
+
+
+                        CC_YEAR = data.ccYear;
+                        COURSE_PROGRESS_NOTI_USE_YN = data.progressNotiUseYn;
+                        COURSE_PROGRESS_NOTI_VAL = data.progressNotiVal;
+                        COURSE_STUDY_TYPE = data.courseStudyType;
+                        getCourseList();
+                    }
+                }
+                var getCourseList = function () {
+
+                    commonAjaxFunc("/studyroom/" + CC_CD + "/course", { "enrolNo": ENROL_NO }, "GET", function (data) {
+                        if (data == null) {
+                            window.close();
+                        } else {
+                            if (data.studentInfo == null) {
+                                alert("신청된 수강 정보가 없습니다.");
+                                window.close();
+                            } else {
+                                STUDY_STATUS = data.studentInfo.studyStatus;
+                                PUB_STUDY_STATUS = data.studentInfo.studyStatus;
+                                if (STUDY_STATUS == "C") {
+                                    if (STUDY_COMPLETE_POP_CONFIRM == "N") {
+                                        //$("#studentComplNoti").modal('show');
+                                        Swal.fire({
+                                            html: '교육을 이수하였습니다.',
+                                            confirmButtonText: "수료증 확인",
+                                            showCancelButton: true,
+                                            cancelButtonText: "닫기"
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                closeStudyroom();
+                                            } else {
+                                                STUDY_COMPLETE_POP_CONFIRM = 'Y';
+                                            }
+                                        });
+
+                                    }
+                                    $("#header-certi-btn").removeClass("d-none");
+                                }
+                                var totalProgress = 0.0;
+                                var htmlStr = "";
+                                var lastPlayCourseType = "";
+                                var lastPlayCourse = "";
+                                var requireCourseCompleteYn = "Y";
+                                var isQuizComplete = "N";
+                                if (data.courseList == null || data.courseList.length == 0) {
+                                    commonMsgAlert("등록된 과정목차가 없습니다. 관리자에게 문의하세요.");
+                                    window.close();
+                                    return false;
+                                } else {
+                                    var courseLink = "#";
+                                    totalProgress = data.totalProgress.toFixed(0);
+
+                                    htmlStr += '<p><span>0</span><span>100</span></p>';
+                                    htmlStr += '	<div class="progress">';
+                                    htmlStr += '		<div class="progress-bar" role="progressbar" style="width: ' + totalProgress + '%" aria-valuenow="' + totalProgress + '" aria-valuemin="0" aria-valuemax="100"></div>';
+                                    htmlStr += '	</div>';
+
+                                    $(".education-nav__progress").html(htmlStr);
+                                    var lastPlayDate = "";
+
+                                    if (data.lastPlayInfo != null && data.lastPlayInfo.modDate != null) {
+                                        lastPlayDate = "<br/> 마지막 학습일 " + moment(data.lastPlayInfo.modDate, "YYYYMMDD").format("YYYY-MM-DD");
+                                    }
+                                    $(".education-nav__text").html('<strong>' + totalProgress + '%</strong> 완료' + lastPlayDate);
+                                    /* htmlStr +='<li>';
+                                    htmlStr +='    <div class="progress skill-bar">';
+                                    htmlStr +='    <div class="progress-bar bg-primary wow slideInLeft" data-wow-duration="1s" role="progressbar" aria-valuenow="'+totalProgress+'" aria-valuemin="0" aria-valuemax="100" style="width: '+totalProgress+'%;animation-duration: 1s; animation-name: slideInLeft;    visibility: visible !important;"> <span class="skill"><span class="val">'+totalProgress+'%</span></span>';
+                                    htmlStr +='    </div>';
+                                    htmlStr +='  </div>';
+                                    htmlStr +='</li>'; */
+                                    htmlStr = "";
+                                    for (var i = 0; i < data.courseList.length; i++) {
+                                        var course = data.courseList[i];
+                                        var courseRequireYn = course.courseRequireYn;
+                                        var courseRequireStr = "";
+                                        var courseProgress = 0;
+                                        if (!isEmpty(course.courseProgress)) {
+                                            courseProgress = course.courseProgress;
+                                        }
+                                        var smsAuthUseYn = course.smsAuthUseYn;
+                                        if (courseRequireYn == "Y") {
+                                            courseRequireStr = "[필수]";
+                                        }
+                                        if (COURSE_STUDY_TYPE == "F") {
+                                            if (course.courseType == "COURSE") {
+                                                if (STUDY_STATUS == "C") {	//수료된 경우 모든차시를 볼 수 있음.
+                                                    courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'N\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                } else {//완료한 차시 OR 이미 진행중인 차시는 인증을 건너뛰도록 파라미터 N으로 지정.
+                                                    if (courseProgress > 0 && courseProgress < 100) {
+                                                        if (courseRequireYn == "Y") { requireCourseCompleteYn = "N"; }
+                                                        courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'N\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                    } else if (courseProgress >= 100) {
+                                                        courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'N\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                    } else {
+                                                        if (courseRequireYn == "Y") { requireCourseCompleteYn = "N"; }
+                                                        courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'' + course.studentSmsAuthYn + '\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                    }
+                                                }
+
+                                                //courseLink = 'javascript:studyroom.goContents(\''+course.courseCd+'\',\''+course.contentsCd+'\',\''+course.smsAuthUseYn+'\')';
+
+                                                if (COURSE_CD == course.courseCd) {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '" class="active">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                } else {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                }
+                                                htmlStr += '<p>' + courseRequireStr + course.courseName + '</p>';
+
+                                                htmlStr += '<div class="education-nav__list-badge">';
+                                                if (SITE_SMS_AUTH_USE_YN == "Y" && smsAuthUseYn == "Y") {
+                                                    if (course.studentSmsAuthYn == "N") {
+                                                        htmlStr += '	<span class="badge rounded-pill bg-success">인증완료</span>';
+                                                    } else {
+                                                        htmlStr += '	<span class="badge rounded-pill bg-warning">문자인증</span>';
+                                                    }
+                                                }
+                                                htmlStr += '		<span class="badge rounded-pill bg-primary span-progress" data-value="' + courseProgress + '" >' +courseProgress + '%</span>';
+
+
+                                                htmlStr += '</div>';
+
+                                                htmlStr += '	</a>';
+                                                htmlStr += '</li>';
+
+                                            } else if (course.courseType == "SURVEY") {	//survey
+                                                if (SURVEY_USE_YN == "Y") {
+                                                    if (TMP_SV_COURSE_CD == "" && TMP_SV_CD == "") {
+                                                        //설문 바로가기 링크를 걸기위한 파라미터 set
+                                                        TMP_SV_COURSE_CD = course.courseCd;
+                                                        TMP_SV_CD = course.surveyCd;
+                                                    }
+                                                    var prevCourseProgress = data.courseList[i - 1].courseProgress;
+                                                    if (prevCourseProgress >= 100) {
+                                                        courseLink = 'javascript:studyroom.viewSurvey(\'' + course.courseCd + '\',\'' + course.surveyCd + '\');'
+                                                    } else if (requireCourseCompleteYn == "Y" && isQuizComplete == "Y") {
+                                                        courseLink = 'javascript:studyroom.viewSurvey(\'' + course.courseCd + '\',\'' + course.surveyCd + '\');'
+                                                    } else {
+                                                        courseLink = 'javascript:commonMsgAlert(\'평가 완료 후 설문에 참여 하실 수 있습니다.\');';
+                                                    }
+
+                                                    if (COURSE_CD == course.courseCd) {
+                                                        htmlStr += '<li data-id="' + course.courseCd + '"  class="active">';
+                                                        htmlStr += '	<a href="' + courseLink + '">'
+                                                    } else {
+                                                        htmlStr += '<li data-id="' + course.courseCd + '">';
+                                                        htmlStr += '	<a href="' + courseLink + '">'
+                                                    }
+                                                    htmlStr += '<p>' + courseRequireStr + course.courseName + '</p>';
+
+                                                    htmlStr += '<div class="education-nav__list-badge">';
+                                                    if (course.courseProgress == 100) {
+                                                        htmlStr += '		<span class="badge rounded-pill bg-success" span-progress"  data-value="' + course.courseProgress + '" >제출완료</span>';
+                                                    } else {
+                                                        htmlStr += '		<span class="badge rounded-pill bg-danger" span-progress"  data-value="' + course.courseProgress + '" >제출전</span>';
+                                                    }
+
+
+                                                    htmlStr += '</div>';
+                                                    htmlStr += '</a>';
+                                                    if (!isEmpty(course.lastDate)) {
+                                                        htmlStr += '<div class="last-date">' + moment(course.lastDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm") + '</div>';
+                                                    }
+                                                    htmlStr += '</li>';
+                                                }
+                                            } else {//quiz
+                                                courseLink = 'javascript:studyroom.goQuiz(\'' + course.courseCd + '\',\'' + course.quizCd + '\',\''+course.quizPassCnt+'\');'
+                                                if (requireCourseCompleteYn == "Y") {
+                                                    courseLink = 'javascript:studyroom.goQuiz(\'' + course.courseCd + '\',\'' + course.quizCd + '\',\''+course.quizPassCnt+'\');'
+                                                } else {
+                                                    courseLink = 'javascript:commonMsgAlert(\'필수강의 수강 후 학습평가가 가능합니다.\');';
+                                                }
+
+
+                                                if (COURSE_CD == course.courseCd) {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '"  class="active">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                } else {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                }
+                                                htmlStr += '<p>' + courseRequireStr + course.courseName + '</p>';
+
+                                                htmlStr += '<div class="education-nav__list-badge">';
+                                                if (course.courseProgress == 100) {
+                                                    htmlStr += '		<span class="badge rounded-pill bg-success">응시완료</span>';
+                                                    isQuizComplete = "Y";
+                                                } else {
+                                                    htmlStr += '		<span class="badge rounded-pill bg-danger">응시전</span>';
+                                                }
+                                                htmlStr += '</div>';
+                                                htmlStr += '</a>';
+                                                htmlStr += '</li>';
+                                            }
+
+                                        } else {		//순차적용
+
+                                            if (course.courseType == "COURSE") {
+                                                courseLink = 'javascript:commonMsgAlert(\'순차적으로 학습해주시기 바랍니다.\');';
+                                                if (STUDY_STATUS == 'C') {
+                                                    courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'N\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                } else {
+                                                    //완료한 차시 OR 이미 진행중인 차시는 인증을 건너뛰도록 파라미터 N으로 지정.
+                                                    if (courseProgress > 0 && courseProgress < 100) {
+                                                        if (courseRequireYn == "Y") { requireCourseCompleteYn = "N"; }
+                                                        courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'N\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                    } else if (courseProgress >= 100) {
+                                                        courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'N\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                    } else {
+                                                        if (courseRequireYn == "Y") { requireCourseCompleteYn = "N"; }
+                                                        if (i == 0) {
+                                                            courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'' + course.studentSmsAuthYn + '\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';
+                                                        } else {
+                                                            var prevCourseProgress = data.courseList[i - 1].courseProgress;
+                                                            if (prevCourseProgress >= 100) {
+                                                                courseLink = 'javascript:studyroom.goContents(\'' + course.courseCd + '\',\'' + course.contentsCd + '\',\'' + course.studentSmsAuthYn + '\',\'' + course.viewTime + '\',\'' + courseProgress + '\')';	//studentSmsAuthYn = 'Y' 문자인증 화면 노출, n : 이미 인증을 한경우 이므로 인증화면 노출 X
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                if (COURSE_CD == course.courseCd) {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '"  class="active">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                } else {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                }
+                                                htmlStr += '<p>' + courseRequireStr + course.courseName + '</p>';
+
+                                                htmlStr += '<div class="education-nav__list-badge">';
+                                                if (SITE_SMS_AUTH_USE_YN == "Y" && smsAuthUseYn == "Y") {
+                                                    if (course.studentSmsAuthYn == "N") {
+                                                        htmlStr += '	<span class="badge rounded-pill bg-success">인증완료</span>';
+                                                    } else {
+                                                        htmlStr += '	<span class="badge rounded-pill bg-warning">문자인증</span>';
+                                                    }
+                                                }
+                                                htmlStr += '			<span class="badge rounded-pill bg-primary span-progress"  data-value="' + courseProgress + '" >' + courseProgress + '%</span>';
+                                                htmlStr += '</div>';
+
+                                                htmlStr += '</a>';
+                                                if (!isEmpty(course.lastDate)) {
+                                                    htmlStr += '<div class="last-date">' + moment(course.lastDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm") + '</div>';
+                                                }
+                                                htmlStr += '</li>';
+
+
+                                            } else if (course.courseType == "SURVEY") {	//survey
+                                                if (SURVEY_USE_YN == "Y") {
+                                                    if (TMP_SV_COURSE_CD == "" && TMP_SV_CD == "") {
+                                                        //설문 바로가기 링크를 걸기위한 파라미터 set
+                                                        TMP_SV_COURSE_CD = course.courseCd;
+                                                        TMP_SV_CD = course.surveyCd;
+                                                    }
+                                                    var prevCourseProgress = data.courseList[i - 1].courseProgress;
+                                                    if (prevCourseProgress >= 100) {
+                                                        courseLink = 'javascript:studyroom.viewSurvey(\'' + course.courseCd + '\',\'' + course.surveyCd + '\');'
+                                                    } else if (requireCourseCompleteYn == "Y" && isQuizComplete == "Y") {
+                                                        courseLink = 'javascript:studyroom.viewSurvey(\'' + course.courseCd + '\',\'' + course.surveyCd + '\');'
+                                                    } else {
+                                                        courseLink = 'javascript:commonMsgAlert(\'평가 완료 후 설문에 참여 하실 수 있습니다.\');';
+                                                    }
+
+                                                    if (COURSE_CD == course.courseCd) {
+                                                        htmlStr += '<li data-id="' + course.courseCd + '"  class="active">';
+                                                        htmlStr += '	<a href="' + courseLink + '">'
+                                                    } else {
+                                                        htmlStr += '<li data-id="' + course.courseCd + '">';
+                                                        htmlStr += '	<a href="' + courseLink + '">'
+                                                    }
+                                                    htmlStr += '<p>' + courseRequireStr + course.courseName + '</p>';
+
+                                                    htmlStr += '<div class="education-nav__list-badge">';
+                                                    if (course.courseProgress == 100) {
+                                                        htmlStr += '		<span class="badge rounded-pill bg-success" span-progress"  data-value="' + course.courseProgress + '" >제출완료</span>';
+                                                    } else {
+                                                        htmlStr += '		<span class="badge rounded-pill bg-danger" span-progress"  data-value="' + course.courseProgress + '" >제출전</span>';
+                                                    }
+
+
+                                                    htmlStr += '</div>';
+                                                    htmlStr += '</a>';
+                                                    if (!isEmpty(course.lastDate)) {
+                                                        htmlStr += '<div class="last-date">' + moment(course.lastDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm") + '</div>';
+                                                    }
+                                                    htmlStr += '</li>';
+                                                }
+                                            } else {//quiz
+                                                var prevCourseProgress = data.courseList[i - 1].courseProgress;
+                                                if (prevCourseProgress >= 100) {
+                                                    courseLink = 'javascript:studyroom.goQuiz(\'' + course.courseCd + '\',\'' + course.quizCd + '\',\''+course.quizPassCnt+'\');'
+                                                } else if (requireCourseCompleteYn == "Y") {
+                                                    courseLink = 'javascript:studyroom.goQuiz(\'' + course.courseCd + '\',\'' + course.quizCd + '\',\''+course.quizPassCnt+'\');'
+                                                } else {
+                                                    courseLink = 'javascript:commonMsgAlert(\'필수강의 수강 후 학습평가가 가능합니다.\');';
+                                                }
+
+                                                if (COURSE_CD == course.courseCd) {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '"  class="active">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                } else {
+                                                    htmlStr += '<li data-id="' + course.courseCd + '">';
+                                                    htmlStr += '	<a href="' + courseLink + '">'
+                                                }
+                                                htmlStr += '<p>' + courseRequireStr + course.courseName + '</p>';
+
+                                                htmlStr += '<div class="education-nav__list-badge">';
+                                                if (course.courseProgress == 100) {
+                                                    htmlStr += '		<span class="badge rounded-pill bg-success" span-progress"  data-value="' + course.courseProgress + '" >응시완료</span>';
+                                                    isQuizComplete = "Y";
+                                                } else {
+                                                    htmlStr += '		<span class="badge rounded-pill bg-danger" span-progress"  data-value="' + course.courseProgress + '" >응시전</span>';
+                                                }
+
+
+                                                htmlStr += '</div>';
+                                                htmlStr += '</a>';
+                                                if (!isEmpty(course.lastDate)) {
+                                                    htmlStr += '<div class="last-date">' + moment(course.lastDate, "YYYYMMDDHHmmss").format("YYYY-MM-DD HH:mm") + '</div>';
+                                                }
+                                                htmlStr += '</li>';
+
+                                            }
+
+                                        }
+
+                                    }
+
+
+                                    $("#studyroomCourseList").html(htmlStr);
+                                    //$("#studyRoomModal").modal('show');
+
+                                    var lastPlayInfo = data.lastPlayInfo;
+                                    if (INIT_LOAD) {
+                                        if (lastPlayInfo == null) {
+                                            goContents(data.courseList[0].courseCd, data.courseList[0].contentsCd, data.courseList[0].studentSmsAuthYn, data.courseList[0].viewTime, data.courseList[0].courseProgress);
+
+                                        } else {
+                                            if (lastPlayInfo.courseType == "COURSE") {
+
+                                                goContents(lastPlayInfo.courseCd, lastPlayInfo.contentsCd, lastPlayInfo.studentSmsAuthYn, lastPlayInfo.viewTime, lastPlayInfo.courseProgress);
+                                            } else if (lastPlayInfo.courseType == "SURVEY") {
+                                                viewSurvey(lastPlayInfo.courseCd, lastPlayInfo.surveyCd);
+                                            } else {
+                                                goQuiz(lastPlayInfo.courseCd, lastPlayInfo.quizCd, lastPlayInfo.quizPassCnt);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                }
+                // 	var VIEW_TIME = 0;
+                var INTERVAL_CNT = 0;
+                var PROGRESS_INTERVAL;
+                ///진도///
+                var setProgress = function () {
+                    if (PROGRESS_INTERVAL != null) {
+                        clearInterval(PROGRESS_INTERVAL);
+                    }
+                    PROGRESS_INTERVAL = setInterval(startProgress, 1000);
+                }
+
+                var startProgress = function () {
+
+                        INTERVAL_CNT++;
+                        if (INTERVAL_CNT >= 10 && COURSE_CD != "") {
+                            //var VIEW_PROGRESS = PLAYER.currentTime().toFixed();
+
+                            var VIEW_PROGRESS = Number.parseFloat(CURRENT_TIME).toFixed();
+
+                            INTERVAL_CNT = 0;
+                            var sendData = { ccCd: CC_CD, ccYear: CC_YEAR, enrolNo: ENROL_NO, courseCd: COURSE_CD, courseType: "COURSE", viewTime: VIEW_PROGRESS };
+
+                            commonAjaxFunc("/studyroom/userid/check", {}, "GET", function (data) {	//사용자 아이디 체크
+
+                                if (data != null && data != "") {
+
+                                        commonAjaxFunc("/studyroom/video/progress", sendData, "POST", function (data) {
+                                            console.log("COURSE_PROGRESS_CONFRIM= "+COURSE_PROGRESS_CONFRIM);
+                                            console.log(data);
+                                            if (data.result == "success") {
+                                                if (data.courseInfo != null) {
+                                                    MAX_PLAY_AT = data.courseInfo.viewTime;
+                                                    getCourseList();
+                                                    if (COURSE_PROGRESS_NOTI_USE_YN == "Y" && data.courseInfo.courseProgress < 100) {	//진도알림팝업
+                                                        if (data.courseInfo.courseProgress >= COURSE_PROGRESS_NOTI_VAL && COURSE_PROGRESS_NOTI_CONFRIM == "N") {
+                                                            PLAYER.pause();
+                                                            stopProgress();
+                                                            Swal.fire({ html: '현재 학습진도 ' + COURSE_PROGRESS_NOTI_VAL + '%이상 달성하였습니다.<br/>남은 학습도 진행해볼까요?', confirmButtonText: "확인", allowOutsideClick: false }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    COURSE_PROGRESS_NOTI_CONFRIM = "Y";
+                                                                    setProgress();
+                                                                    PLAYER.play();
+                                                                }
+                                                            });
+                                                            /* $("#policyProgressNoti .co-notice-txt").text(COURSE_PROGRESS_NOTI_VAL+"%");
+                                                            $("#policyProgressNoti").modal('show'); */
+                                                        }
+                                                    }
+                                                    if (data.courseInfo.courseProgress == "100" && COURSE_PROGRESS_CONFRIM == "N") {
+                                                        //alert("해당 학습이 완료되었습니다. 학습목차에서 다음 차시를 진행해주세요.")
+                                                        MAX_PLAY_AT = PLAYER.duration();
+                                                        if (!Swal.isVisible()) {
+                                                            Swal.fire({ html: '해당 학습이 완료되었습니다.<br/> 학습목차에서 다음 차시명을 클릭하세요.', confirmButtonText: "확인" }).then((result) => {
+                                                                if (result.isConfirmed) {
+                                                                    COURSE_PROGRESS_CONFRIM = 'Y';
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                            } else if (data.result == "LOGIN_USER_IS_NULL") {
+
+                                                stopProgress();
+                                                alert("로그인이 끊겼습니다. 다시 로그인해주세요.")
+                                                window.open("about:blank", "_self").close();
+                                                opener.location.href = "/user/login";
+                                            } else {
+                                                PLAYER.pause();
+                                                stopProgress();
+                                                alert("수강중 문제가 발생하였습니다.");
+                                                closeStudyroom();
+                                            }
+                                        });
+                                } else {
+                                    stopProgress();
+                                    if (confirm("로그인 정보가 만료되었습니다. 다시 로그인해주세요.")) {
+                                        window.open("about:blank", "_self").close();
+                                        opener.location.href = "/user/login";
+                                    }
+
+                                }
+
+                            });
+                        }
+
+
+                    if (STUDY_STATUS == 'C') {
+                        if (STUDY_COMPLETE_POP_CONFIRM == "N") {
+                            $("#studentComplNoti").modal('show');
+
+                        }
+                        $("#certiLabel").html('<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" onclick="closeStudyroom();">수료증 확인</button>');
+                        //	stopProgress();
+                    } else {
+
+                    }
+
+                }
+
+                var stopProgress = function () {
+                    if (PROGRESS_INTERVAL != null) {
+                        clearInterval(PROGRESS_INTERVAL);
+                    }
+                }
+
+                var prevContents = function () {
+                    var prevObj = $("#studyroomCourseList li.active").prev();
+                    var nowCourseCd = $("#studyroomCourseList li.active").attr("data-id");
+                    var targetCourseCd = $(prevObj).attr("data-id");
+                    var prevCourseProgress = $("#studyroomCourseList li[data-id='" + nowCourseCd + "']").find(".span-progress").attr("data-value");
+
+                    if (COURSE_STUDY_TYPE != "F") {	//순차학습일경우 이전 차시의 진도율이 무조건 100%이므로 view
+                        courseInfo(nowCourseCd, targetCourseCd);
+                    }
+
+                }
+                var nextContents = function () {
+                    var prevObj = $("#studyroomCourseList li.active").next();
+                    var nowCourseCd = $("#studyroomCourseList li.active").attr("data-id");
+                    var targetCourseCd = $(prevObj).attr("data-id");
+
+                    var prevCourseProgress = $("#studyroomCourseList li[data-id='" + nowCourseCd + "']").find(".span-progress").attr("data-value");
+                    if (COURSE_STUDY_TYPE != "F") {	//순차학습일경우 이전 차시의 진도율이 100% 가 아니면 alert띄워준다.
+                        if (STUDY_STATUS == "C") {
+                            courseInfo(nowCourseCd, targetCourseCd);
+                        } else {
+                            if (prevCourseProgress < 100) {
+                                commonMsgAlert("순차적으로 학습해주시기 바랍니다.");
+                                return false;
+                            } else {
+                                courseInfo(nowCourseCd, targetCourseCd);
+                            }
+                        }
+                    }
+
+                }
+
+                var courseInfo = function (nowCourseCd, targetCourseCd) {
+
+                    //다음 또는 이전 차싯의 정보를 가져온다.
+                    commonAjaxFunc("/studyroom/" + CC_CD + "/course/" + targetCourseCd, { "enrolNo": ENROL_NO }, "GET", function (data) {
+                        var courseProgress = data.courseProgress;
+                        var courseRequireYn = data.courseRequireYn;
+                        var requireCourseCompleteYn = "Y";
+
+                        if (COURSE_STUDY_TYPE == "F") {	//자유학습
+                            if (data.courseType == "COURSE") {
+
+                                if (courseProgress > 0 && courseProgress < 100) {//이미 진도율이 있는 차시라면 문자 인증 없이 컨텐츠 view
+                                    goContents(data.courseCd, data.contentsCd, 'N', data.viewTime, data.courseProgress);
+                                } else if (courseProgress >= 100) {	//이미 진도율이 있는 차시라면 문자 인증 없이 컨텐츠 view
+                                    goContents(data.courseCd, data.contentsCd, 'N', data.viewTime, data.courseProgress);
+                                } else {	//처음 보는 차시일 경우 문자인증 사용여부에 따라 view
+                                    goContents(data.courseCd, data.contentsCd, data.studentSmsAuthYn, data.viewTime, data.courseProgress);
+                                }
+                            } else {
+                                goQuiz(data.courseCd, data.quizCd, data.quizPassCnt);
+                            }
+                        } else {
+                            if (data.courseType == "COURSE") {
+                                if (STUDY_STATUS == "C") {
+                                    goContents(data.courseCd, data.contentsCd, 'N', data.viewTime, data.courseProgress);
+                                } else {
+                                    if (courseProgress > 0 && courseProgress < 100) {//이미 진도율이 있는 차시라면 문자 인증 없이 컨텐츠 view
+                                        goContents(data.courseCd, data.contentsCd, 'N', data.viewTime, data.courseProgress);
+                                    } else if (courseProgress >= 100) {	//이미 진도율이 있는 차시라면 문자 인증 없이 컨텐츠 view
+                                        goContents(data.courseCd, data.contentsCd, 'N', data.viewTime, data.courseProgress);
+                                    } else {	//처음 보는 차시일 경우 문자인증 사용여부에 따라 view
+                                        goContents(data.courseCd, data.contentsCd, data.studentSmsAuthYn, data.viewTime, data.courseProgress);
+                                    }
+                                }
+                            } else {
+                                goQuiz(data.courseCd, data.quizCd, data.quizPassCnt);
+                            }
+                        }
+                    });
+                }
+
+                var goContents = function (courseCd, contentsCd, smsAuthUseYn, viewTime, courseProgress) {
+                    if ($(".education").css("display") == "block") {	//모바일에서는 목차 선택시 목차 자동으로 닫아줌.
+                        $(".education").addClass("fold");
+                    }
+                    COURSE_PROGRESS = 0;
+                    CURRENT_TIME = 0;
+                    LAST_PLAY_AT = viewTime;
+                    COURSE_PROGRESS = courseProgress;
+
+                    clearInterval(PROGRESS_INTERVAL);
+                    PLAYER.reset();
+
+                    if (SITE_SMS_AUTH_USE_YN == "N") {
+                        smsAuthUseYn = "N";
+                    }
+
+
+                    commonAjaxFunc("/studyroom/userid/check", {}, "GET", function (data) {	//사용자 아이디 체크
+                        if (data != null && data != "") {
+                            if (isMobile && smsAuthUseYn != '' && !INIT_LOAD) {
+                                $('#burger-check').prop('checked', function () {
+                                    return !$(this).prop('checked');
+                                });
+                            }
+
+
+
+                            COURSE_CD = courseCd;
+
+                            commonAjaxFunc("/curriculum/" + CC_CD + "/course/" + courseCd, {}, "GET", function (data) {
+                                $(".education-contents__head h3").text(data.courseName);
+                            });
+                            commonAsyncAjaxFunc("/studyroom/course/viewcnt/update", { ccCd: CC_CD, enrolNo: ENROL_NO, courseCd: COURSE_CD, courseType: "COURSE" }, "POST", function (data) {
+                            });
+                            $("#studyroomCourseList li  ").removeClass("active");
+                            $("#studyroomCourseList li[data-id='" + courseCd + "'] ").addClass("active");
+
+                            //이전버튼 제어
+                            if ($("#studyroomCourseList > li.active").index() == 0) {
+                                $("#prev-btn").addClass("d-none");
+                            } else {
+                                $("#prev-btn").removeClass("d-none");
+                            }
+                            //다음 버튼 제어
+                            if ($("#studyroomCourseList > li.active").index() == $("#studyroomCourseList > li").length - 1) {
+                                $("#next-btn").addClass("d-none");
+                            } else {
+                                $("#next-btn").removeClass("d-none");
+                            }
+
+                            if (smsAuthUseYn == "Y") {
+                                smsAuth.fnShow(courseCd, contentsCd);
+                            } else {
+                                $("#player-area").removeClass("d-none");
+                                $("#quiz-area").addClass("d-none");
+                                $("#smsAuthDiv, #quiz-contents-area").addClass("d-none");
+                                commonAjaxFunc("/contents/" + contentsCd, {}, "GET", studyroom.goContentsCallback);
+
+                            }
+
+                        } else {
+
+                            if (confirm("로그인 정보가 만료되었습니다. 다시 로그인해주세요.")) {
+                                window.open("about:blank", "_self").close();
+                                opener.location.href = "/user/login";
+                            }
+                        }
+                    });
+
+
+
+                }
+                var goContentsCallback = function (data) {
+
+                    if (data != null) {
+                        COURSE_PROGRESS_CONFRIM = "N";	//목차를 누를때마다 컨펌창에 대한 기본 값 초기화
+                        COURSE_PROGRESS_NOTI_CONFRIM = "N";
+                        LAST_PROGRESS_CONFIRIM = "N";
+
+                        $("#quiz-area").removeClass("active");
+                        $("#player-area").addClass("active");
+
+
+                        if (COURSE_PROGRESS == 100) {	//진도가 100%인경우 이어보기/100%완료 팝업 노출 안함 2022.04.21
+                            COURSE_PROGRESS_CONFRIM = "Y";
+                            LAST_PROGRESS_CONFIRIM = "Y";
+                        }
+                        if (COURSE_PROGRESS >= COURSE_PROGRESS_NOTI_VAL) {
+                            COURSE_PROGRESS_NOTI_CONFRIM = "Y";
+                        }
+                        //$("#player").attr("src","/data/sampleContetnts/01/01_01.htm");
+                        var contentsPath = data.contentsPath;//.replace("https://d1r563r0svqb5x.cloudfront.net/", "");
+
+                        //$("#player").attr("src","https://kcraedu.hscdn.com/"+contentsPath);
+
+
+                        PLAYER.src({ src:  contentsPath, type: "video/mp4" });
+
+                        CURRENT_TIME = LAST_PLAY_AT;
+
+                        MAX_PLAY_AT = LAST_PLAY_AT;
+
+                        PLAYER.currentTime(LAST_PLAY_AT);	//마지막 재생시간 셋팅
+
+
+                        if (LAST_PLAY_AT != 0 && INIT_LOAD && LAST_PROGRESS_CONFIRIM != "Y") {
+                            var min = 0;
+                            if (LAST_PLAY_AT > 60) {
+                                var min = parseInt(LAST_PLAY_AT / 60);
+                                var sec = LAST_PLAY_AT % 60;
+                                $("#lastPlayNoti > .study-room-complete-noti > div").html(min + "분 " + sec + "초까지 시청하셨습니다.<br/>" + min + "분 " + sec + "초부터 학습이 시작됩니다.");
+
+                            } else {
+                                $("#lastPlayNoti > .study-room-complete-noti > div").html(LAST_PLAY_AT + "초까지 시청하셨습니다.<br/>" + LAST_PLAY_AT + "초부터 학습이 시작됩니다.");
+                            }
+                            $("#lastPlayNoti").modal('show');
+                        }
+
+                        INIT_LOAD = false;
+                        $(".vjs-custom-overlay").removeClass("vjs-hidden");
+                        $(".vjs-big-play-button").css("display", "block");
+
+
+                        setProgress();
+                    }
+                }
+
+                var goQuiz = function (courseCd, quizCd, quizPassCnt) {
+                    if ($(".education").css("display") == "block") {	//모바일에서는 목차 선택시 목차 자동으로 닫아줌.
+                        $(".education").addClass("fold");
+                    }
+                    clearInterval(PROGRESS_INTERVAL);
+                    commonAjaxFunc("/studyroom/userid/check", {}, "GET", function (data) {
+                        if (data != null && data != "") {
+                            if (isMobile && !INIT_LOAD) {
+                                $('#burger-check').prop('checked', function () {
+                                    return !$(this).prop('checked');
+                                });
+                            }
+                            if (INIT_LOAD) { INIT_LOAD = false; }
+                            $("#quiz-area > .education-contents__head h3").empty();
+                            $("#quiz-contents-area > .education-contents__head h3").empty();
+                            $("#quiz-area > .education-contents__guide").empty();
+                            //player 영역 초기화
+                            PLAYER.reset();
+
+                            $("#studyroomCourseList li").removeClass("active");
+                            $("#studyroomCourseList li[data-id='" + courseCd + "'] ").addClass("active");
+
+
+
+                            QUIZ_PASS_CNT = quizPassCnt;
+                            COURSE_CD = courseCd;
+                            QUIZ_CD = quizCd;
+                            //퀴즈 결과 체크
+                            commonAjaxFunc("/web/curriculum/" + CC_CD + "/quiz/" + QUIZ_CD, {}, "GET", function (data) {
+                                var questionList = data.result;
+                                QUESTION_LIST = data.result;
+
+                                commonAjaxFunc("/quiz/ans", { "ccCd": CC_CD, "courseCd": COURSE_CD, "enrolNo": ENROL_NO }, "GET", function (data) {
+                                    $("#player-area").addClass("d-none");
+                                    $("#smsAuthDiv").addClass("d-none");
+
+                                    if (data == null || data.length == 0) {
+                                        $("#quiz-area .education-contents__guide").empty();
+                                        $("#quiz-area").removeClass("d-none");
+
+
+                                        var htmlStr = "";
+                                        //htmlStr +='<div class="education-contents__guide">';
+                                        htmlStr += '<h4>학습평가 안내</h4>';
+                                        htmlStr += '<p>';
+                                        htmlStr += '    ONESNC 온라인과정을 수강해 주셔서 감사합니다.<br />';
+                                        htmlStr += '    <span>학습평가 안내사항을 확인하시어 [학습평가]에 응시해 주시기 바랍니다.<br />';
+                                        htmlStr += '</p>';
+                                        htmlStr += '<p>';
+                                        htmlStr += '    - <strong>평가 문항 : 10문항(객관식 사지선다형)</strong><br />';
+                                        htmlStr += '    - 합격 기준 : <strong>'+quizPassCnt+'문항</strong> 이상';
+                                        htmlStr += '</p>';
+                                        htmlStr += '<strong>* 불합격시 재수강 없이 재응시 가능(횟수 제한 없음)</strong>';
+                                        htmlStr += '<div class="text-center">';
+                                        htmlStr += '<button type="button" class="btn btn-primary" onclick="studyroom.startQuiz();">학습평가 응시</button>';
+                                        htmlStr += '</div>';
+                                        //htmlStr +='</div>';
+
+                                        $("#quiz-area > .education-contents__guide").html(htmlStr);
+                                    } else {
+                                        ANS_LIST = data;
+                                        showResultSummary();
+                                    }
+                                });
+                            });
+                        } else {
+                            stopProgress();
+                            if (confirm("로그인 정보가 만료되었습니다. 다시 로그인해주세요.")) {
+                                window.open("about:blank", "_self").close();
+                                opener.location.href = "/user/login";
+                            }
+
+                        }
+
+                    })
+
+
+
+
+                }
+                var resetQuiz = function () {
+                    ANS_LIST = [];
+                    var htmlStr = "";
+                    $("#quiz-area > .education-contents__guide").empty();
+                    $("#quiz-area").removeClass("d-none");
+                    $("#quiz-contents-area").addClass("d-none");
+
+                    //htmlStr +='<div class="education-contents__guide">';
+                    htmlStr += '<h4>학습평가 안내</h4>';
+                    htmlStr += '<p>';
+                    htmlStr += '    (사)한국휴게음식업중앙회 온라인식품위생교육과정을 수강해 주셔서 감사합니다.<br />';
+                    htmlStr += '    본 회에서는 <span class="text-danger">식품의약품안전처의 온라인 식품위생교육 조치사항</span>에 따라,<br />';
+                    htmlStr += '    <span>온라인 식품위생교육 효과 제고</span> 확인을 위하여 수강 완료 후 학습평가를 실시하고 있습니다.<br />';
+                    htmlStr += '    <span>학습평가 안내사항을 확인하시어 [학습평가]에 응시해 주시기 바랍니다.<br />';
+                    htmlStr += '</p>';
+                    htmlStr += '<p>';
+                    htmlStr += '    - <strong>평가 문항 : 10문항(객관식 사지선다형)</strong><br />';
+                    htmlStr += '    - 합격 기준 : <strong>'+QUIZ_PASS_CNT+'문항</strong> 이상';
+
+                    htmlStr += '</p>';
+                    htmlStr += '<strong>* 불합격시 재수강 없이 재응시 가능(횟수 제한 없음)</strong>';
+                    htmlStr += '<div class="text-center">';
+                    htmlStr += '<button type="button" class="btn btn-primary" onclick="studyroom.startQuiz();">학습평가 응시</button>';
+                    htmlStr += '</div>';
+                    //htmlStr +='</div>';
+
+                    $("#quiz-area .education-contents__guide").html(htmlStr);
+                }
+                var startQuiz = function () {
+                    $(document).scrollTop(0);
+                    if (QUESTION_LIST.length == 0) {
+                        commonMsgAlert("등록된 퀴즈가 없습니다.\n 관리자에게 문의하세요.");
+                        return false;
+                    }
+                    commonAsyncAjaxFunc("/studyroom/course/viewcnt/update", { ccCd: CC_CD, enrolNo: ENROL_NO, courseCd: COURSE_CD, courseType: "QUIZ" }, "POST", function (data) {
+                        if (data == "success") {
+                            //퀴즈 초기화
+                            CURRENT_QUIZ_NO = "";
+                            $("#quiz-area").addClass("d-none");
+                            $("#quiz-contents-area").removeClass("d-none");
+                            //퀴즈 초기화 e
+                            makeQuestion();
+                        }
+                    });
+
+                }
+
+
+                var makeQuestion = function () {
+
+                    var quiz = null;
+                    if (CURRENT_QUIZ_NO == "") {
+                        question = QUESTION_LIST[0];
+                        CURRENT_QUIZ_NO = 0;
+                    } else {
+                        question = QUESTION_LIST[CURRENT_QUIZ_NO];
+                    }
+                    var questionIndex = CURRENT_QUIZ_NO;
+                    var totalQuizCnt = QUESTION_LIST.length;
+                    var quizNo = CURRENT_QUIZ_NO + 1;
+                    var htmlStr = "";
+
+
+                    htmlStr += '<h4>문제 ' + quizNo + '/' + totalQuizCnt + '</h4>';
+                    htmlStr += '<dl>';
+                    htmlStr += '    <dt>' + quizNo + "." + question.question + '</dt>';
+                    htmlStr += '    <dd>';
+                    if (question.questionType == "CHOICE") {
+                        htmlStr += '        <ol>';
+                        var exampleList = question.exampleList;
+
+                        for (var j = 0; j < exampleList.length; j++) {
+                            var example = exampleList[j];
+                            htmlStr += '            <li onclick="studyroom.checkAnswer(\'' + questionIndex + '\',\'' + question.questionCd + '\',\'' + example.exampleCd + '\')">' + (j + 1) + '. ' + example.example + '</li>';
+                        }
+                        htmlStr += '        </ol>';
+                    } else {
+                        htmlStr += '<textarea></textarea>';
+                    }
+                    htmlStr += '    </dd>';
+                    htmlStr += '</dl>';
+
+                    $("#quiz-contents-area .education-contents__question").html(htmlStr);
+
+                    CURRENT_QUIZ_NO++;
+                }
+
+                var checkAnswer = function (questionIndex, questionCd, ansExampleCd) {
+                    var passYn = "N";
+                    if (_.findWhere(QUESTION_LIST[questionIndex].exampleList, { exampleCd: ansExampleCd, answerYn: "Y" }) != undefined) { passYn = "Y"; }
+
+                    var exist = _.findWhere(ANS_LIST, { "questionCd": questionCd });
+
+                    if (exist != undefined) {
+                        exist.ansExampleCd = ansExampleCd;
+                        exist.passYn = passYn;
+                    } else {
+                        ANS_LIST.push({ "ccCd": CC_CD, "enrolNo": ENROL_NO, "courseCd": COURSE_CD, "questionCd": questionCd, "ansExampleCd": ansExampleCd, "passYn": passYn });
+                    }
+
+                    if (CURRENT_QUIZ_NO >= QUESTION_LIST.length) {
+                        submitQuiz();
+                    } else {
+                        makeQuestion();
+                    }
+
+                }
+
+                var submitQuiz = function () {
+                    commonAjaxFunc("/studyroom/userid/check", {}, "GET", function (data) {
+                        if (data != null && data != "") {
+                                var quizScore = checkQuizPassYn();
+                                commonAjaxFunc("/quiz/ans/regist", { "ccCd": CC_CD, "ccYear": CC_YEAR, "enrolNo": ENROL_NO, "courseCd": COURSE_CD, "ansList": JSON.stringify(ANS_LIST), "viewTime": quizScore }, "POST", function (data) {
+                                    if (data != null && data.totalProgress != undefined) {
+                                        $("#studyroomCourseList li:last-child").find(".progress-bar").css("width", data.totalProgress + "%");
+                                        $("#studyroomCourseList li:last-child").find(".val").text(data.totalProgress + "%");
+                                    }
+                                    showResultSummary();
+                                    getCourseList();
+
+                                });
+                        } else {
+                            stopProgress();
+                            if (confirm("로그인 정보가 만료되었습니다. 다시 로그인해주세요.")) {
+                                window.open("about:blank", "_self").close();
+                                opener.location.href = "/user/login";
+                            }
+                        }
+                    });
+
+                }
+                var checkQuizPassYn = function () {
+                    var passCnt = 0;
+                    var baseScore = QUIZ_PASS_CNT;
+
+                    for (var i = 0; i < ANS_LIST.length; i++) {
+                        if (ANS_LIST[i].passYn == "Y") {
+                            passCnt++;
+                        }
+                    }
+
+                    if (passCnt >= baseScore) {
+                        $("#studyroomCourseList li[data-id='" + COURSE_CD + "']").find("span").removeClass("pull-quiz").addClass("compl-quiz").text("응시완료");
+                        return 100;
+                    } else {
+                        return 1;
+                    }
+
+                }
+                var showResultSummary = function () {
+                    $("#quiz-area").addClass("d-none");
+                    CURRENT_QUIZ_NO = 0;	//퀴즈 index 초기화
+                    var passCnt = 0;
+                    var baseScore = QUIZ_PASS_CNT;
+
+                    for (var i = 0; i < ANS_LIST.length; i++) {
+                        if (ANS_LIST[i].passYn == "Y") {
+                            passCnt++;
+                        }
+                    }
+                    $("#quiz-contents-area .education-contents__question").empty();
+
+                    var htmlStr = '';
+                    //htmlStr +='<div style="width: 50%; margin: 0 auto">';
+                    if (SURVEY_USE_YN == "Y" && passCnt >= baseScore) {
+                        htmlStr += '<h4>[학습평가]가 완료되었습니다. 설문에 응시해주시기 바랍니다.<br/><span class="text-danger">* 설문응시 완료 후 [수료증 발급] 가능합니다.</span></h4>';
+                        htmlStr += '<div class="education-contents__question-btn">';
+                        htmlStr += '<button type="button" class="btn btn-danger" onclick="studyroom.viewSurvey(\'' + TMP_SV_COURSE_CD + '\',\'' + TMP_SV_CD + '\')">설문응시</button>';
+                        htmlStr += '</div>';
+                    } else {
+                        htmlStr += '<h4>학습평가는 <span class="text-danger">' + baseScore + '문제 이상</span> 합격을 해야 합니다.</h4>';
+                    }
+                    htmlStr += '<div class="education-contents__question-result">';
+                    htmlStr += '    <p>' + passCnt + '개</p>';
+                    if (passCnt >= baseScore) {
+                        htmlStr += '    <p class="text-primary">합격</p>';
+                    } else {
+                        htmlStr += '    <p class="text-danger">불합격</p>';
+                    }
+                    htmlStr += '</div>';
+                    htmlStr += '<div class="education-contents__question-btn">';
+                    htmlStr += '    <button type="button" class="btn btn-info btn-lg" onclick="studyroom.resetQuiz();">재평가하기</button>';
+                    htmlStr += '    <button type="button" class="btn btn-primary btn-lg" onclick="studyroom.showQuizResult()">결과보기</button>';
+                    htmlStr += '</div>';
+                    if (SURVEY_USE_YN == "Y") {
+                        htmlStr += '<div class="education-contents__question-banner text-center">';
+                        htmlStr += '    <p>';
+                        htmlStr += '        재응시하는 경우 최초 응시한 점수는 삭제 됩니다.';
+                        htmlStr += '    </p>';
+                        htmlStr += '</div>';
+                    } else {
+                        htmlStr += '<div class="education-contents__question-banner text-center">';
+                        htmlStr += '    <p>';
+                        htmlStr += '        강사평가 및 온라인 교육 만족도 조사에 참여해 주세요.';
+                        htmlStr += '        <span>재응시하는 경우 최초 응시한 점수는 삭제 됩니다.</span>';
+                        htmlStr += '    </p>';
+                        /* htmlStr += '    <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="studyroom.goSurvey();">강사평가 및 교육 만족도 조사</button>'; */
+                        htmlStr += '</div>';
+                    }
+
+
+                    //htmlStr +='</div>';
+
+                    $("#quiz-contents-area .education-contents__question").html(htmlStr);
+                    $("#quiz-contents-area").removeClass("d-none");
+                }
+
+                var showPrevQuizResult = function () {
+                    CURRENT_QUIZ_NO = CURRENT_QUIZ_NO - 2;
+
+                    showQuizResult();
+                }
+                var showQuizResult = function () {
+                    var quiz = null;
+                    var answer = null;
+                    if (CURRENT_QUIZ_NO == "") {
+                        question = QUESTION_LIST[0];
+                        answer = ANS_LIST[0];
+                        CURRENT_QUIZ_NO = 0;
+                    } else {
+                        question = QUESTION_LIST[CURRENT_QUIZ_NO];
+                        answer = ANS_LIST[CURRENT_QUIZ_NO];
+                    }
+                    var questionIndex = CURRENT_QUIZ_NO;
+                    var totalQuizCnt = QUESTION_LIST.length;
+                    var quizNo = CURRENT_QUIZ_NO + 1;
+                    var htmlStr = "";
+                    var answerNo = "";
+
+                    htmlStr += '<h4>문제 ' + quizNo + '/' + totalQuizCnt + '</h4>';
+                    htmlStr += '<dl>';
+                    if (answer.passYn == "Y") {
+                        htmlStr += '    <dt class="correct">' + quizNo + '. ' + question.question + '</dt>';
+                    } else {
+                        htmlStr += '    <dt class="wrong">' + quizNo + '. ' + question.question + '</dt>';
+                    }
+                    if (question.questionType == "CHOICE") {
+                        htmlStr += '    <dd>';
+                        htmlStr += '        <ol>';
+                        var exampleList = question.exampleList;
+
+                        for (var j = 0; j < exampleList.length; j++) {
+                            var example = exampleList[j];
+                            var exampleCd = example.exampleCd;
+                            var answerYn = example.answerYn;
+                            if (exampleCd == answer.ansExampleCd) {
+                                if (answerYn == "Y") {
+                                    htmlStr += '            <li class="correct answer">' + (j + 1) + '. ' + example.example + '</li>';
+                                } else {
+                                    htmlStr += '            <li class="wrong">' + (j + 1) + '. ' + example.example + '</li>';
+                                }
+                            } else {
+                                if (answerYn == "Y") {
+                                    htmlStr += '            <li class="answer">' + (j + 1) + '. ' + example.example + '</li>';
+                                } else {
+                                    htmlStr += '            <li>' + (j + 1) + '. ' + example.example + '</li>';
+                                }
+
+                            }
+                        }
+                        htmlStr += '        </ol>';
+                        htmlStr += '    </dd>';
+                    }
+
+                    htmlStr += '</dl>';
+                    htmlStr += '<div class="education-contents__question-answer">';
+                    htmlStr += '    <strong class="text-danger"> 정답 : ' + question.ansExampleNo + ' </strong>';
+                    htmlStr += '    <p>' + question.questionComment;
+                    htmlStr += '    </p>';
+                    htmlStr += '</div>';
+                    htmlStr += '<div class="education-contents__question-foot">';
+                    htmlStr += '    <p>';
+                    if (questionIndex > 0) {
+                        htmlStr += '        <button type="button" class="btn btn-primary btn-sm" onclick="studyroom.showPrevQuizResult();">이전</button>';
+                    }
+                    if (questionIndex < totalQuizCnt - 1) {
+                        htmlStr += '        <button type="button" class="btn btn-primary btn-sm" onclick="studyroom.showQuizResult()">다음</button>';
+                    }
+                    htmlStr += '    </p>';
+                    if (questionIndex == totalQuizCnt - 1) {
+                        htmlStr += '    <p>';
+                        htmlStr += '        <button type="button" class="btn btn-info btn-sm" onclick="closeStudyroom();">나가기</button>';
+                        htmlStr += '    </p>';
+                    }
+                    htmlStr += '</div>';
+
+                    $(".education-contents__question").html(htmlStr);
+
+                    CURRENT_QUIZ_NO++;
+
+                }
+                var goSurvey = function () {
+                    var url = "";
+
+                    window.open(url, "about:blank");
+
+                }
+                var SURVEY_LIST;
+                var NEW_ARR = [];
+                var CUR_SURVEY_INDEX = 0;
+                var SURVEY_ANS_LIST = [];
+                var CUR_SURVEY_CD = "";
+                var viewSurvey = function (courseCd, surveyCd) {
+                    SURVEY_ANS_LIST = [];
+                    CUR_SURVEY_CD = surveyCd;
+                    CUR_SURVEY_INDEX = 0;
+                    NEW_ARR = [];
+                    if ($(".education").css("display") == "block") {	//모바일에서는 목차 선택시 목차 자동으로 닫아줌.
+                        $(".education").addClass("fold");
+                    }
+                    clearInterval(PROGRESS_INTERVAL);
+                    commonAjaxFunc("/studyroom/userid/check", {}, "GET", function (data) {
+                        if (data != null && data != "") {
+                            if (isMobile && !INIT_LOAD) {
+                                $('#burger-check').prop('checked', function () {
+                                    return !$(this).prop('checked');
+                                });
+                            }
+                            if (INIT_LOAD) { INIT_LOAD = false; }
+                            $("#quiz-area").addClass("d-none");
+                            $("#quiz-contents-area").removeClass("d-none");
+
+                            $("#quiz-area > .education-contents__head h3").empty();
+                            $("#quiz-contents-area > .education-contents__head h3").empty();
+                            $("#quiz-area > .education-contents__guide").empty();
+                            //player 영역 초기화
+                            PLAYER.reset();
+
+                            $("#studyroomCourseList li").removeClass("active");
+                            $("#studyroomCourseList li[data-id='" + courseCd + "'] ").addClass("active");
+
+
+
+
+                            COURSE_CD = courseCd;
+                            SURVEY_CD = surveyCd;
+
+
+
+                            $("#player-area").addClass("d-none");
+                            $("#smsAuthDiv").addClass("d-none");
+                            commonAjaxFunc("/survey/student/info", { ccCd: CC_CD, enrolNo: ENROL_NO, courseCd: COURSE_CD, "surveyCd": SURVEY_CD }, "GET", function (data) {
+                                if (data.info != null) {
+                                    var ansLimitUseYn = data.info.ansLimitUseYn;
+                                    SURVEY_LIST = data.questionList;
+                                    if (data.ansInfo != null && data.ansInfo.length > 0 && ansLimitUseYn == "Y") {
+                                        var htmlStr = '';
+                                        /* htmlStr +='<h4 class="survey-h4">강사평가 및 교육만족도 조사 <br/>제출이 완료되었습니다.</h4>';
+
+
+                                        htmlStr +='<div class="education-contents__question-banner text-center survey-result">';
+                                        htmlStr +='    <p><span class="text-danger">교육을 최종 이수하였습니다.</span>이후 선택과목 학습은 진도율에 반영되지 않습니다</p>';
+                                        htmlStr +='    <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="closeStudyroom();">수료증확인</button>';
+                                        htmlStr +='</div>'; */
+
+                                        htmlStr += '<div class="education-contents__question-banner text-center survey-result">';
+                                        htmlStr += '    <h4 class="survey-h4">※ 설문에 응해주셔서 감사합니다. ※</h4>';
+                                        htmlStr += '    <p class="mb-3">아래 [선택]과목은 학습진도율에 반영되지 않습니다.<br/>자유롭게 수강해주시기 바랍니다.<br/></p>';
+                                        htmlStr += '    <button type="button" class="btn btn-primary" onclick="showCertificates(\'' + CC_CD + '\', \'' + ENROL_NO + '\');">수료증 출력</button>';
+                                        htmlStr += '</div>';
+
+                                        $("#quiz-contents-area .education-contents__question").html(htmlStr);
+                                        $("#quiz-contents-area").removeClass("d-none");
+                                        return false;
+                                    } else {
+                                        if (data.ansInfo != null) {
+                                            SURVEY_ANS_LIST = data.ansInfo;
+                                        }
+                                        commonAsyncAjaxFunc("/studyroom/course/viewcnt/update", { ccCd: CC_CD, enrolNo: ENROL_NO, courseCd: COURSE_CD, courseType: "SURVEY" }, "POST", function (data) {
+                                            if (data == "success") {
+                                                reformSurvey();
+                                            }
+                                        });
+                                    }
+
+
+                                }
+                            });
+
+                        } else {
+                            stopProgress();
+                            if (confirm("로그인 정보가 만료되었습니다. 다시 로그인해주세요.")) {
+                                window.open("about:blank", "_self").close();
+                                opener.location.href = "/user/login";
+                            }
+
+                        }
+
+                    })
+
+
+
+                }
+                var reformSurvey = function () {
+
+                    var start_index = 0;
+                    var end_index = 0;
+                    for (var i = 0; i < SURVEY_LIST.length; i++) {
+                        var a = SURVEY_LIST[i];
+                        if (i != 0 && a.qType == "S") {
+                            end_index = i;
+                            NEW_ARR.push(SURVEY_LIST.slice(start_index, end_index));
+                            start_index = i;
+                        }
+
+                        if (i == SURVEY_LIST.length - 1) {
+                            NEW_ARR.push(SURVEY_LIST.slice(start_index, SURVEY_LIST.length));
+                        }
+
+                    }
+
+                    makeSurveyForm();
+
+                }
+                var getAnsInfo = function (q) {
+                    var a = _.findWhere(SURVEY_ANS_LIST, { "surveyQCd": q });
+                    return a;
+                }
+                var makeSurveyForm = function () {
+                    var htmlStr = "";
+                    htmlStr += '<div class="survey-wrapper-noti">';
+                    htmlStr += '<p>온라인교육 만족도 조사</p>';
+                    htmlStr += '<p>본 설문조사는 식품위생교육의 개선을 위한 자료로 활용되며, <br/>성의껏 설문에 응해 주시면 식품위생교육 개선을 위하여 최선을 다하겠습니다.</p>';
+                    htmlStr += '<p>본 조사결과는 비밀이 보장되며 통계분석 이외의 목적으로는 사용되지 않습니다.</p>';
+                    htmlStr += '</div>';
+
+
+                    htmlStr += "<div class='survey-wrapper'>";
+                    var arr = NEW_ARR[CUR_SURVEY_INDEX];
+                    for (var i = 0; i < arr.length; i++) {
+                        var s = arr[i];
+                        if (s.qType == "S") {
+                            htmlStr += '<div class="survey-item survey-item-section">';
+                            htmlStr += '<h4>' + s.surveyCateName + '</h4>';
+                            htmlStr += '</div>';
+                        } else {
+
+                            var ansInfo = null;
+                            if (SURVEY_ANS_LIST != null && SURVEY_ANS_LIST.length > 0) {
+                                ansInfo = getAnsInfo(s.surveyQCd);
+
+                            }
+                            if (s.requireYn == "Y") {
+                                htmlStr += '<div class="survey-item survey-item-question require type-' + s.qAnsType + '" data-q-v="' + s.surveyQCd + '">';
+                            } else {
+                                htmlStr += '<div class="survey-item survey-item-question type-' + s.qAnsType + '" data-q-v="' + s.surveyQCd + '">';
+                            }
+                            htmlStr += '<dl>';
+
+                            htmlStr += '<dt>' + s.title + '</dt>';
+
+                            htmlStr += '<dd>';
+                            if (s.qAnsType == "choice") {
+                                if (s.itemList != null && s.itemList.length > 0) {
+                                    htmlStr += '<ol>';
+                                    for (var j = 0; j < s.itemList.length; j++) {
+                                        var item = s.itemList[j];
+                                        var activeStr = "";
+                                        if (ansInfo != null) {
+                                            if (ansInfo.ansItemCd == item.surveyItemCd) {
+                                                activeStr = "active"
+                                            }
+                                        }
+                                        htmlStr += '	<li data-v="' + item.surveyItemCd + '" class=' + activeStr + '>' + (j + 1) + '. ' + item.title + '</li>';
+                                    }
+                                    htmlStr += '</ol>';
+                                }
+                            } else if (s.qAnsType == "short") {
+                                if (ansInfo != null) {
+                                    htmlStr += '<textarea rows="5" cols="100" name="ansTxt" style="resize:none;" onkeyup="fn_checkByte(this)">' + ansInfo.ansTxt + '</textarea>';
+                                } else {
+                                    htmlStr += '<textarea rows="5" cols="100" name="ansTxt" style="resize:none;" onkeyup="fn_checkByte(this)" placeholder="50자 미만으로 작성해주세요."></textarea>';
+                                }
+
+                            } else {
+                                if (s.itemList != null && s.itemList.length > 0) {
+
+                                    htmlStr += '<select name="ansItemSel" class="form-select">';
+                                    htmlStr += '<option value="">선택 </option>';
+                                    for (var j = 0; j < s.itemList.length; j++) {
+                                        var item = s.itemList[j];
+                                        var activeStr = "";
+                                        if (ansInfo != null) {
+                                            if (ansInfo.ansItemCd == item.surveyItemCd) {
+                                                activeStr = "selected"
+                                            }
+                                        }
+
+                                        htmlStr += '<option value="' + item.surveyItemCd + '" ' + activeStr + '>' + item.title + ' </option>';
+                                    }
+                                    htmlStr += '</select>';
+                                }
+
+                            }
+
+                            htmlStr += '</dd>';
+                            htmlStr += '</dl>';
+                            htmlStr += '</div>';
+
+                        }
+                    }//end for
+
+
+                    htmlStr += '<div class="survey-item--footer">';
+                    if (CUR_SURVEY_INDEX < NEW_ARR.length - 1) {
+                        htmlStr += '        <button type="button" class="btn btn-primary btn-sm" onclick="studyroom.nextSurvey()" id="next-btn">다음</button>';
+                    } else {
+                        htmlStr += '        <button type="button" class="btn btn-primary btn-sm" onclick="studyroom.submitSurvey()" id="submit-btn">제출하기</button>';
+                    }
+
+                    htmlStr += '</div>'
+
+
+
+                    htmlStr += "</div>";
+                    $("#quiz-contents-area .education-contents__question").html(htmlStr);
+                    $("#quiz-contents-area").removeClass("d-none");
+
+                    CUR_SURVEY_INDEX++;
+                }
+                var surveyValidChk = function () {
+                    var validChk = true;
+                    var firstInvalid = null;
+                    $(".survey-wrapper .survey-item").each(function () {
+                        if ($(this).hasClass("survey-item-question")) {
+                            var q = $(this).attr("data-q-v");	//questionCd
+                            var exist = _.findWhere(SURVEY_ANS_LIST, { "surveyQCd": q });
+
+                            if ($(this).hasClass("type-choice")) {
+                                if ($(this).find("ol li.active").length < 1) {
+                                    if ($(this).hasClass("require")) {
+                                        if (!firstInvalid) firstInvalid = this;
+                                        validChk = false;
+                                    }
+                                } else {
+                                    var ans = $(this).find("ol li.active").data("v");
+                                    if (exist != undefined) {
+                                        exist.ansItemCd = ans
+                                    } else {
+                                        SURVEY_ANS_LIST.push({ "surveyQCd": q, "ansItemCd": ans });
+                                    }
+                                }
+                            } else if ($(this).hasClass("type-short")) {
+                                var ans = $(this).find("textarea[name=ansTxt]").val();
+                                if (isEmpty(ans)) {
+                                    if ($(this).hasClass("require")) {
+                                        if (!firstInvalid) firstInvalid = this;
+                                        validChk = false;
+                                    }
+                                } else {
+                                    if (exist != undefined) {
+                                        exist.ansTxt = ans
+                                    } else {
+                                        SURVEY_ANS_LIST.push({ "surveyQCd": q, "ansTxt": ans });
+                                    }
+                                }
+                            } else if ($(this).hasClass("type-dropdown")) {
+                                var ans = $(this).find("select[name=ansItemSel]").val();
+                                if (isEmpty(ans)) {
+                                    if ($(this).hasClass("require")) {
+                                        if (!firstInvalid) firstInvalid = this;
+                                        validChk = false;
+                                    }
+                                } else {
+                                    if (exist != undefined) {
+                                        exist.ansItemCd = ans
+                                    } else {
+                                        SURVEY_ANS_LIST.push({ "surveyQCd": q, "ansItemCd": ans });
+                                    }
+                                }
+                            }
+
+                        }
+                    })
+                    return { valid: validChk, firstInvalid: firstInvalid };
+
+                }
+                var nextSurvey = function () {
+                    //설문 결과 list push : SURVEY_ANS_LIST
+                    var checkResult = surveyValidChk();
+                    if (!checkResult.valid) {
+                        $("#next-btn").blur();
+                        Swal.fire({
+                            html: "답변하지 않은 항목이 있습니다.<br/> 모두 체크하시기 바랍니다.",
+                            allowOutsideClick: false,
+                            focusConfirm: false,
+                            confirmButtonText: "확인"
+                        }).then(() => {
+                            // SweetAlert 닫힌 뒤 스크롤 이동
+                            if (checkResult.firstInvalid) {
+                                checkResult.firstInvalid.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+                        });
+                        return false;
+                    } else {
+                        $(".education-contents__question").scrollTop(0);
+                        makeSurveyForm();
+                    }
+
+
+                }
+
+                var submitSurvey = function () {
+                    var checkResult = surveyValidChk();
+                    if (!checkResult.valid) {
+                        $("#submit-btn").blur();
+                        Swal.fire({
+                            html: "답변하지 않은 항목이 있습니다.<br/> 모두 체크하시기 바랍니다.",
+                            allowOutsideClick: false,
+                            focusConfirm: false,
+                            confirmButtonText: "확인"
+                        }).then(() => {
+                            // SweetAlert 닫힌 뒤 스크롤 이동
+                            if (checkResult.firstInvalid) {
+                                checkResult.firstInvalid.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+                        });
+                        return false;
+                    } else {
+                        commonAjaxFunc("/survey/ans/regist", { "ccCd": CC_CD, "ccYear": CC_YEAR, "enrolNo": ENROL_NO, "courseCd": COURSE_CD, "surveyCd": CUR_SURVEY_CD, "ans": JSON.stringify(SURVEY_ANS_LIST) }, "POST", function (data) {
+                            if (data != null && data.totalProgress != undefined) {
+                                getCourseList();
+
+                                $("#studyroomCourseList li:last-child").find(".progress-bar").css("width", data.totalProgress + "%");
+                                $("#studyroomCourseList li:last-child").find(".val").text(data.totalProgress + "%");
+
+                                $("#quiz-contents-area .education-contents__question").empty();
+
+                                var htmlStr = '';
+                                /* htmlStr +='<h4>강사평가 및 교육만족도 조사 제출이 완료되었습니다.</h4>';
+
+
+                                htmlStr +='<div class="education-contents__question-banner text-center survey-result">';
+                                htmlStr +='    <p><span class="text-danger">교육을 최종 이수하였습니다.</span>이후 선택과목 학습은 진도율에 반영되지 않습니다</p>';
+                                htmlStr +='    <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="closeStudyroom();">수료증확인</button>';
+                                htmlStr +='</div>'; */
+                                htmlStr += '<div class="education-contents__question-banner text-center survey-result">';
+                                htmlStr += '    <h4 class="survey-h4">※ 설문에 응해주셔서 감사합니다. ※</h4>';
+                                htmlStr += '    <p class="mb-3">아래 [선택]과목은 학습진도율에 반영되지 않습니다.<br/>자유롭게 수강해주시기 바랍니다.<br/></p>';
+                                htmlStr += '    <button type="button" class="btn btn-primary" onclick="showCertificates(\'' + CC_CD + '\', \'' + ENROL_NO + '\');">수료증 출력</button>';
+                                htmlStr += '</div>';
+                                //htmlStr +='</div>';
+
+                                $("#quiz-contents-area .education-contents__question").html(htmlStr);
+                                $("#quiz-contents-area").removeClass("d-none");
+
+                                $("#studyroomCourseList li[data-id='" + COURSE_CD + "']").find("span").removeClass("pull-quiz").addClass("compl-quiz").text("제출완료");
+                            }
+
+                        });
+                    }
+
+                }
+
+                return {
+                    getCurriculumInfo
+                    , getCurriculumInfoCallback
+                    , getCourseList
+                    , goContents
+                    , prevContents
+                    , nextContents
+                    , goContentsCallback
+                    , goSurvey
+                    , goQuiz
+                    , resetQuiz
+                    , startQuiz
+                    , checkAnswer
+                    , submitQuiz
+                    , showQuizResult
+                    , showPrevQuizResult
+                    , viewSurvey
+                    , nextSurvey
+                    , submitSurvey
+                }
+            })();
+
+            /**************************** 설문****************************/
+            $(document).on("click", ".survey-item-question ol li", function () {
+                $(this).parents("ol").find("li").removeClass("active");
+                $(this).addClass("active");
+                if (lastQuestionCheck()) {
+                    studyroom.nextSurvey();
+                }
+            });
+
+            function lastQuestionCheck() {
+                var validChk = true;
+
+                $(".survey-wrapper .survey-item").each(function () {
+                    if ($(this).hasClass("survey-item-question")) {
+                        var q = $(this).attr("data-q-v");	//questionCd
+
+                        if ($(this).hasClass("type-choice")) {
+                            if ($(this).find("ol li.active").length < 1) {
+                                validChk = false;
+                            }
+                        } else if ($(this).hasClass("type-short")) {
+                            var ans = $(this).find("textarea[name=ansTxt]").val();
+                            if (isEmpty(ans)) {
+                                validChk = false;
+                            }
+                        } else if ($(this).hasClass("type-dropdown")) {
+                            var ans = $(this).find("select[name=ansItemSel]").val();
+                            if (isEmpty(ans)) {
+                                validChk = false;
+                            }
+                        }
+
+                    }
+                })
+                return validChk;
+            }
+
+            /**************************** 설문****************************/
+            const verificationTimeLimit = 360; // 6분
+            let remainingTime = verificationTimeLimit;
+
+            function updateTimerDisplay() {
+                const minutes = Math.floor(remainingTime / 60);
+                const seconds = remainingTime % 60;
+                if (seconds < 10) {
+                    $("#verifyTimer").html(minutes + ":0" + seconds);
+                } else {
+                    $("#verifyTimer").html(minutes + ":" + seconds);
+                }
+
+            }
+
+            function startTimer() {
+                remainingTime = verificationTimeLimit;
+                updateTimerDisplay();
+                timerInterval = setInterval(() => {
+                    remainingTime--;
+                    updateTimerDisplay();
+
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+
+                        alert("인증번호 입력 시간이 만료되었습니다. 다시 요청하세요.");
+                        $("#verificationBtn").removeAttr("disabled");
+                        $(".education-contents__certification-inner .verification-wrapper").remove();
+                    }
+                }, 1000);
+            }
+            /*SMS 인증*/
+            var smsAuth = (function () {
+                var COURSE_CD = "";
+                var CONTENTS_CD = "";
+
+                var fnShow = function (courseCd, contentsCd) {
+                    COURSE_CD = courseCd;
+                    CONTENTS_CD = contentsCd;
+                    $("#player").attr("src", "");
+                    $("#quiz-area").addClass("d-none");
+                    $("#player-area").addClass("d-none");
+                    $("#smsAuthDiv").removeClass("d-none");
+                }
+                var sendVerifySms = function () {
+                    $("#verificationBtn").attr("disabled", true);
+                    $(".education-contents__certification-inner .verification-wrapper").remove();
+                    var data = { "ccCd": CC_CD, "courseCd": COURSE_CD, "enrolNo": ENROL_NO }
+                    commonAjaxFunc("/studyroom/send/sms/verify", data, "POST", function (data) {
+                        startTimer();
+                        if (data != null) {
+                            if (data.result == "success") {
+                                var htmlStr = '';
+                                htmlStr += '<div class="d-flex align-items-center mb-1 verification-wrapper">';
+                                htmlStr += '    <label>인증번호</label>';
+                                htmlStr += '</div>';
+                                htmlStr += '<div class="d-flex align-items-center mb-1 verification-wrapper">';
+                                htmlStr += '<div class="d-flex align-items-center w-50 verification-wrapper" style="position:relative;">';
+                                htmlStr += '    <input type="text" class="form-control text-center" name="confirmMsg" value="" maxlength=4 placeholder="숫자 4자리 입력" />';
+                                htmlStr += '		<span id="verifyTimer" style="color:red;position:absolute;top:1rem;right:1rem;font-weight:500;">6:00</span>';
+                                htmlStr += '</div>'
+                                htmlStr += '    <p class="w-50 ms-1">';
+                                htmlStr += '        <button type="button" class="btn btn-primary w-100 mt-1" onclick="smsAuth.confirmVerifySms();">확인</button>';
+                                htmlStr += '    </p>';
+                                htmlStr += '</div>';
+                                $(".education-contents__certification-inner").append(htmlStr);
+                                var tempCode = data.verifyCd;
+                                commonMsgAlert("인증번호가 발송되었습니다.");
+                            } else if (data.result == "LOGIN_USER_IS_NULL") {
+                                Swal.fire({ text: '로그인이 끊겼습니다. 다시 로그인해주세요..', confirmButtonText: "확인" }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.open("about:blank", "_self").close();
+                                        opener.location.href = "/user/login";
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+                var confirmVerifySms = function () {
+                    var data = { "verifyCd": $("input[name=confirmMsg]").val(), "ccCd": CC_CD, "courseCd": COURSE_CD, "enrolNo": ENROL_NO }
+                    commonAjaxFunc("/studyroom/confirm/sms/verify", data, "GET", function (data) {
+                        if (data.result == "success") {
+                            clearInterval(timerInterval);
+                            Swal.fire({ text: '인증되었습니다.', confirmButtonText: "확인" }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $("#smsAuthDiv").addClass("d-none");
+                                    $("#player-area").removeClass("d-none");
+                                    studyroom.getCourseList();	//SMS 인증여부가 UPDATE 됬으므로 목차 리로딩
+
+                                    commonAjaxFunc("/contents/" + CONTENTS_CD, {}, "GET", studyroom.goContentsCallback);	//해당 차시의 콘텐츠 플레이
+                                }
+                            });
+                        } else {
+                            commonMsgAlert("인증에 실패했습니다.");
+                        }
+                        $("input[name=confirmMsg]").val("");
+
+                    });
+
+                }
+
+
+                return { fnShow: fnShow, sendVerifySms: sendVerifySms, confirmVerifySms: confirmVerifySms }
+            })();
+            studyroom.getCurriculumInfo();
+
+            function fn_checkByte(obj) {
+                var txt = obj.value;
+                if (txt.length > 50) {
+                    obj.value = txt.substring(0, 50);
+                    commonMsgAlert("50자 미만으로 작성해주세요.");
+                    return false;
+                }
+            }
+
+            function showCertificates(ccCd, enrolNo) {
+                var width = "870";
+                var height = "950";
+
+                if (isMobile) {
+                    width = window.innerWidth;
+                    height = window.innerHeight;
+                }
+                var studyWin = window.open("about:blank", "certificateView", "width=" + width + ",height=" + height + ",resizable=no,scrollbars=yes");
+                $("form[name=moveForm] input[name=ccCd]").val(ccCd);
+                $("form[name=moveForm] input[name=enrolNo]").val(enrolNo);
+                var frm = document.moveForm;
+                frm.action = "/user/curriculum/certificate/view";
+                frm.target = "certificateView";
+                frm.submit();
+
+            }
+
+        </script>
+
+
+
+
+</body></html>

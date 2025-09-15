@@ -58,7 +58,7 @@ $(document).ready(function () {
 
 	//학습창
 	$(".btn-toggle-close").on("click", function () {
-		$(".education").addClass("fold");
+		$(".education").toggleClass("fold");
 	});
 	$(".education-nav__toggle, .btn-toggle-open").on("click", function () {
 		$(".education").removeClass("fold");
