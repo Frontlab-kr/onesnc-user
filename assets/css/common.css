@@ -14215,25 +14215,25 @@ form {
   position: absolute;
   top: 0;
   right: 0;
-  width: 40px;
+  width: 30px;
   height: 80px;
-  background: #193b92;
+  background: #192f68;
   border: 0;
   margin: 0;
   padding: 0;
   color: #fff;
   border-radius: 0 10px 10px 0;
-  transform: translateX(90%);
+  transform: translateX(100%);
+  font-size: 24px;
 }
 @media (max-width: 767.98px) {
-  .kcraedu .education-nav__close {
-    font-size: 24px;
-  }
   .kcraedu .education-nav__close button {
     width: 40px;
     height: 60px;
     line-height: 1;
     transform: translateX(0);
+    font-size: 24px;
+    background: #193b92;
   }
 }
 .kcraedu .education-nav__title {
