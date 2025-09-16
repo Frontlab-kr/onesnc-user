@@ -2990,7 +2990,7 @@ form {
           right: 0;
           width: 30px;
           height: 80px;
-          
+
           background: #192f68;
           border: 0;
           margin: 0;
@@ -3141,38 +3141,32 @@ form {
         width: 100%;
         height: calc(100vh - 80px);
       }
-      &__player {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: calc(100vh - 128px);
-        overflow: auto;
-        justify-content: center;
-        iframe {
-          width: 100%;
-          height: 100%;
-        }
-        &-inner {
+      @media (min-width: 1199px) {
+        &__player {
           display: flex;
           align-items: center;
-          justify-content: center;
-          position: relative;
           width: 100%;
-          height: 100%;
-          .video-js {
+          height: calc(100vh - 128px);
+          overflow: auto;
+          justify-content: center;
+          iframe {
             width: 100%;
             height: 100%;
-            padding: 0;
-            //aspect-ratio: 16 / 9;
           }
-          //aspect-ratio: 16 / 9;
-
-          //max-width: 1035px;
-          // height: 50%;
+          &-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            .video-js {
+              width: 100%;
+              height: 100%;
+              padding: 0;
+            }
+          }
         }
-        // @include media-breakpoint-down(lg) {
-        // 	height: 36vh;
-        // }
       }
       &__button {
         display: flex;

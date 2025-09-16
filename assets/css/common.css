@@ -14372,30 +14372,32 @@ form {
   width: 100%;
   height: calc(100vh - 80px);
 }
-.kcraedu .education-contents__player {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: calc(100vh - 128px);
-  overflow: auto;
-  justify-content: center;
-}
-.kcraedu .education-contents__player iframe {
-  width: 100%;
-  height: 100%;
-}
-.kcraedu .education-contents__player-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.kcraedu .education-contents__player-inner .video-js {
-  width: 100%;
-  height: 100%;
-  padding: 0;
+@media (min-width: 1199px) {
+  .kcraedu .education-contents__player {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 128px);
+    overflow: auto;
+    justify-content: center;
+  }
+  .kcraedu .education-contents__player iframe {
+    width: 100%;
+    height: 100%;
+  }
+  .kcraedu .education-contents__player-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .kcraedu .education-contents__player-inner .video-js {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
 }
 .kcraedu .education-contents__button {
   display: flex;
