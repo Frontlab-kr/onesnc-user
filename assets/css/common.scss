@@ -288,7 +288,7 @@ form {
           dt {
             font-weight: 500;
             font-size: 0.875rem;
-            line-height: 1.313rem;
+            line-height: 1.©3rem;
             /* identical to box height */
 
             /* #999999 */
@@ -3174,7 +3174,8 @@ form {
         justify-content: space-between;
         margin-top: 1rem;
         margin-left: auto;
-        max-width: 1035px;
+        //max-width: 1035px;
+        width: 100%;
         margin-right: auto;
       }
       &__certification {
