@@ -153,6 +153,107 @@
                       </button>
                     </p>
                   </div>
+                  <div class="d-flex align-items-center gap-2 mt-2">
+                    <input type="checkbox" name="requiredYn" value="Y" />
+                    <p>이메일 수신동의 [수강신청, 결제내역 등에 활용됩니다.]</p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="one-form-item"
+                data-type="JOIN_ITEM_PHONE"
+                id="ITEM_00005"
+              >
+                <strong
+                  ><span class="text-danger">*</span>휴대폰번호[수강신청,
+                  결제내역 등에 활용]</strong
+                >
+                <div class="one-form-item__contents">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    value=""
+                    name="phone"
+                    id="phone"
+                    required="required"
+                    placeholder="휴대폰번호[수강신청, 결제내역 등에 활용]를 입력하세요. ex)01012345678"
+                    maxlength="12"
+                  />
+                  <div class="one-form-item__phone">
+                    <select
+                      class="form-select"
+                      name="phone1"
+                      id="phone1"
+                      required="required"
+                    >
+                      <option selected="">선택</option>
+                      <option>010</option>
+                      <option>011</option>
+                      <option>016</option>
+                      <option>017</option>
+                      <option>018</option>
+                      <option>019</option>
+                    </select>
+                    <p>
+                      <em>-</em>
+                      <input
+                        type="text"
+                        class="form-control"
+                        required="required"
+                        name="phone2"
+                        onkeydown="isNumber();"
+                        onkeyup="removeNotNumber();"
+                        maxlength="4"
+                      />
+                      <em>-</em>
+                      <input
+                        type="text"
+                        class="form-control"
+                        required="required"
+                        name="phone3"
+                        onkeydown="isNumber();"
+                        onkeyup="removeNotNumber();"
+                        maxlength="4"
+                      />
+                    </p>
+                  </div>
+                  <div class="mt-2 text-danger">
+                    핸드폰 번호는 회원가입 후, 수정 불가하니 잘 체크하시기
+                    바랍니다.
+                  </div>
+                  <div class="d-flex align-items-center gap-2 mt-2">
+                    <input type="checkbox" name="requiredYn" value="Y" />
+                    <p>
+                      SMS 수신동의 [차시인증, 수강신청, 취소안내 등에
+                      활용됩니다.]
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="one-form-item"
+                data-type="JOIN_ITEM_RECEIVE_EMAIL"
+                id="ITEM_00013"
+              >
+                <strong>메일수신여부 </strong>
+                <div class="one-form-item__contents">
+                  <div class="d-flex align-items-center gap-2">
+                    <input type="checkbox" name="requiredYn" value="Y" /> 이메일
+                    수신을 동의하시겠습니까?
+                  </div>
+                </div>
+              </div>
+              <div
+                class="one-form-item"
+                data-type="JOIN_ITEM_RECEIVE_SMS"
+                id="ITEM_00014"
+              >
+                <strong>문자수신여부</strong>
+                <div class="one-form-item__contents">
+                  <div class="d-flex align-items-center gap-2">
+                    <input type="checkbox" name="requiredYn" value="Y" />
+                    <p>SMS 수신을 동의하시겠습니까?</p>
+                  </div>
                 </div>
               </div>
             </div>

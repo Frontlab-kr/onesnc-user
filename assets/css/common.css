@@ -14405,7 +14405,7 @@ form {
   justify-content: space-between;
   margin-top: 1rem;
   margin-left: auto;
-  max-width: 1035px;
+  width: 100%;
   margin-right: auto;
 }
 .kcraedu .education-contents__certification {
@@ -17240,9 +17240,6 @@ p {
 .one-form-item__contents {
   width: 100%;
   padding: 21px 30px 20px 30px;
-}
-.one-form-item__contents input {
-  width: 100%;
 }
 .one-form-item__phone {
   display: flex;
