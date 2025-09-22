@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../assets/css/common.css" type="text/css" />
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap-5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/include.js"></script>
+  </head>
+  <body>
+    <div class="one">
+      <!-- header -->
+      <div
+        include-html="../layout/header.html"
+        class="one-include-header"
+      ></div>
+      <!-- //header -->
+
+      <main id="content">
+        <div class="one-contents">
+          <div class="one-join">
+            <h1>회원가입</h1>
+            <div class="one-join-nav">
+              <p><span>STEP 1.</span> 정보동의</p>
+              <i class="ico-nav"></i>
+              <p class="active"><span>STEP 2.</span> 본인인증</p>
+              <i class="ico-nav"></i>
+              <p><span>STEP 3.</span> 정보입력</p>
+            </div>
+            <div class="one-join-terms">
+              <section class="container">
+                <div>
+                  <p class="policy-agree-wrap notice-txt alret-bg">
+                    <i class="icon icon-list-alt"></i>본인 확인을 위해
+                    인증방식을 선택해주세요.<br />
+                    <!--  * 잘못 선택하셨을 경우나 인증시 틀렸을 경우 F5키를 눌러주세요! -->
+                  </p>
+                </div>
+                <div class="row multiple-row policy-agree-wrap mt-4">
+                  <div class="col-xl-6">
+                    <div class="col-wrap">
+                      <div class="policy-grid reverse-grid reverse-grid">
+                        <a href="javascript:cardAuth();">
+                          <div class="img-block post-img">
+                            <img
+                              src="../assets/images/user_card.png"
+                              alt="images"
+                            />
+                          </div>
+                          <div class="policy-title-block pay-cover">
+                            <div class="post-meta pay-cover-title clearfix">
+                              <strong class="lh-4 sign-t">카드 본인인증</strong>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="col-wrap">
+                      <div class="policy-grid reverse-grid reverse-grid">
+                        <a href="javascript:phoneAuth();">
+                          <div class="img-block post-img">
+                            <img
+                              src="../assets/images/user_cer.png"
+                              alt="images"
+                            />
+                          </div>
+                          <div class="policy-title-block pay-cover">
+                            <div class="post-meta pay-cover-title clearfix">
+                              <strong class="lh-4 sign-t"
+                                >휴대폰 본인인증</strong
+                              >
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- footer -->
+      <div include-html="../layout/footer.html"></div>
+      <!-- //footer -->
+    </div>
+  </body>
+</html>

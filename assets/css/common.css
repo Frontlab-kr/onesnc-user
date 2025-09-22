@@ -17069,6 +17069,32 @@ p {
   background: var(--04-bg-04-gray-fafafa, #fafafa);
   overflow: auto;
 }
+.one-join-terms .policy-agree-wrap {
+  padding: 30px 0 0 0;
+  font-size: 16px;
+}
+.one-join-terms .img-block img {
+  max-width: 100%;
+}
+.one-join-terms .pay-cover-title {
+  padding: 20px 0 0 0;
+  text-align: center;
+  font-size: 16px;
+}
+@media (max-width: 1199.98px) {
+  .one-join-terms .policy-agree-wrap {
+    gap: 20px;
+  }
+}
+.one-join-terms .policy-grid {
+  padding: 30px 0;
+  border: 1px solid var(--06-border-01-gray-e-4-e-4-e-4, #e4e4e4);
+  border-radius: 16px;
+  transition: all 0.1s ease;
+}
+.one-join-terms .policy-grid:hover {
+  border-color: var(--00-primary-02-blue-013-eb-7, #013eb7);
+}
 .one-join-complete {
   padding: 160px 0;
 }
