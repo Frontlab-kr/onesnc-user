@@ -16440,7 +16440,7 @@ p {
   background: #007899 url(../images/main-bg2.svg) no-repeat 50% 100%;
 }
 .one-main.bg-none .one-main-head {
-  background: #007899;
+  background: linear-gradient(180deg, #007899 0%, #00556c 100%);
 }
 .one-main-quick {
   display: flex;

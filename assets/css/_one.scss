@@ -568,7 +568,7 @@ p {
     }
     &.bg-none & {
       &-head {
-        background: #007899;
+        background: linear-gradient(180deg, #007899 0%, #00556c 100%);
       }
     }
     &-quick {
