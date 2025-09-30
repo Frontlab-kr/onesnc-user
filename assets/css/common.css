@@ -16436,6 +16436,12 @@ p {
   padding: 80px 0;
   background: #007899 url(../images/main-bg.svg) no-repeat 50% 100%;
 }
+.one-main.bg-02 .one-main-head {
+  background: #007899 url(../images/main-bg2.svg) no-repeat 50% 100%;
+}
+.one-main.bg-none .one-main-head {
+  background: #007899;
+}
 .one-main-quick {
   display: flex;
   align-items: center;

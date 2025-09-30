@@ -561,6 +561,16 @@ p {
       padding: 80px 0;
       background: #007899 url(../images/main-bg.svg) no-repeat 50% 100%;
     }
+    &.bg-02 & {
+      &-head {
+        background: #007899 url(../images/main-bg2.svg) no-repeat 50% 100%;
+      }
+    }
+    &.bg-none & {
+      &-head {
+        background: #007899;
+      }
+    }
     &-quick {
       display: flex;
       align-items: center;
